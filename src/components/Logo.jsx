@@ -9,7 +9,7 @@ function Logo({ width = '100px' }) {
             strokeWidth='2.2'
             strokeLinecap='round'
             strokeLinejoin='round'
-            className='w-8 h-8 bg-black p-1 rounded-lg'
+            className='w-9 h-9 bg-black px-2 rounded-lg'
         >
             <rect x="2" y="5" width="20" height="14" rx="2"/>
             <line x1="2" y1="10" x2="22" y2="10"/>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Button, Logo } from '../index.js';
 
 function Sidebar() {
@@ -15,26 +15,37 @@ function Sidebar() {
                     </div>
                     <div className='block'>
                         <ul className='mt-10'>
-                            <li className='flex gap-3 py-auto mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg p-2 duration-200 hover:duration-200'>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className="w-5 h-5"
-                                    >
-                                    <rect x="3" y="3" width="7" height="7" rx="1" />
-                                    <rect x="14" y="3" width="7" height="7" rx="1" />
-                                    <rect x="3" y="14" width="7" height="7" rx="1" />
-                                    <rect x="14" y="14" width="7" height="7" rx="1" />
-                                </svg>
-                                Dashboard
+                            <li className='mt-1'>
+                                <NavLink 
+                                to='/dashboard'
+                                className={({isActive}) =>
+                                `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="w-5 h-5"
+                                        >
+                                        <rect x="3" y="3" width="7" height="7" rx="1" />
+                                        <rect x="14" y="3" width="7" height="7" rx="1" />
+                                        <rect x="3" y="14" width="7" height="7" rx="1" />
+                                        <rect x="14" y="14" width="7" height="7" rx="1" />
+                                    </svg>
+                                    Dashboard
+                                </NavLink>
                             </li>
-                            <li className='flex gap-3 py-auto mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg p-2 duration-200 hover:duration-200'>
-                                <svg
+                            <li className='mt-1'>
+                                <NavLink 
+                                to='/transactions'
+                                className={({isActive}) =>
+                                `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
+                                    <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
                                     fill="none"
@@ -46,10 +57,16 @@ function Sidebar() {
                                     >
                                     <path d="M3 17l6-6 4 4 8-8" />
                                     <path d="M15 7h6v6" />
-                                </svg>
-                                Transactions
+                                    </svg>
+                                    Transactions
+                                </NavLink>
                             </li>
-                            <li className='flex gap-3 py-auto mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg p-2 duration-200 hover:duration-200'>
+                            <li className='mt-1'>
+                                <NavLink 
+                                to='/budget'
+                                className={({isActive}) =>
+                                `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
                                     <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
@@ -62,11 +79,17 @@ function Sidebar() {
                                     >
                                     <path d="M12 2v20" />
                                     <path d="M17 6.5c0-2-2-3.5-5-3.5s-5 1.5-5 4 2 3 5 4 5 1 5 4-2 4-5 4-5-1.5-5-3.5" />
-                                </svg>
-                                Budgets
+                                    </svg>
+                                    Budget
+                                </NavLink>
                             </li>
-                            <li className='flex gap-3 py-auto mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg p-2 duration-200 hover:duration-200'>
-                                <svg
+                            <li className='mt-1'>
+                                <NavLink 
+                                to='/analytics'
+                                className={({isActive}) =>
+                                `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
+                                    <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
                                     fill="none"
@@ -79,11 +102,17 @@ function Sidebar() {
                                     <path d="M6 20V10" />
                                     <path d="M12 20V4" />
                                     <path d="M18 20V14" />
-                                </svg>
-                                Analytics
+                                    </svg>
+                                    Analytics
+                                </NavLink>
                             </li>
-                            <li className='flex gap-3 py-auto mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg p-2 duration-200 hover:duration-200'>
-                                <svg
+                            <li className='mt-1'>
+                                <NavLink 
+                                to='/admin'
+                                className={({isActive}) =>
+                                `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
+                                    <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
                                     fill="none"
@@ -97,8 +126,9 @@ function Sidebar() {
                                     <circle cx="10" cy="7" r="4" />
                                     <path d="M20 21v-2a4 4 0 0 0-3-3.87" />
                                     <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                                </svg>
-                                Admin
+                                    </svg>
+                                    Admin
+                                </NavLink>
                             </li>
                         </ul>
                     </div>
