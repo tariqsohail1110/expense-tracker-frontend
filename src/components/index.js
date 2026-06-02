@@ -6,7 +6,9 @@ import Logo from "./Logo.jsx";
 import Container from './Container/Container.jsx';
 import Info from "./Dashboard/Info.jsx";
 import InfoBars from "./Dashboard/InfoBars.jsx";
+import DonutChart from "./Dashboard/DonutChart.jsx";
+import ExpenseList from "./Dashboard/ExpenseList.jsx";
 
 export {
-    Button, Header, Sidebar, Footer, Logo, Container, Info, InfoBars
+    Button, Header, Sidebar, Footer, Logo, Container, Info, InfoBars, DonutChart, ExpenseList
 }
