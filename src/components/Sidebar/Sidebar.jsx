@@ -14,7 +14,7 @@ function Sidebar() {
                         {/* </Link> */}
                     </div>
                     <div className='block'>
-                        <ul className='mt-10'>
+                        <ul className='mt-5'>
                             <li className='mt-1'>
                                 <NavLink 
                                 to='/dashboard'
