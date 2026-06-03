@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, InfoBars } from '../components'
+import { Container, InfoBars, BudgetBar } from '../components'
 
 function Budgets() {
     return (
@@ -8,6 +8,9 @@ function Budgets() {
                 <div>
                     <h1 className='text-3xl font-bold text-zinc-900'>Budget Management</h1>
                     <p className='text-sm mt-1'>Optimize your capital allocation and monitor spend.</p>
+                </div>
+                <div className='mt-5'>
+                    <BudgetBar text='Monthly Budget' budget='42,000' per='90' spent='38,000' rem='4,000'/>
                 </div>
                 <div>
                     <h1 className='text-3xl font-bold text-zinc-900 mt-5'>Category Overview</h1>
