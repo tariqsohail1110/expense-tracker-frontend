@@ -20,7 +20,7 @@ function Sidebar() {
                                 to='/dashboard'
                                 className={({isActive}) =>
                                 `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
-                                ${isActive ? 'text-emerald-800 bg-emerald-300 font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 24 24"
@@ -44,7 +44,7 @@ function Sidebar() {
                                 to='/transactions'
                                 className={({isActive}) =>
                                 `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
-                                ${isActive ? 'text-emerald-800 bg-emerald-300 font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
                                     <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
@@ -66,7 +66,7 @@ function Sidebar() {
                                 to='/budget'
                                 className={({isActive}) =>
                                 `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
-                                ${isActive ? 'text-emerald-800 bg-emerald-300 font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
                                     <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
@@ -88,7 +88,7 @@ function Sidebar() {
                                 to='/analytics'
                                 className={({isActive}) =>
                                 `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
-                                ${isActive ? 'text-emerald-800 bg-emerald-300 font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
                                     <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
@@ -111,7 +111,7 @@ function Sidebar() {
                                 to='/admin'
                                 className={({isActive}) =>
                                 `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
-                                ${isActive ? 'text-emerald-800 bg-emerald-300 font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
                                     <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"

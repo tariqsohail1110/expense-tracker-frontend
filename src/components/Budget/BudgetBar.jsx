@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '../index.js'
 
-function BudgetBar({text, per, budget=0, spent=0, rem=0}) {
+function BudgetBar({text, per, budget=0, spent=0, rem=0, rem_days=0}) {
     const getProgressByPer = (percentage) => {
             const parsed_per = parseInt(percentage);
             if (parsed_per >= 75) return 'bg-red-500';
@@ -15,15 +15,32 @@ function BudgetBar({text, per, budget=0, spent=0, rem=0}) {
                 <h1 className="font-mono text-sm font-medium text-body">{text}</h1>
                 <div className='grid grid-cols-2 gap-2'>
                     <div >
-                        <Button className='w-full bg-slate-200 border-slate-500 text-slate-500 border-2 hover:bg-slate-800 duration-200 hover:duration-200 hover:text-white rounded-3xl text-xs'>Edit</Button>
+                        <Button 
+                            textColor='text-emerald-500' 
+                            bgColor='bg-emerald-100' 
+                            rounded='!rounded-3xl' 
+                            className='w-full border-2 border-emerald-500 hover:bg-emerald-500 hover:text-white duration-200 text-xs'
+                        >
+                            Edit
+                        </Button>
                     </div>
                     <div>
-                        <Button className='w-full bg-red-200 border-red-500 text-red-500 border-2 hover:bg-red-800 duration-200 hover:duration-200 hover:text-white rounded-3xl text-xs'>Delete</Button>
+                        <Button 
+                            textColor='text-red-500' 
+                            bgColor='bg-red-100' 
+                            rounded='!rounded-3xl' 
+                            className='w-full border-2 border-red-500 hover:bg-red-500 hover:text-white duration-200 text-xs'
+                        >
+                            Delete
+                        </Button>
                     </div>
                 </div>
             </div>
             <div className='my-2'>
                 <span className='text-3xl font-bold text-zinc-900'>{budget}</span>
+            </div>
+            <div>
+                <span className='font-mono text-sm font-medium text-body'>{`Remianing Days: ${rem_days}`}</span>
             </div>
             <div className='my-2 flex justify-between'>
                 <span className='font-mono text-sm font-medium text-body'>{`Spent ${spent}`}</span>
