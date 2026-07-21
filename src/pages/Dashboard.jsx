@@ -13,7 +13,10 @@ function Dashboard() {
                         <p className='text-sm mt-1'>{`Welcome back ${username}, your finances are looking healthy this month`}</p>
                     </div>
                     <div className='cols-span-2 w-64 ml-auto mt-auto pb-2'>
-                            <Button className='w-full bg-slate-900 hover:bg-slate-800 duration-200 hover:duration-200'> + New Entry</Button>
+                            <Button
+                            bgColor='bg-slate-900'
+                            textColor='text-white'
+                            className='w-full hover:bg-slate-800 duration-200 hover:duration-200'> + New Entry</Button>
                     </div>
                 </div>
                 <div className='grid grid-cols-3 gap-4 mt-5'>

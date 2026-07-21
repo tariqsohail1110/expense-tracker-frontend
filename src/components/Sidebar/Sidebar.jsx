@@ -133,7 +133,10 @@ function Sidebar() {
                         </ul>
                     </div>
                     <div className='mt-auto border-b pb-2'>
-                        <Button className='w-full bg-slate-900 hover:bg-slate-800 duration-200 hover:duration-200'> + New Entry</Button>
+                        <Button 
+                            bgColor='bg-slate-900'
+                            textColor='text-white'
+                            className='w-full hover:bg-slate-800 duration-200  hover:duration-200'> + New Entry</Button>
                     </div>
                     <div className='block'>
                         <ul className='mt-10'>
