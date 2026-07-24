@@ -9,7 +9,9 @@ import InfoBars from "./Dashboard/InfoBars.jsx";
 import DonutChart from "./Dashboard/DonutChart.jsx";
 import ExpenseList from "./Dashboard/ExpenseList.jsx";  
 import BudgetBar from "./Budget/BudgetBar.jsx";
+import Expenses from "./Transactions/Expenses.jsx";
+import PaginationComponent from "./Pagination/Pagination.jsx";
 
 export {
-    Button, Header, Sidebar, Footer, Logo, Container, Info, InfoBars, DonutChart, ExpenseList, BudgetBar
+    Button, Header, Sidebar, Footer, Logo, Container, Info, InfoBars, DonutChart, ExpenseList, BudgetBar, Expenses, PaginationComponent
 }
