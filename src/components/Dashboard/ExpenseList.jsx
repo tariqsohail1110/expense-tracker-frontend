@@ -36,7 +36,7 @@ function ExpenseList({ data = defaultMockData }) {
         .slice(0, 5);
 
     return (
-        <div className='bg-white rounded-lg shadow-md p-6 border border-gray-100 font-sans h-full flex flex-col'>
+        <div className='bg-white rounded-lg shadow-lg p-6 border border-gray-100 font-sans h-full flex flex-col'>
             <div className='flex items-center justify-between mb-6'>
                 <h2 className='text-gray-900 font-bold text-lg flex items-center gap-2'>
                     <TrendingDown className='text-rose-500 w-5 h-5' />

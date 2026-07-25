@@ -160,7 +160,7 @@ function Expenses() {
     console.log(table.getRowModel());
 
     return (
-        <div className='bg-white rounded-lg shadow-md p-6 border my-6 font-sans'>
+        <div className='bg-white rounded-lg shadow-lg p-6 border my-6 font-sans'>
             <div className='flex items-center gap-4 mb-4'>
                 <div className='relative w-5/6'>
                     <input
