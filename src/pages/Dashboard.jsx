@@ -19,7 +19,7 @@ function Dashboard() {
                             className='w-full hover:bg-slate-800 duration-200 hover:duration-200'> + New Entry</Button>
                     </div>
                 </div>
-                <div className='grid grid-cols-3 gap-4 mt-5'>
+                <div className='grid grid-cols-3 gap-4 mt-6'>
                     <div className=''>
                         <Info text='TOTAL BALANCE' amount='42,000'/>
                     </div>

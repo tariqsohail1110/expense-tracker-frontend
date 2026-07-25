@@ -9,7 +9,7 @@ function Budgets() {
                     <h1 className='text-3xl font-bold text-zinc-900'>Budget Management</h1>
                     <p className='text-sm mt-1'>Optimize your capital allocation and monitor spend.</p>
                 </div>
-                <div className='mt-5'>
+                <div className='mt-6'>
                     <BudgetBar text='Monthly Budget' budget='42,000' per='90' spent='38,000' rem='4,000' rem_days='26'/>
                 </div>
                 <div>
