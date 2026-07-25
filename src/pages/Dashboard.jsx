@@ -34,13 +34,9 @@ function Dashboard() {
                     {/* dynamic spendings indicator */}
                     <InfoBars text='Budget Usage' per='90' spent='38,000'/>
                 </div>
-                <div className='grid grid-cols-2 gap-4 mt-6'>
-                    <div>
-                        <ExpenseList/>
-                    </div>
-                    <div>
-                        <DonutChart/>
-                    </div>
+                <div className='grid grid-cols-2 gap-4 mt-6 mb-6'>
+                    <ExpenseList/>
+                    <DonutChart/>
                 </div>
             </Container>
         </>
