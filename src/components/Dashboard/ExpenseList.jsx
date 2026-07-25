@@ -9,6 +9,7 @@ import {
     CreditCard,
     TrendingDown
 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const categoryConfig = {
     Food: { icon: Utensils, bgColor: 'bg-emerald-100', iconColor: 'text-emerald-600' },
@@ -35,8 +36,10 @@ function ExpenseList({ data = defaultMockData }) {
         .sort((a, b) => b.amount - a.amount)
         .slice(0, 5);
 
+        const navigate = useNavigate();
+
     return (
-        <div className='bg-white rounded-lg shadow-lg p-6 border border-gray-100 font-sans h-full flex flex-col'>
+        <div className='bg-white rounded-lg shadow-lg p-6 border border-gray-100 font-sans h-full flex flex-col font-sans'>
             <div className='flex items-center justify-between mb-6'>
                 <h2 className='text-gray-900 font-bold text-lg flex items-center gap-2'>
                     <TrendingDown className='text-rose-500 w-5 h-5' />
@@ -90,9 +93,10 @@ function ExpenseList({ data = defaultMockData }) {
 
             <div className='mt-6 pt-4 border-t border-gray-100'>
                 <Button
-                    bgColor='bg-slate-50'
-                    textColor='text-slate-700'
-                    className='w-full font-semibold text-sm border border-slate-200 hover:bg-slate-100 hover:text-slate-900 transition-all duration-200'
+                    onClick={() => navigate('/transactions')}
+                    bgColor='bg-slate-900'
+                    textColor='text-white'
+                    className='w-full text-sm hover:bg-slate-800 transition-all duration-200'
                 >
                     View All Transactions
                 </Button>
