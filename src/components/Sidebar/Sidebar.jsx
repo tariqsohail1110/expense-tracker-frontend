@@ -84,29 +84,6 @@ function Sidebar() {
                             </li>
                             <li className='mt-1'>
                                 <NavLink 
-                                to='/analytics'
-                                className={({isActive}) =>
-                                `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
-                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
-                                    <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className="w-5 h-5"
-                                    >
-                                    <path d="M6 20V10" />
-                                    <path d="M12 20V4" />
-                                    <path d="M18 20V14" />
-                                    </svg>
-                                    Analytics
-                                </NavLink>
-                            </li>
-                            <li className='mt-1'>
-                                <NavLink 
                                 to='/admin'
                                 className={({isActive}) =>
                                 `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
