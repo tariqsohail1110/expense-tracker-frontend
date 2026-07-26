@@ -9,8 +9,7 @@ import ExpenseList from "./Dashboard/ExpenseList.jsx";
 import BudgetBar from "./Budget/BudgetBar.jsx";
 import Expenses from "./Transactions/Expenses.jsx";
 import SimpleBarChart from "./Dashboard/BarChart.jsx";
-import BudgetInfoBars from "./Budget/BudgetInfoBars.jsx";
 
 export {
-    Button, Sidebar, Logo, Container, Info, InfoBars, DonutChart, ExpenseList, BudgetBar, Expenses, SimpleBarChart, BudgetInfoBars
+    Button, Sidebar, Logo, Container, Info, InfoBars, DonutChart, ExpenseList, BudgetBar, Expenses, SimpleBarChart
 }
