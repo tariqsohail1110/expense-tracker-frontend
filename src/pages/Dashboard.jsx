@@ -1,6 +1,5 @@
 import React from 'react'
-import { Container, Info, Button, InfoBars, DonutChart, ExpenseList } from '../components'
-import Budgets from './Budgets'
+import { Container, Info, Button, InfoBars, DonutChart, ExpenseList, SimpleBarChart } from '../components'
 
 function Dashboard() {
     const username = 'Muhammad Tariq';
@@ -33,6 +32,9 @@ function Dashboard() {
                 <div className='mt-6'>
                     {/* dynamic spendings indicator */}
                     <InfoBars text='Budget Usage' per='90' spent='38,000'/>
+                </div>
+                <div>
+                    <SimpleBarChart/>
                 </div>
                 <div className='grid grid-cols-2 gap-4 mt-6 mb-6'>
                     <ExpenseList/>
