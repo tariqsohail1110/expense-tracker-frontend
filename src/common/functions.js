@@ -11,7 +11,7 @@
 
     const calculatePercentage = (num, total) => {
         const per = (num / total) * 100;
-        return (Number(per)).toFixed(2);
+        return (Number(per)).toFixed(1);
     }
 
     export {

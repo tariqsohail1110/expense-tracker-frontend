@@ -1,37 +1,59 @@
-import React from 'react'
-import { PieChart, Pie, Cell, Tooltip } from 'recharts'
-import { PieChart as PieChartIcon } from 'lucide-react'
+import React from 'react';
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
+import { PieChart as PieChartIcon } from 'lucide-react';
+import mockData from '../../common/data.json';
 
-function DonutChart() {
-    const data = [
-        { name: "Food", amount: 5000, color: "oklch(57.7% 0.245 27.325)" },
-        { name: "Transport", amount: 8000, color: "oklch(54.6% 0.245 262.881)" },
-        { name: "Shopping", amount: 3000, color: "oklch(68.1% 0.162 75.834)" },
-        { name: "Health", amount: 12000, color: "oklch(50.8% 0.118 165.612)" },
-        { name: "Entertainment", amount: 1500, color: "oklch(59.2% 0.249 0.584)" },
-        { name: "Bills", amount: 7000, color: "oklch(51.1% 0.262 276.966)" },
-        { name: "Others", amount: 1500, color: "oklch(64.8% 0.2 131.684)" },
-    ];
+const categoryColors = {
+    Food: '#10B981',       // Emerald 500
+    Shopping: '#3B82F6',   // Blue 500
+    Transport: '#F59E0B',  // Amber 500
+    Health: '#EF4444',     // Red 500
+    Entertainment: '#8B5CF6', // Purple 500
+    Bills: '#06B6D4',      // Cyan 500
+    Other: '#6B7280',
+    default: '#6B7280'
+};
 
-    const totalBudget = 42000;
-    const totalSpent = data.reduce((sum, item) => sum + item.amount, 0);
-    const spentPercentage = ((totalSpent / totalBudget) * 100).toFixed(1);
+function DonutChart({ data = mockData, totalBudget = 60000 }) {
+    // Group transactions by category
+    const categoryTotals = {};
+    const transactions = Array.isArray(data) ? data : [];
+
+    transactions.forEach((item) => {
+        const cat = item.category || 'Other';
+        const amount = Number(item.amount) || 0;
+        categoryTotals[cat] = (categoryTotals[cat] || 0) + amount;
+    });
+
+    const processedData = Object.keys(categoryTotals).map((cat) => ({
+        name: cat,
+        amount: categoryTotals[cat],
+        color: categoryColors[cat] || categoryColors.default
+    })).sort((a, b) => b.amount - a.amount);
+
+    const totalSpent = processedData.reduce((sum, item) => sum + item.amount, 0);
+    const spentPercentage = totalBudget > 0 ? ((totalSpent / totalBudget) * 100).toFixed(1) : '0.0';
 
     return (
-        <>
-            <div className='bg-white rounded-lg shadow-lg p-6 border border-gray-100 h-full flex flex-col'>
-                <div className='flex items-center justify-between mb-6'>
-                    <h2 className='text-zinc-900 font-bold text-lg flex items-center gap-2 font-sans'>
-                        <PieChartIcon className='text-emerald-500 w-5 h-5' />
-                        Category Based Spendings
-                    </h2>
-                </div>
-                <div className='flex-1 flex flex-col items-center justify-center'>
-                    <div className='relative font-mono text-sm' style={{ width: 550, height: 330 }}>
-                        <PieChart width={550} height={330}>
+        <div className='bg-white rounded-lg shadow-lg p-6 border border-gray-100 h-full flex flex-col font-sans'>
+            <div className='flex items-center justify-between mb-6'>
+                <h2 className='text-zinc-900 font-bold text-lg flex items-center gap-2'>
+                    <PieChartIcon className='text-emerald-500 w-5 h-5' />
+                    Category Based Spendings
+                </h2>
+                <span className='text-xs text-gray-500 font-medium bg-gray-100 px-2 py-1 rounded-full'>
+                    Distribution
+                </span>
+            </div>
+
+            <div className='flex-1 flex flex-col md:flex-row items-center justify-center gap-6'>
+                {/* Chart Container */}
+                <div className='relative w-full md:w-1/2 h-[260px] flex items-center justify-center'>
+                    <ResponsiveContainer width="100%" height="100%">
+                        <PieChart>
                             <Tooltip 
                                 formatter={(value) => [
-                                    `${value.toLocaleString()} (${((value / totalBudget) * 100).toFixed(1)}% of Budget)`, 
+                                    `₨ ${value.toLocaleString()} (${((value / totalBudget) * 100).toFixed(1)}% of Budget)`, 
                                     'Spent'
                                 ]}
                                 contentStyle={{ 
@@ -41,30 +63,51 @@ function DonutChart() {
                                 }}
                             />
                             <Pie 
-                                data={data}
+                                data={processedData}
                                 dataKey='amount'
-                                outerRadius={100}
-                                innerRadius={75}
-                                paddingAngle={1}
-                                label={({ name, amount }) => {
-                                    const percentage = ((amount / totalBudget) * 100).toFixed(1);
-                                    return `${name}: ${percentage}%`;
-                                }}
+                                nameKey='name'
+                                outerRadius={95}
+                                innerRadius={70}
+                                paddingAngle={2}
                             >
-                                {data.map((entry, index) => (
+                                {processedData.map((entry, index) => (
                                     <Cell key={`cell-${index}`} fill={entry.color} />
                                 ))}
                             </Pie>
                         </PieChart>
-                        <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none'>
-                            <h2 className='text-3xl font-extrabold text-slate-800 font-sans'>{spentPercentage}%</h2>
-                            <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1 font-sans'>Used of Budget</p>
-                        </div>
+                    </ResponsiveContainer>
+                    <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none'>
+                        <h2 className='text-3xl font-extrabold text-slate-800'>{spentPercentage}%</h2>
+                        <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1'>Used of Budget</p>
                     </div>
                 </div>
+
+                {/* Custom Legend */}
+                <div className='w-full md:w-1/2 flex flex-col justify-center'>
+                    <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-3 w-full px-2'>
+                        {processedData.map((entry) => {
+                            const percentOfBudget = ((entry.amount / totalBudget) * 100).toFixed(1);
+                            return (
+                                <li key={entry.name} className='flex items-center justify-between text-sm py-1.5 border-b border-gray-50 hover:bg-gray-50/50 rounded px-2 transition-colors duration-150'>
+                                    <div className='flex items-center gap-2.5 min-w-0'>
+                                        <span 
+                                            className='w-3 h-3 rounded-full flex-shrink-0' 
+                                            style={{ backgroundColor: entry.color }}
+                                        />
+                                        <span className='font-semibold text-gray-700 truncate'>{entry.name}</span>
+                                    </div>
+                                    <div className='text-right ml-4 flex-shrink-0'>
+                                        <span className='font-bold text-slate-900'>₨ {entry.amount.toLocaleString()}</span>
+                                        <span className='text-[10px] text-gray-400 block font-medium'>{percentOfBudget}% of budget</span>
+                                    </div>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
             </div>
-        </>
-    )
+        </div>
+    );
 }
 
-export default DonutChart
+export default DonutChart;

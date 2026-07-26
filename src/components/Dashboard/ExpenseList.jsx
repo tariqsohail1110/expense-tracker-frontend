@@ -10,6 +10,7 @@ import {
     TrendingDown
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import data from '../../common/data.json';
 
 const categoryConfig = {
     Food: { icon: Utensils, bgColor: 'bg-emerald-100', iconColor: 'text-emerald-600' },
@@ -20,15 +21,7 @@ const categoryConfig = {
     default: { icon: CreditCard, bgColor: 'bg-slate-100', iconColor: 'text-slate-600' }
 };
 
-const defaultMockData = [
-    { id: 1, title: 'Grocery shopping', amount: 10000, category: 'Food', date: '2026-06-08' },
-    { id: 2, title: 'Purchased Trousers', amount: 4000, category: 'Shopping', date: '2026-05-15' },
-    { id: 3, title: 'Dinner at KFC', amount: 5000, category: 'Food', date: '2026-05-15' },
-    { id: 4, title: 'Petrol', amount: 1000, category: 'Transport', date: '2026-05-18' },
-    { id: 5, title: 'Went to the doctor', amount: 1500, category: 'Health', date: '2026-06-01' },
-    { id: 6, title: 'Went to a movie', amount: 1000, category: 'Entertainment', date: '2026-06-03' },
-    { id: 7, title: 'Purchased Sneakers', amount: 8000, category: 'Shopping', date: '2026-06-20' },
-];
+const defaultMockData = data;
 
 function ExpenseList({ data = defaultMockData }) {
     // Sort descending by amount and take the top 5

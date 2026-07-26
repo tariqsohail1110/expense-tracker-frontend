@@ -2,89 +2,9 @@ import React, { useState } from 'react';
 import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
 import { ArrowUpDown, ChevronLeft, Search, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
 import { Button } from '../index.js';
+import data from '../../common/data.json';
 
-const mockData = [
-    {
-        id: 1,
-        title: 'Grocery',
-        amount: 10000,
-        category: 'Food',
-        date: '2026-04-15',
-        note: 'Lorem ipsum dolor set amet'
-    },
-    {
-        id: 2,
-        title: 'Purchased Trousers',
-        amount: 4000,
-        category: 'Shopping',
-        date: '2026-05-15',
-        note: 'Lorem ipsum dolor set amet'
-    },
-    {
-        id: 3,
-        title: 'Dinner at KFC',
-        amount: 5000,
-        category: 'Food',
-        date: '2026-05-15',
-        note: 'Lorem ipsum dolor set amet'
-    },
-    {
-        id: 4,
-        title: 'Petrol',
-        amount: 1000,
-        category: 'Transport',
-        date: '2026-05-18',
-        note: 'Lorem ipsum dolor set amet'
-    },
-    {
-        id: 5,
-        title: 'Went to the doctor',
-        amount: 1500,
-        category: 'Health',
-        date: '2026-06-01',
-        note: 'Lorem ipsum dolor set amet'
-    },
-    {
-        id: 6,
-        title: 'Went to a movie',
-        amount: 1000,
-        category: 'Entertainment',
-        date: '2026-06-03',
-        note: 'Lorem ipsum dolor set amet'
-    },
-    {
-        id: 7,
-        title: 'Grocery',
-        amount: 10000,
-        category: 'Food',
-        date: '2026-06-08',
-        note: 'Lorem ipsum dolor set amet'
-    },
-    {
-        id: 8,
-        title: 'Ordered Pizza',
-        amount: 1500,
-        category: 'Food',
-        date: '2026-06-10',
-        note: 'Lorem ipsum dolor set amet'
-    },
-    {
-        id: 9,
-        title: 'Grocery',
-        amount: 2000,
-        category: 'Food',
-        date: '2026-06-15',
-        note: 'Lorem ipsum dolor set amet'
-    },
-    {
-        id: 10,
-        title: 'Purchased Sneakers',
-        amount: 4000,
-        category: 'Shopping',
-        date: '2026-06-20',
-        note: 'Lorem ipsum dolor set amet'
-    },
-];
+const mockData = data;
 
 const columnHelper = createColumnHelper();
 
@@ -156,8 +76,6 @@ function Expenses() {
         getFilteredRowModel: getFilteredRowModel(),
         getPaginationRowModel: getPaginationRowModel()
     });
-
-    console.log(table.getRowModel());
 
     return (
         <div className='bg-white rounded-lg shadow-lg p-6 border my-6 font-sans'>
