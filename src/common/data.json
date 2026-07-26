@@ -86,5 +86,13 @@
         "category": "Bills",
         "date": "2026-07-20",
         "note": "Lorem ipsum dolor set amet"
+    },
+        {
+        "id": 11,
+        "title": "Electricity Bill",
+        "amount": 10000,
+        "category": "Bills",
+        "date": "2026-07-20",
+        "note": "Lorem ipsum dolor set amet"
     }
 ]

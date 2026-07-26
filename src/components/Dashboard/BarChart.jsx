@@ -6,7 +6,22 @@ import data from '../../common/data.json';
 
 const mockData = data;
 
-function SimpleBarChart() {
+function SimpleBarChart({ data = mockData }) {
+    // Group transactions by category
+    const categoryTotals = {};
+    const transactions = Array.isArray(data) ? data : [];
+
+    transactions.forEach((item) => {
+        const cat = item.category || 'Other';
+        const amount = Number(item.amount) || 0;
+        categoryTotals[cat] = (categoryTotals[cat] || 0) + amount;
+    });
+
+    const processedData = Object.keys(categoryTotals).map((cat) => ({
+        category: cat,
+        amount: categoryTotals[cat]
+    })).sort((a, b) => b.amount - a.amount);
+
     return (
         <div className='bg-white rounded-lg shadow-lg p-6 border border-gray-100 font-sans mt-6'>
             <div className='flex items-center justify-between mb-6'>
@@ -18,7 +33,7 @@ function SimpleBarChart() {
             <div className='h-96 w-full'>
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart
-                        data={mockData}
+                        data={processedData}
                         margin={{
                             top: 5,
                             right: 0,
