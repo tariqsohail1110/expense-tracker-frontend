@@ -6,7 +6,6 @@ import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } 
 import Dashboard from './pages/Dashboard.jsx'
 import Transactions from './pages/Transactions.jsx'
 import Budgets from './pages/Budgets.jsx'
-import Analytics from './pages/Analytics.jsx'
 import Admin from './pages/Admin.jsx'
 
 const router = createBrowserRouter(
@@ -15,7 +14,6 @@ const router = createBrowserRouter(
       <Route path='/dashboard' element={<Dashboard/>}></Route>
       <Route path='/transactions' element={<Transactions/>}></Route>
       <Route path='/budget' element={<Budgets/>}></Route>
-      <Route path='/analytics' element={<Analytics/>}></Route>
       <Route path='/admin' element={<Admin/>}></Route>
     </Route>
   )
