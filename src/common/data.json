@@ -88,10 +88,10 @@
         "note": "Lorem ipsum dolor set amet"
     },
         {
-        "id": 11,
+        "id": 12,
         "title": "Electricity Bill",
         "amount": 10000,
-        "category": "Bills",
+        "category": "Others",
         "date": "2026-07-20",
         "note": "Lorem ipsum dolor set amet"
     }
