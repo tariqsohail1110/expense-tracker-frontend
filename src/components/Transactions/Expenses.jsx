@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
-import { ArrowUpDown, ChevronLeft, Search, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
+import { ArrowUpDown, ChevronLeft, Search, ChevronRight, ChevronsLeft, ChevronsRight, Edit, Trash } from 'lucide-react';
 import { Button } from '../index.js';
 import data from '../../common/data.json';
 import { convert } from '../../common/functions.js';
@@ -50,7 +50,38 @@ const columns = [
         heder: () => (
             <h1>Note</h1>
         )
-    })
+    }),
+    {
+        id: 'actions',
+        header: 'Actions',
+        enableSorting: false,
+        cell: () => (
+            <>
+                <div className='grid grid-cols-2 gap-2'>
+                    <div>
+                        <Button 
+                            textColor='text-emerald-500' 
+                            bgColor='' 
+                            rounded='' 
+                            className='w-full hover:text-emerald-800 duration-200 text-xs'
+                        >
+                            <Edit/>
+                        </Button>
+                    </div>
+                    <div>
+                        <Button 
+                            textColor='text-red-500' 
+                            bgColor='' 
+                            rounded='' 
+                            className='w-full hover:text-red-800 duration-200 text-xs'
+                        >
+                            <Trash />
+                        </Button>
+                    </div>
+                </div>
+            </>
+        )
+    }
 ];
 
 function Expenses() {
@@ -114,17 +145,19 @@ function Expenses() {
                                     >
                                         <div
                                             {...{
-                                                className: header.column.getCanSort()
+                                                className: `flex items-center ${header.column.getCanSort()
                                                 ? 'cursor-pointer select-none flex items-center'
-                                                : '',
-                                                onClick: header.column.getToggleSortingHandler(),
+                                                : ''}`,
+                                                onClick: header.column.getCanSort() ? header.column.getToggleSortingHandler() : undefined,
                                             }}
                                         >
                                             {flexRender(
                                                 header.column.columnDef.header,
                                                 header.getContext()
                                             )}
-                                            <ArrowUpDown className='ml-2 size={14}'/>
+                                            {header.column.getCanSort() && (
+                                                <ArrowUpDown className='ml-2' size={14} />
+                                            )}
                                         </div>
                                     </th>
                                 ))}
