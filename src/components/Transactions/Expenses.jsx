@@ -3,6 +3,7 @@ import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, g
 import { ArrowUpDown, ChevronLeft, Search, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
 import { Button } from '../index.js';
 import data from '../../common/data.json';
+import { convert } from '../../common/functions.js';
 
 const mockData = data;
 
@@ -24,7 +25,7 @@ const columns = [
     }),
 
     columnHelper.accessor('amount', {
-        cell: (info) => info.getValue(),
+        cell: (info) => convert(info.getValue()),
         header: () => (
             <h1>Amount</h1>
         )
