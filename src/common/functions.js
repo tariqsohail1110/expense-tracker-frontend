@@ -12,8 +12,17 @@
     const calculatePercentage = (num, total) => {
         const per = (num / total) * 100;
         return (Number(per)).toFixed(1);
+    };
+
+    const convertNumbers = (number) => {
+        return (Number(number)).toLocaleString('en-US');
+    };
+
+    const formatDate = (d) => {
+        const date = new Date(d);
+        return new Intl.DateTimeFormat('en-GB').format(date);
     }
 
     export {
-        convert, calculateTotalSpendings, calculatePercentage
+        convert, calculateTotalSpendings, calculatePercentage, convertNumbers, formatDate
     }
