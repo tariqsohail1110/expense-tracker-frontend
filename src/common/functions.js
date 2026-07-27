@@ -21,8 +21,16 @@
     const formatDate = (d) => {
         const date = new Date(d);
         return new Intl.DateTimeFormat('en-GB').format(date);
-    }
+    };
+
+    const calculateTotalUsers = (arr) => {
+        return arr.length;
+    };
+
+    const calculateActiveUsers = (arr) => {
+        return (arr.filter(status => status.status === 'Active')).length
+    };
 
     export {
-        convert, calculateTotalSpendings, calculatePercentage, convertNumbers, formatDate
+        convert, calculateTotalSpendings, calculatePercentage, convertNumbers, formatDate, calculateTotalUsers, calculateActiveUsers
     }

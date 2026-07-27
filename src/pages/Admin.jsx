@@ -1,8 +1,10 @@
-import React from 'react';
 import { Container, AdminInfo, Users } from '../components';
-import { convertNumbers, convert } from '../common/functions.js';
+import { convertNumbers, convert, calculateTotalUsers, calculateActiveUsers } from '../common/functions.js';
+import users from '../common/users.json';
 
 function Admin() {
+    const data = users;
+
     return (
         <Container>
                 <div>
@@ -11,10 +13,10 @@ function Admin() {
                 </div>
                 <div className='grid grid-cols-3 gap-4 mt-6'>
                     <div className='cols-span-4'>
-                        <AdminInfo text={'Total Users'} number={convertNumbers(12000)}/>
+                        <AdminInfo text={'Total Users'} number={convertNumbers(calculateTotalUsers(data))}/>
                     </div>
                     <div className='cols-span-4'>
-                        <AdminInfo text={'Active Users'} number={convertNumbers(10000)}/>
+                        <AdminInfo text={'Active Users'} number={convertNumbers(calculateActiveUsers(data))}/>
                     </div>
                     <div className='cols-span-4'>
                         <AdminInfo text={'Total Transactions'} number={convert(120000)}/>
