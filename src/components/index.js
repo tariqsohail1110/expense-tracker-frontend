@@ -11,7 +11,10 @@ import Expenses from "./Transactions/Expenses.jsx";
 import SimpleBarChart from "./Dashboard/BarChart.jsx";
 import AdminInfo from "./Admin/AdminInfo.jsx";
 import Users from "./Admin/Users.jsx";
+import Input from "./Input.jsx";
+import LoginComponent from "./Login/LoginComponent.jsx";
+import SignUpComponent from "./Signup/SignupComponent.jsx";
 
 export {
-    Button, Sidebar, Logo, Container, Info, InfoBars, DonutChart, ExpenseList, BudgetBar, Expenses, SimpleBarChart, AdminInfo, Users
+    Button, Sidebar, Logo, Container, Info, InfoBars, DonutChart, ExpenseList, BudgetBar, Expenses, SimpleBarChart, AdminInfo, Users, Input, LoginComponent, SignUpComponent
 }

@@ -16,7 +16,7 @@ function Sidebar() {
                         <ul className='mt-5'>
                             <li className='mt-1'>
                                 <NavLink 
-                                to='/dashboard'
+                                to='dashboard'
                                 className={({isActive}) =>
                                 `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
                                 ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
@@ -40,7 +40,7 @@ function Sidebar() {
                             </li>
                             <li className='mt-1'>
                                 <NavLink 
-                                to='/transactions'
+                                to='transactions'
                                 className={({isActive}) =>
                                 `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
                                 ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
@@ -62,7 +62,7 @@ function Sidebar() {
                             </li>
                             <li className='mt-1'>
                                 <NavLink 
-                                to='/budget'
+                                to='budget'
                                 className={({isActive}) =>
                                 `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
                                 ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
@@ -84,7 +84,7 @@ function Sidebar() {
                             </li>
                             <li className='mt-1'>
                                 <NavLink 
-                                to='/admin'
+                                to='admin'
                                 className={({isActive}) =>
                                 `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
                                 ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
@@ -189,21 +189,26 @@ function Sidebar() {
                                 Switch Theme
                             </li>
                             <li className='flex gap-3 py-auto mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg p-2 duration-200 hover:duration-200'>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className="w-5 h-5"
-                                    >
-                                    <path d="M10 17H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-                                    <path d="M15 16l5-4-5-4" />
-                                    <path d="M20 12H9" />
-                                </svg>
-                                Sign Out
+                                <NavLink
+                                    className='flex gap-3 items-center font-medium text-sm rounded-lg duration-200 w-full'
+                                    to={'/'}
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="w-5 h-5"
+                                        >
+                                        <path d="M10 17H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                                        <path d="M15 16l5-4-5-4" />
+                                        <path d="M20 12H9" />
+                                    </svg>
+                                    Sign Out
+                                </NavLink>
                             </li>
                         </ul>
                     </div>
