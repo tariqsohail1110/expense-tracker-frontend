@@ -14,7 +14,7 @@ function SignUpComponent() {
                     <Input type='text' placeholder='Enter your name' className= 'border-2 focus:border-black mt-6'/>
                 </div>
                 <div className="">
-                    <Input type='email' placeholder='Enter your email' className= 'border-2 focus:border-black mt-6'/>
+                    <Input type='email' placeholder='Enter your email' className= 'border-2 focus:border-black mt-4'/>
                 </div>
                 <div className="">
                     <Input type='password' placeholder='Enter your password' className= ' border-2 focus:border-black mt-4'/>
