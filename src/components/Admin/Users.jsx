@@ -56,7 +56,7 @@ const columns = [
                             textColor='text-emerald-500' 
                             bgColor='' 
                             rounded='' 
-                            className='w-full hover:text-emerald-800 duration-200 text-xs'
+                            className='hover:text-emerald-800 duration-200 text-xs !p-0'
                         >
                             <Edit/>
                         </Button>
@@ -66,7 +66,7 @@ const columns = [
                             textColor='text-red-500' 
                             bgColor='' 
                             rounded='' 
-                            className='w-full hover:text-red-800 duration-200 text-xs'
+                            className='hover:text-red-800 duration-200 text-xs !p-0'
                         >
                             <Trash />
                         </Button>
