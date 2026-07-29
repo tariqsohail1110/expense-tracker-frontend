@@ -8,6 +8,7 @@ function LoginComponent() {
             <div className="bg-white rounded-lg w-full max-w-xl p-5">
                 <div>
                     <h1 className="text-center font-sans text-4xl font-semibold">Vault Finance</h1>
+                    <p className="text-center font-sans text-xs">Your personal expense manager</p>
                     <h2 className="text-center font-mono text-xl uppercase mt-6">Login</h2>
                 </div>
                 <div className="">
@@ -17,12 +18,12 @@ function LoginComponent() {
                     <Input type='password' placeholder='Enter your password' className= ' border-2 focus:border-black mt-4'/>
                 </div>
                 <div>
-                    <p className="text-sm mt-4 text-center">Forgot password? 
+                    <p className="text-sm mt-4 text-center"> 
                         <span>
-                            <Button bgColor="bg-none" textColor="text-indigo-500"
-                            className="!py-0 !px-1"
+                            <Button bgColor="bg-none" textColor="text-emerald-500"
+                            className="!py-0 !px-1 font-bold"
                             >
-                                Click Here
+                                Forgot Password?
                             </Button>
                         </span>
                     </p>
@@ -30,7 +31,7 @@ function LoginComponent() {
                 <div className="flex items-center justify-center w-full">
                     <div className="w-4/6">
                         <Button
-                        onClick={() => navigate('app/dashboard')}
+                        onClick={() => navigate('otp')}
                         bgColor="bg-slate-900"
                         textColor="text-white"
                         className="mt-4 w-full hover:bg-slate-700 duration-200 text-sm"
@@ -42,14 +43,14 @@ function LoginComponent() {
                         textColor="text-white"
                         className="mt-4 w-full hover:bg-slate-700 duration-200 text-sm"
                         >
-                            Login with Google
+                            Continue with Google
                         </Button>
-                        <p className="text-sm mt-4 text-center">Not an existing user?
+                        <p className="text-sm mt-4 text-center">Don't have an account?
                             <span>
                                 <Button
                                 onClick={() => navigate('signup')}
-                                bgColor="bg-none" textColor="text-indigo-500"
-                                className="!py-0 !px-1"
+                                bgColor="bg-none" textColor="text-emerald-500"
+                                className="!py-0 !px-1 font-bold"
                                 >
                                     Signup
                                 </Button>

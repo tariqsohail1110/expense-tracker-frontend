@@ -14,7 +14,8 @@ import Users from "./Admin/Users.jsx";
 import Input from "./Input.jsx";
 import LoginComponent from "./Login/LoginComponent.jsx";
 import SignUpComponent from "./Signup/SignupComponent.jsx";
+import OtpComponent from "./Otp/OtpComponent.jsx";
 
 export {
-    Button, Sidebar, Logo, Container, Info, InfoBars, DonutChart, ExpenseList, BudgetBar, Expenses, SimpleBarChart, AdminInfo, Users, Input, LoginComponent, SignUpComponent
+    Button, Sidebar, Logo, Container, Info, InfoBars, DonutChart, ExpenseList, BudgetBar, Expenses, SimpleBarChart, AdminInfo, Users, Input, LoginComponent, SignUpComponent, OtpComponent
 }

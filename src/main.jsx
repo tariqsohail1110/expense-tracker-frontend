@@ -10,6 +10,7 @@ import Budgets from './pages/Budgets.jsx'
 import Admin from './pages/Admin.jsx'
 import Login from './pages/Login.jsx'
 import Signup from './pages/Signup.jsx'
+import Otp from './pages/Otp.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
       <Route path='/' element={<AuthLayout/>}>
         <Route index element={<Login/>}></Route>
         <Route path='signup' element={<Signup/>}></Route>
+        <Route path='otp' element={<Otp/>}></Route>
       </Route>
     </>
   )
