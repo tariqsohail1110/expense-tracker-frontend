@@ -45,12 +45,12 @@ const columns = [
         )
     }),
 
-    columnHelper.accessor('note', {
-        cell: (info) => info.getValue(),
-        heder: () => (
-            <h1>Note</h1>
-        )
-    }),
+    // columnHelper.accessor('note', {
+    //     cell: (info) => info.getValue(),
+    //     heder: () => (
+    //         <h1>Note</h1>
+    //     )
+    // }),
     {
         id: 'actions',
         header: 'Actions',
