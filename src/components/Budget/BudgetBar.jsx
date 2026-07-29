@@ -1,5 +1,6 @@
 import React from 'react'
-import { Button } from '../index.js'
+import { Button } from '../index.js';
+import { Edit, Trash } from 'lucide-react';
 
 function BudgetBar({text, per, budget=0, spent=0, rem=0, rem_days=0}) {
     const getProgressByPer = (percentage) => {
@@ -13,25 +14,25 @@ function BudgetBar({text, per, budget=0, spent=0, rem=0, rem_days=0}) {
         <div className='rounded-lg border shadow-lg text-zinc-900 bg-white p-6'>
             <div className="flex justify-between mb-2">
                 <h1 className="font-mono text-sm font-medium text-body">{text}</h1>
-                <div className='grid grid-cols-2 gap-2'>
+                <div className='grid grid-cols-2 gap-4'>
                     <div >
                         <Button 
                             textColor='text-emerald-500' 
-                            bgColor='bg-emerald-100' 
-                            rounded='!rounded-3xl' 
-                            className='w-full border-2 border-emerald-500 hover:bg-emerald-500 hover:text-white duration-200 text-xs'
+                            bgColor='' 
+                            rounded='' 
+                            className='w-full !p-0 hover:text-emerald-800 duration-200'
                         >
-                            Edit
+                            <Edit/>
                         </Button>
                     </div>
                     <div>
                         <Button 
                             textColor='text-red-500' 
-                            bgColor='bg-red-100' 
+                            bgColor='' 
                             rounded='!rounded-3xl' 
-                            className='w-full border-2 border-red-500 hover:bg-red-500 hover:text-white duration-200 text-xs'
+                            className='w-full !p-0 hover:text-red-800 duration-200'
                         >
-                            Delete
+                            <Trash/>
                         </Button>
                     </div>
                 </div>
