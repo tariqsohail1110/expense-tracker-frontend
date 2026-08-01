@@ -11,16 +11,13 @@ function SignUpComponent() {
                     <p className="text-center font-sans text-xs">Your personal expense manager</p>
                     <h2 className="text-center font-mono text-xl uppercase mt-6">Signup</h2>
                 </div>
-                <div className="">
-                    <Input type='text' placeholder='Enter your name' className= 'border-2 focus:border-black mt-6'/>
-                </div>
-                <div className="">
+                <div>
+                    <div className="flex gap-2 mt-6">
+                        <Input type='text' placeholder='Enter first name' className= 'border-2 focus:border-black'/>
+                        <Input type='text' placeholder='Enter last name' className= 'border-2 focus:border-black'/>
+                    </div>
                     <Input type='email' placeholder='Enter your email' className= 'border-2 focus:border-black mt-4'/>
-                </div>
-                <div className="">
                     <Input type='password' placeholder='Enter your password' className= ' border-2 focus:border-black mt-4'/>
-                </div>
-                <div className="">
                     <Input type='password' placeholder='Confirm password' className= ' border-2 focus:border-black mt-4'/>
                 </div>
                 <div className="flex items-center justify-center w-full">

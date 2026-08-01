@@ -11,11 +11,9 @@ function LoginComponent() {
                     <p className="text-center font-sans text-xs">Your personal expense manager</p>
                     <h2 className="text-center font-mono text-xl uppercase mt-6">Login</h2>
                 </div>
-                <div className="">
-                    <Input type='email' placeholder='Enter your email' className= 'border-2 focus:border-black mt-6'/>
-                </div>
-                <div className="">
-                    <Input type='password' placeholder='Enter your password' className= ' border-2 focus:border-black mt-4'/>
+                <div>
+                <Input type='email' placeholder='Enter your email' className= 'border-2 focus:border-black mt-6'/>
+                <Input type='password' placeholder='Enter your password' className= ' border-2 focus:border-black mt-4'/>
                 </div>
                 <div>
                     <p className="text-sm mt-4 text-center"> 
