@@ -11,6 +11,7 @@ import Admin from './pages/Admin.jsx'
 import Login from './pages/Login.jsx'
 import Signup from './pages/Signup.jsx'
 import Otp from './pages/Otp.jsx'
+import Account from './pages/Account.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
         <Route path='transactions' element={<Transactions/>}></Route>
         <Route path='budget' element={<Budgets/>}></Route>
         <Route path='admin' element={<Admin/>}></Route>
+        <Route path='myaccount' element={<Account/>}></Route>
       </Route>
       <Route path='/' element={<AuthLayout/>}>
         <Route index element={<Login/>}></Route>

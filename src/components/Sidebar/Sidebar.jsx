@@ -117,20 +117,25 @@ function Sidebar() {
                     <div className='block'>
                         <ul className='mt-10'>
                             <li className='flex gap-3 py-auto mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg p-2 duration-200 hover:duration-200'>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className="w-5 h-5"
-                                    >
-                                    <path d="M20 21a8 8 0 0 0-16 0" />
-                                    <circle cx="12" cy="8" r="4" />
-                                </svg>
-                                Account
+                                <NavLink
+                                    className='flex gap-3 items-center font-medium text-sm rounded-lg duration-200 w-full'
+                                    to={'/app/myaccount'}
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="w-5 h-5"
+                                        >
+                                        <path d="M20 21a8 8 0 0 0-16 0" />
+                                        <circle cx="12" cy="8" r="4" />
+                                    </svg>
+                                    Account
+                                </NavLink>
                             </li>
                             <li className='flex gap-3 py-auto mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg p-2 duration-200 hover:duration-200'>
                                 <svg

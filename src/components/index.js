@@ -15,7 +15,12 @@ import Input from "./Input.jsx";
 import LoginComponent from "./Login/LoginComponent.jsx";
 import SignUpComponent from "./Signup/SignupComponent.jsx";
 import OtpComponent from "./Otp/OtpComponent.jsx";
+import UpdatePassword from "./Account/UpdatePassword.jsx";
+import UpdateEmail from "./Account/UpdateEmail.jsx";
+import UpdateName from "./Account/UpdateName.jsx";
+import DeleteAccount from "./Account/DeleteAccount.jsx";
+import AccountComponent from "./Account/AccountComponent.jsx";
 
 export {
-    Button, Sidebar, Logo, Container, Info, InfoBars, DonutChart, ExpenseList, BudgetBar, Expenses, SimpleBarChart, AdminInfo, Users, Input, LoginComponent, SignUpComponent, OtpComponent
+    Button, Sidebar, Logo, Container, Info, InfoBars, DonutChart, ExpenseList, BudgetBar, Expenses, SimpleBarChart, AdminInfo, Users, Input, LoginComponent, SignUpComponent, OtpComponent, UpdatePassword, UpdateEmail, UpdateName, DeleteAccount, AccountComponent
 }
