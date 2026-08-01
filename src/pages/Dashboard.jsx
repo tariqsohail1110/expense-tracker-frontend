@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Info, Button, InfoBars, DonutChart, ExpenseList, SimpleBarChart } from '../components';
-import { convert, calculateTotalSpendings, calculatePercentage } from '../common/functions.js';
+import { convert, calculateTotalSpendings, calculatePercentage, welcomeMessage } from '../common/functions.js';
 import data from '../common/data.json';
 
 function Dashboard() {
@@ -13,7 +13,7 @@ function Dashboard() {
                 <div className='grid grid-cols-2 gap-4'>
                     <div className='cols-span-10'>
                         <h1 className='text-3xl font-bold text-zinc-900'>Dashboard Overview</h1>
-                        <p className='text-sm mt-1'>{`Welcome back ${username}, your finances are looking healthy this month`}</p>
+                        <p className='text-sm mt-1'>{welcomeMessage(calculateTotalSpendings(mockData), totalBalance, username)}</p>
                     </div>
                     <div className='cols-span-2 w-64 ml-auto mt-auto pb-2'>
                             <Button

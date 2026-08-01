@@ -31,6 +31,14 @@
         return (arr.filter(status => status.status === 'Active')).length
     };
 
+    const welcomeMessage = (num, totalAm, userName) => {
+        const total = calculatePercentage(num, totalAm);
+        if (total > 75) {
+            return `Welcome back ${userName}, looks like you're spending too much`;
+        }
+        return `Welcome back ${userName}, your finances are looking healthy this month`;
+    };
+
     export {
-        convert, calculateTotalSpendings, calculatePercentage, convertNumbers, formatDate, calculateTotalUsers, calculateActiveUsers
+        convert, calculateTotalSpendings, calculatePercentage, convertNumbers, formatDate, calculateTotalUsers, calculateActiveUsers, welcomeMessage
     }
