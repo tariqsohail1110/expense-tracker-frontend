@@ -4,13 +4,11 @@ import { Button, Logo, ThemeButton } from '../index.js';
 function Sidebar() {
     return (
         <>
-            <aside className='w-64 h-screen overflow-y-auto px-4 py-6 flex flex-col gap-4 border-r'>
+            <aside className='w-64 h-screen overflow-y-auto px-4 py-6 flex flex-col gap-4 border-r duration-500 dark:bg-zinc-700 dark:border-none'>
                 <div className='h-full flex flex-col'>
-                    <div className='border-b pb-6'>
-                        {/* <Link> */}
+                    <div className='border-b pb-6 duration-500 dark:border-zinc-600'>
                             <Logo/> 
-                            <h1 className='mx-auto font-bold text-lg mt-2'>Vault Finance</h1>
-                        {/* </Link> */}
+                            <h1 className='mx-auto font-bold text-lg mt-2 duration-500 dark:text-white'>Vault Finance</h1>
                     </div>
                     <div className='block'>
                         <ul className='mt-5'>
@@ -18,8 +16,8 @@ function Sidebar() {
                                 <NavLink 
                                 to='dashboard'
                                 className={({isActive}) =>
-                                `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
-                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
+                                `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-500 dark:text-lime-800' : 'text-zinc-700 bg-white hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 24 24"
@@ -43,7 +41,7 @@ function Sidebar() {
                                 to='transactions'
                                 className={({isActive}) =>
                                 `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
-                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-500 dark:text-lime-800' : 'text-zinc-700 bg-white hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
                                     <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
@@ -65,7 +63,7 @@ function Sidebar() {
                                 to='budget'
                                 className={({isActive}) =>
                                 `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
-                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-500 dark:text-lime-800' : 'text-zinc-700 bg-white hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
                                     <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
@@ -87,7 +85,7 @@ function Sidebar() {
                                 to='admin'
                                 className={({isActive}) =>
                                 `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
-                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold' : 'text-zinc-700 bg-white hover:bg-gray-100'}`}>
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-500 dark:text-lime-800' : 'text-zinc-700 bg-white hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
                                     <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
@@ -108,15 +106,15 @@ function Sidebar() {
                             </li>
                         </ul>
                     </div>
-                    <div className='mt-auto border-b pb-2'>
+                    <div className='mt-auto border-b pb-2 duration-500 dark:border-zinc-600'>
                         <Button 
                             bgColor='bg-slate-900'
                             textColor='text-white'
-                            className='w-full hover:bg-slate-800 duration-200  hover:duration-200'> + New Entry</Button>
+                            className='w-full hover:bg-slate-800 duration-200  hover:duration-200 font-bold dark:bg-lime-500 dark:hover:bg-lime-400 dark:text-zinc-900'> + New Entry</Button>
                     </div>
                     <div className='block'>
                         <ul className='mt-10'>
-                            <li className='flex gap-3 py-auto mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg p-2 duration-200 hover:duration-200'>
+                            <li className='flex gap-3 py-auto mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg p-2 duration-200 hover:duration-200 dark:text-white dark:hover:bg-zinc-600'>
                                 <NavLink
                                     className='flex gap-3 items-center font-medium text-sm rounded-lg duration-200 w-full'
                                     to={'/app/myaccount'}
@@ -137,10 +135,10 @@ function Sidebar() {
                                     Account Settings
                                 </NavLink>
                             </li>
-                            <li className='flex gap-3 py-auto mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg p-2 duration-200 hover:duration-200'>
+                            <li className='flex gap-3 py-auto mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg p-2 duration-200 hover:duration-200 dark:text-white dark:hover:bg-zinc-600'>
                                 <ThemeButton children={'Switch Theme'}/>
                             </li>
-                            <li className='flex gap-3 py-auto mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg p-2 duration-200 hover:duration-200'>
+                            <li className='flex gap-3 py-auto mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg p-2 duration-200 hover:duration-200 dark:text-white dark:hover:bg-zinc-600'>
                                 <NavLink
                                     className='flex gap-3 items-center font-medium text-sm rounded-lg duration-200 w-full'
                                     to={'/'}
