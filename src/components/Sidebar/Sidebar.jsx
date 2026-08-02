@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import { Button, Logo } from '../index.js';
+import { Button, Logo, ThemeButton } from '../index.js';
 
 function Sidebar() {
     return (
@@ -134,64 +134,11 @@ function Sidebar() {
                                         <path d="M20 21a8 8 0 0 0-16 0" />
                                         <circle cx="12" cy="8" r="4" />
                                     </svg>
-                                    Account
+                                    Account Settings
                                 </NavLink>
                             </li>
                             <li className='flex gap-3 py-auto mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg p-2 duration-200 hover:duration-200'>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className="w-5 h-5"
-                                    >
-                                    <circle cx="12" cy="12" r="3" />
-                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.01A1.65 1.65 0 0 0 10 3.09V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h.01a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.01A1.65 1.65 0 0 0 20.91 10H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
-                                </svg>
-                                Settings
-                            </li>
-                            <li className='flex gap-3 py-auto mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg p-2 duration-200 hover:duration-200'>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className="w-5 h-5"
-                                    >
-                                    <path d="M21 12.79A9 9 0 1 1 11.21 3
-                                            7 7 0 0 0 21 12.79z" />
-                                </svg>
-                                {/* <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    className="w-6 h-6"
-                                    >
-                                    <circle cx="12" cy="12" r="4" />
-
-                                    <path d="M12 2v2" />
-                                    <path d="M12 20v2" />
-
-                                    <path d="M2 12h2" />
-                                    <path d="M20 12h2" />
-
-                                    <path d="M4.93 4.93l1.41 1.41" />
-                                    <path d="M17.66 17.66l1.41 1.41" />
-
-                                    <path d="M4.93 19.07l1.41-1.41" />
-                                    <path d="M17.66 6.34l1.41-1.41" />
-                                </svg> */}
-                                Switch Theme
+                                <ThemeButton children={'Switch Theme'}/>
                             </li>
                             <li className='flex gap-3 py-auto mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg p-2 duration-200 hover:duration-200'>
                                 <NavLink

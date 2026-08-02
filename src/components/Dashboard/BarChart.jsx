@@ -46,8 +46,8 @@ function SimpleBarChart({ data = mockData }) {
                         <Tooltip formatter={(value) => [`₨ ${value.toLocaleString()}`, 'Amount']} />
                         <Bar 
                             dataKey="amount" 
-                            fill="#2a3542" 
-                            activeBar={{ fill: '#334155' }} 
+                            fill="oklch(69.6% 0.17 162.48)" 
+                            activeBar={{ fill: 'oklch(43.2% 0.095 166.913)' }} 
                             radius={[10, 10, 0, 0]} 
                         />
                         <RechartsDevtools />
