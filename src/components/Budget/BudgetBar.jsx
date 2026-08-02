@@ -11,7 +11,7 @@ function BudgetBar({text, per, budget=0, spent=0, rem=0, rem_days=0}) {
     }
     return (
         <>
-        <div className='rounded-lg shadow-lg text-zinc-900 bg-white p-6 duration-500 dark:bg-zinc-700 dark:shadow-none'>
+        <div className='rounded-lg shadow-lg text-zinc-900 bg-white p-6 duration-500 dark:bg-zinc-700'>
             <div className="flex justify-between mb-2">
                 <h1 className="font-mono text-sm font-medium text-body duration-500 dark:text-white">{text}</h1>
                 <div className='grid grid-cols-2 gap-4'>

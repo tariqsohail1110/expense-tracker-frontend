@@ -33,7 +33,7 @@ function SimpleBarChart({ data = mockData }) {
 
     return (
         <div className='bg-white rounded-lg shadow-lg p-6 font-sans mt-6
-            dark:bg-zinc-700 dark:shadow-none duration-500
+            dark:bg-zinc-700 duration-500
         '>
             <div className='flex items-center justify-between mb-6'>
                 <h2 className='text-zinc-900 font-bold text-lg flex items-center gap-2

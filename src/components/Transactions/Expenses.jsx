@@ -113,7 +113,7 @@ function Expenses() {
 
     return (
         <div className='bg-white rounded-lg shadow-lg p-6 my-6 font-sans duration-500
-        dark:bg-zinc-700 dark:shadow-none'>
+        dark:bg-zinc-700'>
             <div className='flex items-center gap-4 mb-4'>
                 <div className='relative w-5/6'>
                     <input
