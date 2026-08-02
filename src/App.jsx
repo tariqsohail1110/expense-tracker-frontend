@@ -27,7 +27,7 @@ function App() {
         <Sidebar />
         <div className="flex flex-col flex-1">
           {/* <Header /> */}
-          <main className="flex-1 overflow-auto bg-gray-100">
+          <main className="flex-1 overflow-auto bg-gray-100 dark:bg-zinc-800 transition-colors duration-500">
             <Outlet />
           </main>
           {/* <Footer /> */}

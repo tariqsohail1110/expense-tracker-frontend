@@ -9,7 +9,9 @@ function InfoBars({text, per, spent='0'}) {
     }
     return (
         <>  
-            <div className='rounded-lg border shadow-lg text-zinc-900 bg-white p-6'>
+            <div className='rounded-lg shadow-lg text-zinc-900 bg-white p-6
+                dark:bg-zinc-700 dark:text-white dark:shadow-none duration-500
+            '>
                 <div className="flex justify-between mb-2">
                     <span className="font-mono text-sm font-medium text-body">{text}</span>
                     <span className="font-mono text-sm font-medium text-body">{per}%</span>

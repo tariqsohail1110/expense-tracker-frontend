@@ -2,6 +2,7 @@ import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import { PieChart as PieChartIcon } from 'lucide-react';
 import mockData from '../../common/data.json';
+import useTheme from '../../contexts/theme';
 
 const categoryColors = {
     Food: '#10B981',       // Emerald 500
@@ -15,6 +16,10 @@ const categoryColors = {
 };
 
 function DonutChart({ data = mockData, totalBudget = 60000 }) {
+
+    const { themeMode } = useTheme();
+    const isDark = themeMode === 'dark';
+
     // Group transactions by category
     const categoryTotals = {};
     const transactions = Array.isArray(data) ? data : [];
@@ -35,13 +40,14 @@ function DonutChart({ data = mockData, totalBudget = 60000 }) {
     const spentPercentage = totalBudget > 0 ? ((totalSpent / totalBudget) * 100).toFixed(1) : '0.0';
 
     return (
-        <div className='bg-white rounded-lg shadow-lg p-6 border border-gray-100 h-full flex flex-col font-sans'>
+        <div className='bg-white rounded-lg shadow-lg p-6 h-full flex flex-col font-sans
+            dark:bg-zinc-700 duration-500'>
             <div className='flex items-center justify-between mb-6'>
-                <h2 className='text-zinc-900 font-bold text-lg flex items-center gap-2'>
+                <h2 className='text-zinc-900 font-bold text-lg flex items-center gap-2 dark:text-white'>
                     <PieChartIcon className='text-emerald-500 w-5 h-5' />
                     Category Based Spendings
                 </h2>
-                <span className='text-xs text-gray-500 font-medium bg-gray-100 px-2 py-1 rounded-full'>
+                <span className='text-xs text-gray-500 font-medium bg-gray-100 px-2 py-1 rounded-full dark:bg-gray-500 dark:text-white duration-500'>
                     Distribution
                 </span>
             </div>
@@ -57,9 +63,11 @@ function DonutChart({ data = mockData, totalBudget = 60000 }) {
                                     'Spent'
                                 ]}
                                 contentStyle={{ 
-                                    borderRadius: '8px', 
-                                    border: '1px solid #E5E7EB',
-                                    boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)'
+                                    borderRadius: '8px',
+                                    boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
+                                    backgroundColor: isDark ? '#27272a' : '#ffffff',
+                                    border: isDark ? '1px solid #E5E7EB' : '1px solid #e4e4e7',
+                                    color: isDark ? '#ffffff' : '#000000',
                                 }}
                             />
                             <Pie 
@@ -69,6 +77,7 @@ function DonutChart({ data = mockData, totalBudget = 60000 }) {
                                 outerRadius={95}
                                 innerRadius={70}
                                 paddingAngle={2}
+                                stroke={0}
                             >
                                 {processedData.map((entry, index) => (
                                     <Cell key={`cell-${index}`} fill={entry.color} />
@@ -77,8 +86,8 @@ function DonutChart({ data = mockData, totalBudget = 60000 }) {
                         </PieChart>
                     </ResponsiveContainer>
                     <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center pointer-events-none'>
-                        <h2 className='text-3xl font-extrabold text-slate-800'>{spentPercentage}%</h2>
-                        <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1'>Used of Budget</p>
+                        <h2 className='text-3xl font-extrabold text-slate-800 dark:text-white duration-500'>{spentPercentage}%</h2>
+                        <p className='text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-1 drak:text-gray-300 duration-500'>Used of Budget</p>
                     </div>
                 </div>
 
@@ -88,16 +97,16 @@ function DonutChart({ data = mockData, totalBudget = 60000 }) {
                         {processedData.map((entry) => {
                             const percentOfBudget = ((entry.amount / totalBudget) * 100).toFixed(1);
                             return (
-                                <li key={entry.name} className='flex items-center justify-between text-sm py-1.5 border-b border-gray-50 hover:bg-gray-50/50 rounded px-2 transition-colors duration-150'>
+                                <li key={entry.name} className='flex items-center justify-between text-sm py-1.5 border-b border-gray-100 hover:bg-gray-50/50 rounded px-2 duration-150 dark:border-zinc-600 dark:border-b dark:hover:bg-zinc-700'>
                                     <div className='flex items-center gap-2.5 min-w-0'>
                                         <span 
                                             className='w-3 h-3 rounded-full flex-shrink-0' 
                                             style={{ backgroundColor: entry.color }}
                                         />
-                                        <span className='font-semibold text-gray-700 truncate'>{entry.name}</span>
+                                        <span className='font-semibold text-gray-700 truncate dark:text-white'>{entry.name}</span>
                                     </div>
                                     <div className='text-right ml-4 flex-shrink-0'>
-                                        <span className='font-bold text-slate-900'>₨ {entry.amount.toLocaleString()}</span>
+                                        <span className='font-bold text-slate-900 dark:text-gray-300'>₨ {entry.amount.toLocaleString()}</span>
                                         <span className='text-[10px] text-gray-400 block font-medium'>{percentOfBudget}% of budget</span>
                                     </div>
                                 </li>

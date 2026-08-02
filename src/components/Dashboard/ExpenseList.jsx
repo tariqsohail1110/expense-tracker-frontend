@@ -32,19 +32,19 @@ function ExpenseList({ data = defaultMockData }) {
         const navigate = useNavigate();
 
     return (
-        <div className='bg-white rounded-lg shadow-lg p-6 border border-gray-100 font-sans h-full flex flex-col'>
+        <div className='bg-white rounded-lg shadow-lg p-6 font-sans h-full flex flex-col dark:bg-zinc-700 duration-500'>
             <div className='flex items-center justify-between mb-6'>
-                <h2 className='text-zinc-900 font-bold text-lg flex items-center gap-2'>
+                <h2 className='text-zinc-900 font-bold text-lg flex items-center gap-2 dark:text-white duration-500'>
                     <TrendingDown className='text-rose-500 w-5 h-5' />
                     Top 5 Expenses
                 </h2>
-                <span className='text-xs text-gray-500 font-medium bg-gray-100 px-2 py-1 rounded-full'>
+                <span className='text-xs text-gray-500 font-medium bg-gray-100 px-2 py-1 rounded-full dark:text-white dark:bg-gray-500 duration-500'>
                     Highest Value
                 </span>
             </div>
             
             <div className='flow-root flex-1'>
-                <ul className='divide-y divide-gray-100 -my-3'>
+                <ul className='divide-y divide-gray-100 -my-3 dark:divide-zinc-600'>
                     {topExpenses.map((expense) => {
                         const config = categoryConfig[expense.category] || categoryConfig.default;
                         const IconComponent = config.icon;
@@ -52,18 +52,18 @@ function ExpenseList({ data = defaultMockData }) {
                         return (
                             <li 
                                 key={expense.id} 
-                                className='py-3.5 flex items-center justify-between hover:bg-gray-50/50 rounded-lg px-2 -mx-2 transition-all duration-200 group'
+                                className='py-3.5 flex items-center justify-between hover:bg-gray-50/50 rounded-lg px-2 -mx-2 transition-all duration-200 group dark:hover:bg-zinc-700'
                             >
                                 <div className='flex items-center gap-3.5 min-w-0'>
                                     <div className={`p-2.5 rounded-full ${config.bgColor} ${config.iconColor} transition-transform group-hover:scale-105 duration-200`}>
                                         <IconComponent className='w-5 h-5' />
                                     </div>
                                     <div className='min-w-0'>
-                                        <p className='text-sm font-semibold text-gray-800 truncate group-hover:text-slate-900 transition-colors'>
+                                        <p className='text-sm font-semibold text-gray-800 truncate group-hover:text-slate-900 transition-colors duration-500 dark:text-white dark:group-hover:text-white'>
                                             {expense.title}
                                         </p>
                                         <div className='flex items-center gap-2 mt-0.5'>
-                                            <span className='text-xs font-medium text-gray-500'>
+                                            <span className='text-xs font-medium text-gray-500 dark:text-gray-300'>
                                                 {expense.category}
                                             </span>
                                             <span className='text-[10px] text-gray-300'>•</span>
@@ -74,7 +74,7 @@ function ExpenseList({ data = defaultMockData }) {
                                     </div>
                                 </div>
                                 <div className='text-right ml-4 flex-shrink-0'>
-                                    <p className='text-sm font-bold text-slate-900 group-hover:text-rose-600 transition-colors duration-200'>
+                                    <p className='text-sm font-bold text-slate-900 group-hover:text-rose-600 transition-colors duration-200 dark:text-white'>
                                         ₨ {expense.amount.toLocaleString()}
                                     </p>
                                 </div>
@@ -84,12 +84,12 @@ function ExpenseList({ data = defaultMockData }) {
                 </ul>
             </div>
 
-            <div className='mt-6 pt-4 border-t border-gray-100'>
+            <div className='mt-6 pt-4 border-t border-gray-100 dark:border-t dark:border-zinc-600'>
                 <Button
                     onClick={() => navigate('/transactions')}
                     bgColor='bg-slate-900'
                     textColor='text-white'
-                    className='w-full text-sm hover:bg-slate-800 transition-all duration-200'
+                    className='w-full text-sm font-bold hover:bg-slate-800 transition-all duration-200 dark:bg-lime-500 dark:hover:bg-lime-400 dark:text-zinc-900'
                 >
                     View All Transactions
                 </Button>

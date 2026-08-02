@@ -12,14 +12,15 @@ function Dashboard() {
             <Container>
                 <div className='grid grid-cols-2 gap-4'>
                     <div className='cols-span-10'>
-                        <h1 className='text-3xl font-bold text-zinc-900'>Dashboard Overview</h1>
-                        <p className='text-sm mt-1'>{welcomeMessage(calculateTotalSpendings(mockData), totalBalance, username)}</p>
+                        <h1 className='text-3xl font-bold text-zinc-900 dark:text-white duration-500'>Dashboard Overview</h1>
+                        <p className='text-sm mt-1 dark:text-white duration-500'>{welcomeMessage(calculateTotalSpendings(mockData), totalBalance, username)}</p>
                     </div>
                     <div className='cols-span-2 w-64 ml-auto mt-auto pb-2'>
                             <Button
                             bgColor='bg-slate-900'
                             textColor='text-white'
-                            className='w-full hover:bg-slate-800 duration-200 hover:duration-200'> + New Entry</Button>
+                            className='w-full font-bold hover:bg-slate-800 duration-200 hover:duration-200
+                            dark:bg-lime-500 dark:hover:bg-lime-400 dark:text-zinc-900'> + New Entry</Button>
                     </div>
                 </div>
                 <div className='grid grid-cols-3 gap-4 mt-6'>
