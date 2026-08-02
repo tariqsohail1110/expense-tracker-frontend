@@ -17,14 +17,14 @@ function Budgets() {
         <>  
             <Container>
                 <div>
-                    <h1 className='text-3xl font-bold text-zinc-900'>Budget Management</h1>
-                    <p className='text-sm mt-1'>Optimize your capital allocation and monitor spend.</p>
+                    <h1 className='text-3xl font-bold text-zinc-900 duration-500 dark:text-white'>Budget Management</h1>
+                    <p className='text-sm mt-1 duration-500 dark:text-white'>Optimize your capital allocation and monitor spend.</p>
                 </div>
                 <div className='mt-6'>
                     <BudgetBar text='Monthly Budget' budget={convert(totalBudget)} per={calculatePercentage(calculateTotalSpendings(mockData), totalBudget)} spent={convert(calculateTotalSpendings(mockData))} rem={convert(totalBudget - calculateTotalSpendings(mockData))} rem_days='26'/>
                 </div>
                 <div>
-                    <h1 className='text-3xl font-bold text-zinc-900 mt-5'>Category Overview</h1>
+                    <h1 className='text-3xl font-bold text-zinc-900 mt-5 duration-500 dark:text-white'>Category Overview</h1>
                 </div>
                 <div className='grid grid-cols-2 gap-4 mt-5 pb-7'>
                     <div>
