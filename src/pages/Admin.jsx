@@ -8,8 +8,8 @@ function Admin() {
     return (
         <Container>
                 <div>
-                    <h1 className='text-3xl font-bold text-zinc-900'>System Overview</h1>
-                    <p className='text-sm mt-1'>Platform-wide performance and user management dashboard.</p>
+                    <h1 className='text-3xl font-bold text-zinc-900 duration-500 dark:text-white'>System Overview</h1>
+                    <p className='text-sm mt-1 duration-500 dark:text-white'>Platform-wide performance and user management dashboard.</p>
                 </div>
                 <div className='grid grid-cols-3 gap-4 mt-6'>
                     <div className='cols-span-4'>
