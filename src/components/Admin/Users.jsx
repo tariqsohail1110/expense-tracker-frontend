@@ -139,7 +139,7 @@ function Users() {
                                     <th
                                         key={header.id}
                                         className='px-6 py-3 text-left text-xs font-black text-emerald-800 uppercase tracking-wider duration-500
-                                        dark:text-lime-800'
+                                        dark:text-zinc-900'
                                     >
                                         <div
                                             {...{
