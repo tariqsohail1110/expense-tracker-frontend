@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import { Button, Logo, ThemeButton } from '../index.js';
+import { Plus } from 'lucide-react';
 
 function Sidebar() {
     return (
@@ -17,7 +18,7 @@ function Sidebar() {
                                 to='dashboard'
                                 className={({isActive}) =>
                                 `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200
-                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-500 dark:text-zinc-900' : 'text-zinc-700 bg-white hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-500 dark:text-zinc-900' : 'text-zinc-700 hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 24 24"
@@ -41,7 +42,7 @@ function Sidebar() {
                                 to='transactions'
                                 className={({isActive}) =>
                                 `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
-                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-500 dark:text-zinc-900' : 'text-zinc-700 bg-white hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-500 dark:text-zinc-900' : 'text-zinc-700 hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
                                     <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
@@ -63,7 +64,7 @@ function Sidebar() {
                                 to='budget'
                                 className={({isActive}) =>
                                 `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
-                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-500 dark:text-zinc-900' : 'text-zinc-700 bg-white hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-500 dark:text-zinc-900' : 'text-zinc-700 hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
                                     <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
@@ -85,7 +86,7 @@ function Sidebar() {
                                 to='admin'
                                 className={({isActive}) =>
                                 `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
-                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-500 dark:text-zinc-900' : 'text-zinc-700 bg-white hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-500 dark:text-zinc-900' : 'text-zinc-700 hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
                                     <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
@@ -107,10 +108,13 @@ function Sidebar() {
                         </ul>
                     </div>
                     <div className='mt-auto border-b pb-2 duration-500 dark:border-zinc-600'>
-                        <Button 
+                        <Button
                             bgColor='bg-slate-900'
                             textColor='text-white'
-                            className='w-full hover:bg-slate-800 duration-200  hover:duration-200 font-bold dark:bg-lime-500 dark:hover:bg-lime-400 dark:text-zinc-900'> + New Entry</Button>
+                            className='w-full font-bold hover:bg-slate-800 duration-200 hover:duration-200 text-medium
+                            dark:bg-lime-500 dark:hover:bg-lime-400 dark:text-zinc-900 flex gap-1 justify-center items-center'> 
+                                <Plus size={20}/> New Entry
+                        </Button>
                     </div>
                     <div className='block'>
                         <ul className='mt-10'>

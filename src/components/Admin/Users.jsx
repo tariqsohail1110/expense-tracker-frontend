@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
-import { ArrowUpDown, ChevronLeft, Search, ChevronRight, ChevronsLeft, ChevronsRight, Edit, Trash } from 'lucide-react';
+import { ArrowUpDown, ChevronLeft, Search, ChevronRight, ChevronsLeft, ChevronsRight, Edit, Trash, Download } from 'lucide-react';
 import { Button } from '../index.js';
 import data from '../../common/users.json';
 import { formatDate } from '../../common/functions.js';
@@ -124,9 +124,9 @@ function Users() {
                         bgColor='bg-slate-800'
                         textColor='text-white'
                         className='hover:bg-slate-700 font-bold duration-200 w-full dark:bg-lime-500
-                        dark:text-zinc-900 dark:hover:bg-lime-300'
+                        dark:text-zinc-900 dark:hover:bg-lime-300 flex gap-2 items-center'
                     >
-                        Download .xlsx
+                        <Download size={20}/>Download .xlsx
                     </Button>
                 </div>
             </div>

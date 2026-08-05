@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Info, Button, InfoBars, DonutChart, ExpenseList, SimpleBarChart } from '../components';
 import { convert, calculateTotalSpendings, calculatePercentage, welcomeMessage } from '../common/functions.js';
 import data from '../common/data.json';
+import { Plus } from 'lucide-react';
 
 function Dashboard() {
     const username = 'Muhammad Tariq';
@@ -20,7 +21,7 @@ function Dashboard() {
                             bgColor='bg-slate-900'
                             textColor='text-white'
                             className='w-full font-bold hover:bg-slate-800 duration-200 hover:duration-200
-                            dark:bg-lime-500 dark:hover:bg-lime-400 dark:text-zinc-900'> + New Entry</Button>
+                            dark:bg-lime-500 dark:hover:bg-lime-400 dark:text-zinc-900 flex gap-1 justify-center items-center'> <Plus size={20}/> New Entry</Button>
                     </div>
                 </div>
                 <div className='grid grid-cols-3 gap-4 mt-6'>
