@@ -86,7 +86,7 @@ function ExpenseList({ data = defaultMockData }) {
 
             <div className='mt-6 pt-4 border-t border-gray-100 dark:border-t dark:border-zinc-600'>
                 <Button
-                    onClick={() => navigate('/transactions')}
+                    onClick={() => navigate('/app/transactions')}
                     bgColor='bg-slate-900'
                     textColor='text-white'
                     className='w-full text-sm font-bold hover:bg-slate-800 transition-all duration-200 dark:bg-lime-500 dark:hover:bg-lime-400 dark:text-zinc-900'

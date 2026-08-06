@@ -42,7 +42,7 @@ function SimpleBarChart({ data = mockData }) {
                     Expenses by Category
                 </h2>
             </div>
-            <div className='h-96 w-full'>
+            <div className='h-96 w-full text-xs lg:text-md'>
                 <ResponsiveContainer width="100%" height="100%">
                     <BarChart
                         data={processedData}

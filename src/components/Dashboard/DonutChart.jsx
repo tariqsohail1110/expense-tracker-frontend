@@ -41,13 +41,13 @@ function DonutChart({ data = mockData, totalBudget = 60000 }) {
 
     return (
         <div className='bg-white rounded-lg shadow-lg p-6 h-full flex flex-col font-sans
-            dark:bg-zinc-700 duration-500'>
+            dark:bg-zinc-700 duration-500 mt-6 lg:m-0'>
             <div className='flex items-center justify-between mb-6'>
                 <h2 className='text-zinc-900 font-bold text-lg flex items-center gap-2 dark:text-white'>
                     <PieChartIcon className='text-emerald-500 w-5 h-5' />
                     Category Based Spendings
                 </h2>
-                <span className='text-xs text-gray-500 font-medium bg-gray-100 px-2 py-1 rounded-full dark:bg-gray-500 dark:text-white duration-500'>
+                <span className='hidden lg:block text-xs text-gray-500 font-medium bg-gray-100 px-2 py-1 rounded-full dark:bg-gray-500 dark:text-white duration-500'>
                     Distribution
                 </span>
             </div>
@@ -92,6 +92,9 @@ function DonutChart({ data = mockData, totalBudget = 60000 }) {
                 </div>
 
                 {/* Custom Legend */}
+                <span className='block lg:hidden text-xs text-gray-500 font-medium bg-gray-100 px-2 py-1 rounded-full dark:bg-gray-500 dark:text-white duration-500'>
+                    Distribution
+                </span>
                 <div className='w-full md:w-1/2 flex flex-col justify-center'>
                     <ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-3 w-full px-2'>
                         {processedData.map((entry) => {
