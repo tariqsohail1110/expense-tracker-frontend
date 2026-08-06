@@ -21,7 +21,8 @@ import UpdateName from "./Account/UpdateName.jsx";
 import DeleteAccount from "./Account/DeleteAccount.jsx";
 import AccountComponent from "./Account/AccountComponent.jsx";
 import ThemeButton from "./ThemeButton.jsx";
+import Header from "./Header/Header.jsx";
 
 export {
-    Button, Sidebar, Logo, Container, Info, InfoBars, DonutChart, ExpenseList, BudgetBar, Expenses, SimpleBarChart, AdminInfo, Users, Input, LoginComponent, SignUpComponent, OtpComponent, UpdatePassword, UpdateEmail, UpdateName, DeleteAccount, AccountComponent, ThemeButton
+    Button, Sidebar, Logo, Container, Info, InfoBars, DonutChart, ExpenseList, BudgetBar, Expenses, SimpleBarChart, AdminInfo, Users, Input, LoginComponent, SignUpComponent, OtpComponent, UpdatePassword, UpdateEmail, UpdateName, DeleteAccount, AccountComponent, ThemeButton, Header
 }

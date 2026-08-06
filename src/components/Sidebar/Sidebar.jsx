@@ -1,23 +1,46 @@
 import { NavLink } from 'react-router-dom';
 import { Button, Logo, ThemeButton } from '../index.js';
-import { Plus } from 'lucide-react';
+import { Plus, X } from 'lucide-react';
 
-function Sidebar() {
+function Sidebar({ isOpen, onClose }) {
     return (
         <>
-            <aside className='w-64 h-screen overflow-y-auto px-4 py-6 flex flex-col gap-4 border-r duration-500 dark:bg-zinc-700 dark:border-none'>
+            {/* Backdrop overlay for mobile */}
+            <div 
+                className={`fixed inset-0 z-40 bg-black/50 lg:hidden transition-opacity duration-300 ${
+                    isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+                }`}
+                onClick={onClose}
+            />
+
+            <aside className={`
+                fixed inset-y-0 left-0 z-50 w-64 bg-white dark:bg-zinc-700 shadow-xl lg:shadow-none
+                flex flex-col gap-4 border-r duration-300 ease-in-out transform dark:border-none px-4 py-6
+                ${isOpen ? 'translate-x-0' : '-translate-x-full'}
+                lg:translate-x-0 lg:static lg:h-screen lg:w-64 lg:overflow-y-auto lg:flex lg:flex-col lg:border-r lg:duration-500 lg:dark:bg-zinc-700 lg:dark:border-none
+            `}>
                 <div className='h-full flex flex-col'>
-                    <div className='border-b pb-6 duration-500 dark:border-zinc-600'>
+                    <div className='lg:border-b lg:pb-6 duration-500 lg:dark:border-zinc-600 flex justify-end lg:block relative'>
+                        <div className="hidden lg:block">
                             <Logo/> 
-                            <h1 className='mx-auto font-bold text-lg mt-2 duration-500 dark:text-white'>Vault Finance</h1>
+                            <h1 className='font-bold text-lg mt-2 duration-500 dark:text-white font-sans'>Vault Finance</h1>
+                        </div>
+                        {/* Close button for mobile */}
+                        <button 
+                            className="lg:hidden p-1.5 rounded-lg text-zinc-500 hover:text-zinc-700 hover:bg-gray-100 dark:text-zinc-400 dark:hover:text-zinc-200 dark:hover:bg-zinc-600 transition-colors"
+                            onClick={onClose}
+                            aria-label="Close sidebar"
+                        >
+                            <X size={20} />
+                        </button>
                     </div>
                     <div className='block'>
                         <ul className='mt-5'>
-                            <li className='mt-1'>
+                            <li className='mt-3 lg:mt-1'>
                                 <NavLink 
                                 to='dashboard'
                                 className={({isActive}) =>
-                                `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200
+                                `flex gap-1 lg:gap-3 items-center justify-center lg:justify-start font-medium text-sm rounded-lg py-3 px-4 lg:p-2 duration-200
                                 ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-500 dark:text-zinc-900' : 'text-zinc-700 hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -37,11 +60,11 @@ function Sidebar() {
                                     Dashboard
                                 </NavLink>
                             </li>
-                            <li className='mt-1'>
+                            <li className='mt-3 lg:mt-1'>
                                 <NavLink 
                                 to='transactions'
                                 className={({isActive}) =>
-                                `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
+                                `flex gap-1 lg:gap-3 items-center justify-center lg:justify-start font-medium text-sm rounded-lg py-3 px-4 lg:p-2 duration-200 
                                 ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-500 dark:text-zinc-900' : 'text-zinc-700 hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
                                     <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -59,11 +82,11 @@ function Sidebar() {
                                     Transactions
                                 </NavLink>
                             </li>
-                            <li className='mt-1'>
+                            <li className='mt-3 lg:mt-1'>
                                 <NavLink 
                                 to='budget'
                                 className={({isActive}) =>
-                                `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
+                                `flex gap-1 lg:gap-3 items-center justify-center lg:justify-start font-medium text-sm rounded-lg py-3 px-4 lg:p-2 duration-200 
                                 ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-500 dark:text-zinc-900' : 'text-zinc-700 hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
                                     <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -81,11 +104,11 @@ function Sidebar() {
                                     Budget
                                 </NavLink>
                             </li>
-                            <li className='mt-1'>
+                            <li className='mt-3 lg:mt-1'>
                                 <NavLink 
                                 to='admin'
                                 className={({isActive}) =>
-                                `flex gap-3 items-center font-medium text-sm rounded-lg p-2 duration-200 
+                                `flex gap-1 lg:gap-3 items-center justify-center lg:justify-start font-medium text-sm rounded-lg py-3 px-4 lg:p-2 duration-200 
                                 ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-500 dark:text-zinc-900' : 'text-zinc-700 hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
                                     <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -105,9 +128,31 @@ function Sidebar() {
                                     Admin
                                 </NavLink>
                             </li>
+                            <li className='mt-3 lg:hidden'>
+                                <NavLink
+                                    className='flex gap-1 lg:gap-3 items-center justify-center font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg py-3 px-4 duration-200 hover:duration-200 dark:text-white dark:hover:bg-zinc-600 w-full'
+                                    to={'/'}
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        className="w-5 h-5"
+                                        >
+                                        <path d="M10 17H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                                        <path d="M15 16l5-4-5-4" />
+                                        <path d="M20 12H9" />
+                                    </svg>
+                                    Sign Out
+                                </NavLink>
+                            </li>
                         </ul>
                     </div>
-                    <div className='mt-auto border-b pb-2 duration-500 dark:border-zinc-600'>
+                    <div className='hidden lg:block mt-auto border-b pb-2 duration-500 dark:border-zinc-600'>
                         <Button
                             bgColor='bg-slate-900'
                             textColor='text-white'
@@ -116,11 +161,11 @@ function Sidebar() {
                                 <Plus size={20}/> New Entry
                         </Button>
                     </div>
-                    <div className='block'>
+                    <div className='hidden lg:block mt-auto lg:mt-0 mb-3'>
                         <ul className='mt-10'>
-                            <li className='flex gap-3 py-auto mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg p-2 duration-200 hover:duration-200 dark:text-white dark:hover:bg-zinc-600'>
+                            <li className='mt-3 lg:mt-1'>
                                 <NavLink
-                                    className='flex gap-3 items-center font-medium text-sm rounded-lg duration-200 w-full'
+                                    className='flex gap-3 items-center justify-center lg:justify-start font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg py-3 px-4 lg:p-2 duration-200 hover:duration-200 dark:text-white dark:hover:bg-zinc-600 w-full'
                                     to={'/app/myaccount'}
                                 >
                                     <svg
@@ -139,12 +184,12 @@ function Sidebar() {
                                     Account Settings
                                 </NavLink>
                             </li>
-                            <li className='flex gap-3 py-auto mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg p-2 duration-200 hover:duration-200 dark:text-white dark:hover:bg-zinc-600'>
+                            <li className='flex gap-3 justify-center lg:justify-start py-auto mt-3 lg:mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg py-3 px-4 lg:p-2 duration-200 hover:duration-200 dark:text-white dark:hover:bg-zinc-600 w-full'>
                                 <ThemeButton children={'Switch Theme'}/>
                             </li>
-                            <li className='flex gap-3 py-auto mt-1 font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg p-2 duration-200 hover:duration-200 dark:text-white dark:hover:bg-zinc-600'>
+                            <li className='mt-3 lg:mt-1'>
                                 <NavLink
-                                    className='flex gap-3 items-center font-medium text-sm rounded-lg duration-200 w-full'
+                                    className='flex gap-3 items-center justify-center lg:justify-start font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg py-3 px-4 lg:p-2 duration-200 hover:duration-200 dark:text-white dark:hover:bg-zinc-600 w-full'
                                     to={'/'}
                                 >
                                     <svg
@@ -158,8 +203,8 @@ function Sidebar() {
                                         className="w-5 h-5"
                                         >
                                         <path d="M10 17H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-                                        <path d="M15 16l5-4-5-4" />
-                                        <path d="M20 12H9" />
+                                        <path d="M15 14l5-4-5-4" />
+                                        <path d="M20 10H9" />
                                     </svg>
                                     Sign Out
                                 </NavLink>

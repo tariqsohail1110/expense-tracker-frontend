@@ -1,9 +1,11 @@
-import { Sidebar } from './components';
-import { Outlet } from 'react-router-dom';
+import { Sidebar, Header } from './components';
+import { Outlet, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './contexts/theme.js';
 import { useState, useEffect } from 'react';
 
 function App() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const location = useLocation();
 
   const [themeMode, setThemeMode] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
@@ -32,12 +34,16 @@ function App() {
     }
   }, [themeMode]);
 
+  useEffect(() => {
+    setIsSidebarOpen(false);
+  }, [location]);
+
   return (
     <ThemeProvider value={{themeMode, lightTheme, darkTheme}}>
-      <div className="flex h-screen">
-        <Sidebar />
-        <div className="flex flex-col flex-1">
-          {/* <Header /> */}
+      <div className="flex h-screen overflow-hidden">
+        <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+        <div className="flex flex-col flex-1 min-w-0">
+          <Header onMenuClick={() => setIsSidebarOpen(true)} />
           <main className="flex-1 overflow-auto bg-gray-100 dark:bg-zinc-800 transition-colors duration-500">
             <Outlet />
           </main>
