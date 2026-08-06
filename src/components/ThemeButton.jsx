@@ -1,7 +1,7 @@
 import React from 'react'
 import useTheme from '../contexts/theme.js';
 
-export default function ThemeButton({ children }) {
+export default function ThemeButton({ children, className }) {
     const { themeMode, lightTheme, darkTheme } = useTheme();
 
     const handleThemeToggle = () => {
@@ -23,7 +23,7 @@ export default function ThemeButton({ children }) {
     return (
         <button
             onClick={handleThemeToggle}
-            className="flex gap-3 items-center w-full text-left focus:outline-none"
+            className={className || "flex gap-3 items-center justify-center lg:justify-start w-full text-center lg:text-left focus:outline-none"}
         >
             {toggleIcon (
                 <svg

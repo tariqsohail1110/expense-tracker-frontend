@@ -11,7 +11,7 @@ function UpdateName() {
             <p className='text-sm mt-1 duration-500 dark:text-white'>
                 Enter your first and last name below to update your profile.
             </p>
-            <div className='w-1/4'>
+            <div className='lg:w-1/4'>
                 <Input type='text' placeholder='Enter first name'
                 className='mt-4 border-2 focus:border-black duration-500
                     dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 
