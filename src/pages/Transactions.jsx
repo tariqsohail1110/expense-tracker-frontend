@@ -6,8 +6,8 @@ function Transactions() {
         <>
             <Container>
                 <div>
-                    <h1 className='text-3xl font-bold text-zinc-900 duration-500 dark:text-white'>Expense Log</h1>
-                    <p className='text-sm mt-1 duration-500 dark:text-white'>Monitor and categorize your recent financial activities.</p>
+                    <h1 className='text-center lg:text-left text-3xl font-bold text-zinc-900 duration-500 dark:text-white'>Expense Log</h1>
+                    <p className='text-center lg:text-left text-sm mt-1 duration-500 dark:text-white'>Monitor and categorize your recent financial activities.</p>
                 </div>
                 <div>
                     <Expenses/>

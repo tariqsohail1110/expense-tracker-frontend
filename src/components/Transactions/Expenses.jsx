@@ -114,8 +114,8 @@ function Expenses() {
     return (
         <div className='bg-white rounded-lg shadow-lg p-6 my-6 font-sans duration-500
         dark:bg-zinc-700'>
-            <div className='flex items-center gap-4 mb-4'>
-                <div className='relative w-5/6'>
+            <div className='md:flex md:items-center md:gap-4 mb-4'>
+                <div className='relative md:w-4/6 lg:w-5/6 mb-4 md:m-0'>
                     <input
                         value={globalFilter ?? ""}
                         onChange={(e) => setGlobalFilter(e.target.value)}
@@ -126,12 +126,12 @@ function Expenses() {
                         className='absolute left-3 top-2 text-gray-400'
                     />
                 </div>
-                <div className='flex-1'>
+                <div className='md:flex-1'>
                     <Button
                         bgColor='bg-slate-800'
                         textColor='text-white'
                         className='hover:bg-slate-700 font-bold duration-200 w-full dark:bg-lime-500
-                        dark:text-zinc-900 dark:hover:bg-lime-300 flex gap-2 items-center'
+                        dark:text-zinc-900 dark:hover:bg-lime-300 flex gap-2 items-center justify-center'
                     >
                         <Download size={20}/>Download .xlsx
                     </Button>
@@ -194,7 +194,7 @@ function Expenses() {
                         Items per page
                     </span>
                     <select
-                        className='border border-gray-300 rounded-md shadow-sm dark:bg-zinc-700 dark:text-white dark:border-zinc-600'
+                        className='border border-gray-300 rounded-md shadow-sm dark:bg-zinc-700 dark:text-white dark:border-zinc-600 text-xs'
                         value={table.getState().pagination.pageSize}
                         onChange={(e) => {
                             table.setPageSize(Number(e.target.value));
@@ -241,7 +241,7 @@ function Expenses() {
                             className='w-16 p-2 rounded-md border border-gray-300 text-center
                             dark:bg-zinc-700 dark:border-zinc-600 dark:text-white'
                         />
-                        <span className='ml-1 dark:text-white'>of {table.getPageCount()}</span>
+                        <span className='hidden md:block ml-1 dark:text-white'>of {table.getPageCount()}</span>
                     </span>
                     <Button 
                         bgColor='bg-gray-100'
