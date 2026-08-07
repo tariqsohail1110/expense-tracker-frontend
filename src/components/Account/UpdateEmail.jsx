@@ -3,7 +3,7 @@ import { Input, Button } from '../index.js'
 
 function UpdateEmail() {
     return (
-        <div className='rounded-lg shadow-lg text-zinc-900 bg-white p-6 mt-5 duration-500
+        <div className='rounded-lg shadow-lg text-zinc-900 bg-white p-6 mt-6 duration-500
         dark:bg-zinc-700'>
             <h1 className='text-3xl font-bold text-zinc-900 duration-500 dark:text-white'>
                 Update Email
