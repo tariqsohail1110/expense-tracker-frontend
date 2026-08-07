@@ -11,6 +11,20 @@ function SimpleBarChart({ data = mockData }) {
     const { themeMode } = useTheme();
     const isDark = themeMode === 'dark';
 
+    const [isMobile, setIsMobile] = React.useState(
+        typeof window !== 'undefined' ? window.innerWidth < 768 : false
+    );
+
+    React.useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    if (isMobile) return null;
+
     // Group transactions by category
     const categoryTotals = {};
     const transactions = Array.isArray(data) ? data : [];
@@ -32,7 +46,7 @@ function SimpleBarChart({ data = mockData }) {
     const textColor = isDark ? '#e4e4e7' : '#71717a';
 
     return (
-        <div className='bg-white rounded-lg shadow-lg p-6 font-sans mt-6
+        <div className='hidden md:block lg:block bg-white rounded-lg shadow-lg p-6 font-sans mt-6
             dark:bg-zinc-700 duration-500
         '>
             <div className='flex items-center justify-between mb-6'>
@@ -43,7 +57,7 @@ function SimpleBarChart({ data = mockData }) {
                 </h2>
             </div>
             <div className='h-96 w-full text-xs lg:text-md'>
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height="100%" minWidth={0}>
                     <BarChart
                         data={processedData}
                         margin={{

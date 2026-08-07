@@ -55,7 +55,7 @@ function DonutChart({ data = mockData, totalBudget = 60000 }) {
             <div className='flex-1 flex flex-col md:flex-row items-center justify-center gap-6'>
                 {/* Chart Container */}
                 <div className='relative w-full md:w-1/2 h-[260px] flex items-center justify-center'>
-                    <ResponsiveContainer width="100%" height="100%">
+                    <ResponsiveContainer width="100%" height="100%" minWidth={0}>
                         <PieChart>
                             <Tooltip 
                                 formatter={(value) => [
