@@ -16,7 +16,7 @@ function LoginComponent() {
                 <Input type='password' placeholder='Enter your password' className= ' border-2 focus:border-black mt-4 duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800'/>
                 </div>
                 <div>
-                    <p className="text-sm mt-4 text-center"> 
+                    <p className="text-xs md:text-sm mt-4 text-center"> 
                         <span>
                             <Button bgColor="bg-none" textColor="text-emerald-500"
                             className="!py-0 !px-1 font-bold duration-500 dark:text-lime-500"
@@ -45,7 +45,7 @@ function LoginComponent() {
                         >
                             Continue with Google
                         </Button>
-                        <p className="text-sm mt-4 text-center duration-500 dark:text-white">Don't have an account?
+                        <p className="text-xs md:text-sm mt-4 text-center duration-500 dark:text-white">Don't have an account?
                             <span>
                                 <Button
                                 onClick={() => navigate('signup')}

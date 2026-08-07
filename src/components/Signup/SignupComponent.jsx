@@ -38,7 +38,7 @@ function SignUpComponent() {
                         >
                             Continue with Google
                         </Button>
-                        <p className="text-sm mt-4 text-center duration-500 dark:text-white">Already a user?
+                        <p className="text-xs md:text-sm mt-4 text-center duration-500 dark:text-white">Already a user?
                             <span>
                                 <Button
                                 onClick={() => navigate('/')}

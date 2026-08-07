@@ -25,7 +25,7 @@ function OtpComponent() {
                         >
                             Verify
                         </Button>
-                        <p className="text-sm mt-4 text-center">
+                        <p className="text-xs md:text-sm mt-4 text-center">
                             <span>
                                 <Button
                                 onClick={() => navigate('/')}
