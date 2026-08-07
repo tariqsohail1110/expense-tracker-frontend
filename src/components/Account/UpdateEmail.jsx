@@ -11,7 +11,7 @@ function UpdateEmail() {
             <p className='text-sm mt-1 duration-500 dark:text-white'>
                 Enter your new email address below to update your account.
             </p>
-            <div className='lg:w-1/4'>
+            <div className='md:w-2/4 lg:w-1/4'>
                 <Input type='email' placeholder='New email'
                     className='mt-4 border-2 focus:border-black duration-500
                     dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 
