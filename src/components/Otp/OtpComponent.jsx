@@ -5,7 +5,7 @@ function OtpComponent() {
     const navigate = useNavigate();
     return (
         <>
-            <div className="bg-white shadow-lg rounded-lg w-full max-w-xl p-5 duration-500 dark:bg-zinc-700">
+            <div className="bg-white shadow-lg rounded-lg w-5/6 md:w-full max-w-xl p-5 duration-500 dark:bg-zinc-700">
                 <div>
                     <h1 className="text-center font-sans text-4xl font-semibold duration-500 dark:text-white">Vault Finance</h1>
                     <p className="text-center font-sans text-xs duration-500 dark:text-white">Your personal expense manager</p>
