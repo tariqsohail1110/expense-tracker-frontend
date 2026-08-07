@@ -51,18 +51,18 @@ function BudgetBar({text, per, budget=0, spent=0, rem=0, rem_days=0}) {
                 <div className={`${getProgressByPer(per)} h-2 rounded-full`} style={{width: `${per}%`}}>
                 </div>
             </div>
-            <div className='lg:grid lg:grid-cols-2 lg:gap-4 mt-5 mb-2'>
+            <div className='md:grid md:grid-cols-2 md:gap-4 mt-5 mb-2'>
                 {/* <div className='cols-span-2 bg-gray-100 rounded-lg text-zinc-900 px-4 pt-3'>
                     <h1 className='font-mono text-sm font-medium text-body'>Total Budget</h1>
                     <h1 className='text-lg font-bold my-2'>{budget}</h1>
                 </div> */}
-                <div className='cols-span-2 bg-gray-100 rounded-lg text-zinc-900 px-4 pt-3
-                duration-500 dark:text-white dark:bg-zinc-500 pb-1 lg:pb-0'>
+                <div className='md:cols-span-2 bg-gray-100 rounded-lg text-zinc-900 px-4 pt-3
+                duration-500 dark:text-white dark:bg-zinc-500 pb-1 md:pb-0'>
                     <h1 className='font-mono text-sm font-medium text-body'>Spent</h1>
                     <h1 className='text-lg font-bold my-2'>{spent}</h1>
                 </div>
-                <div className='cols-span-2 bg-gray-100 rounded-lg text-zinc-900 px-4 pt-3
-                duration-500 dark:text-white dark:bg-zinc-500 pb-1 lg:pb-0 mt-5 lg:m-0'>
+                <div className='md:cols-span-2 bg-gray-100 rounded-lg text-zinc-900 px-4 pt-3
+                duration-500 dark:text-white dark:bg-zinc-500 pb-1 md:pb-0 mt-5 md:m-0'>
                     <h1 className='font-mono text-sm font-medium text-body'>Remaining</h1>
                     <h1 className='text-lg font-bold my-2'>{rem}</h1>
                 </div>
