@@ -1,5 +1,5 @@
-import React from 'react';
-import { Container, Info, Button, InfoBars, DonutChart, ExpenseList, SimpleBarChart } from '../components';
+import React, { useState } from 'react';
+import { Container, Info, Button, InfoBars, DonutChart, ExpenseList, SimpleBarChart, CreateExpenseModal } from '../components';
 import { convert, calculateTotalSpendings, calculatePercentage, welcomeMessage } from '../common/functions.js';
 import data from '../common/data.json';
 import { Plus } from 'lucide-react';
@@ -8,6 +8,8 @@ function Dashboard() {
     const username = 'Muhammad Tariq';
     const totalBalance = 60000;
     const mockData = data;
+
+    const [showModal, setShowModal] = useState(false);
     return (
         <>
             <Container>
@@ -18,10 +20,12 @@ function Dashboard() {
                     </div>
                     <div className='mt-6 lg:cols-span-2 xl:w-64 lg:ml-auto lg:mt-auto pb-2'>
                             <Button
+                            onClick={() => setShowModal(true)}
                             bgColor='bg-slate-900'
                             textColor='text-white'
                             className='w-full font-bold hover:bg-slate-800 duration-200 hover:duration-200
-                            dark:bg-lime-500 dark:hover:bg-lime-400 dark:text-zinc-900 flex gap-1 justify-center items-center'> <Plus size={20}/> New Entry</Button>
+                            dark:bg-lime-600 dark:hover:bg-lime-500 dark:text-zinc-900 flex gap-1 justify-center items-center'> <Plus size={20}/> New Entry</Button>
+                            {showModal && <CreateExpenseModal onClose={() => setShowModal(false)}/>}
                     </div>
                 </div>
                 <div className='lg:grid lg:grid-cols-3 lg:gap-4 mt-6'>
