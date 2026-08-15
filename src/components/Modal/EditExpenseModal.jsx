@@ -21,7 +21,7 @@ function EditExpenseModal({ isOpen = true, onClose }) {
             <div className='rounded-lg shadow-xl text-zinc-900 bg-white p-6 dark:bg-zinc-700 dark:text-white duration-500 w-full max-w-xl space-y-4'>
                 <div className='flex justify-between items-center pb-2 border-b dark:border-zinc-600'>
                     <h1 className='font-bold text-lg font-sans'>
-                        Create Expense
+                        Edit Expense
                     </h1>
                     <Button 
                         onClick={onClose}

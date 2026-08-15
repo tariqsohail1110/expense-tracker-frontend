@@ -1,95 +1,99 @@
 import React, { useState } from 'react';
 import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
 import { ArrowUpDown, ChevronLeft, Search, ChevronRight, ChevronsLeft, ChevronsRight, Edit, Trash, Download } from 'lucide-react';
-import { Button } from '../index.js';
+import { Button, EditExpenseModal, DeleteExpenseModal } from '../index.js';
 import data from '../../common/data.json';
 import { convert } from '../../common/functions.js';
 
 const mockData = data;
 
-const columnHelper = createColumnHelper();
-
-const columns = [
-    columnHelper.accessor('id', {
-        cell: (info) => info.getValue(),
-        header: () => (
-            <h1>ID</h1>
-        )
-    }),
-
-    columnHelper.accessor('title', {
-        cell: (info) => info.getValue(),
-        header: () => (
-            <h1>Title</h1>
-        )
-    }),
-
-    columnHelper.accessor('amount', {
-        cell: (info) => convert(info.getValue()),
-        header: () => (
-            <h1>Amount</h1>
-        )
-    }),
-
-    columnHelper.accessor('category', {
-        cell: (info) => info.getValue(),
-        header: () => (
-            <h1>Category</h1>
-        )
-    }),
-
-    columnHelper.accessor('date', {
-        cell: (info) => info.getValue(),
-        header: () => (
-            <h1>Date</h1>
-        )
-    }),
-
-    // columnHelper.accessor('note', {
-    //     cell: (info) => info.getValue(),
-    //     heder: () => (
-    //         <h1>Note</h1>
-    //     )
-    // }),
-    {
-        id: 'actions',
-        header: 'Actions',
-        enableSorting: false,
-        cell: () => (
-            <>
-                <div className='grid grid-cols-2 gap-2'>
-                    <div>
-                        <Button 
-                            textColor='text-emerald-500' 
-                            bgColor='' 
-                            rounded='' 
-                            className='hover:text-emerald-800 duration-200 text-xs !p-0
-                            dark:text-lime-500 dark:hover:text-lime-300'
-                        >
-                            <Edit/>
-                        </Button>
-                    </div>
-                    <div>
-                        <Button 
-                            textColor='text-red-500' 
-                            bgColor='' 
-                            rounded='' 
-                            className='hover:text-red-800 duration-200 text-xs !p-0
-                            dark:hover:text-red-300'
-                        >
-                            <Trash />
-                        </Button>
-                    </div>
-                </div>
-            </>
-        )
-    }
-];
-
 function Expenses() {
     const [data] = useState(() => [...mockData]);
     const [sorting, setSorting] = useState([]);
     const [globalFilter, setGlobalFilter] = useState('');
+    const [showModal, setShowModal] = useState(false);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+    const columnHelper = createColumnHelper();
+
+    const columns = [
+        columnHelper.accessor('id', {
+            cell: (info) => info.getValue(),
+            header: () => (
+                <h1>ID</h1>
+            )
+        }),
+
+        columnHelper.accessor('title', {
+            cell: (info) => info.getValue(),
+            header: () => (
+                <h1>Title</h1>
+            )
+        }),
+
+        columnHelper.accessor('amount', {
+            cell: (info) => convert(info.getValue()),
+            header: () => (
+                <h1>Amount</h1>
+            )
+        }),
+
+        columnHelper.accessor('category', {
+            cell: (info) => info.getValue(),
+            header: () => (
+                <h1>Category</h1>
+            )
+        }),
+
+        columnHelper.accessor('date', {
+            cell: (info) => info.getValue(),
+            header: () => (
+                <h1>Date</h1>
+            )
+        }),
+
+        // columnHelper.accessor('note', {
+        //     cell: (info) => info.getValue(),
+        //     heder: () => (
+        //         <h1>Note</h1>
+        //     )
+        // }),
+        {
+            id: 'actions',
+            header: 'Actions',
+            enableSorting: false,
+            cell: () => (
+                <>
+                    <div className='grid grid-cols-2 gap-2'>
+                        <div>
+                            <Button 
+                                onClick={() => setShowModal(true)}
+                                textColor='text-emerald-500' 
+                                bgColor='' 
+                                rounded='' 
+                                className='hover:text-emerald-800 duration-200 text-xs !p-0
+                                dark:text-lime-500 dark:hover:text-lime-300'
+                            >
+                                <Edit/>
+                            </Button>
+                        </div>
+                        <div>
+                            <Button
+                                onClick={() => setShowDeleteModal(true)}
+                                textColor='text-red-500' 
+                                bgColor='' 
+                                rounded='' 
+                                className='hover:text-red-800 duration-200 text-xs !p-0
+                                dark:hover:text-red-300'
+                            >
+                                <Trash />
+                            </Button>
+                        </div>
+                    </div>
+                </>
+            )
+        }
+    ];
 
     const table = useReactTable({
         data,
@@ -266,6 +270,8 @@ function Expenses() {
                 </div>
                 
             </div>
+            {showModal && <EditExpenseModal onClose={() => setShowModal(false)}/>}
+            {showDeleteModal && <DeleteExpenseModal onClose={() => setShowDeleteModal(false)}/>}
         </div>
     );
 }
