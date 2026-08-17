@@ -1,7 +1,9 @@
-import React from 'react';
-import { Input, Button } from '../index.js'
+import React, { useState } from 'react';
+import { Input, Button, UpdateModal } from '../index.js'
 
 function UpdatePassword() {
+
+    const [showModal, setShowModal] = useState(false);
     return (
         <div className='rounded-lg shadow-lg text-zinc-900 bg-white p-6 duration-500
         dark:bg-zinc-700'>
@@ -23,12 +25,13 @@ function UpdatePassword() {
                     dark:text-white dark:focus:border-zinc-800'
                 />
             </div>
-            <Button bgColor='bg-slate-900' textColor='text-white'
+            <Button onClick={() => setShowModal(true)} bgColor='bg-slate-900' textColor='text-white'
                 className='text-sm mt-4 hover:bg-slate-700 duration-200 font-bold 
                 dark:bg-lime-500 dark:hover:bg-lime-300 dark:text-zinc-900'
             >
                 Update Changes
             </Button>
+            {showModal && <UpdateModal title='password' onClose={() => setShowModal(false)}/>}
         </div>
     );
 }
