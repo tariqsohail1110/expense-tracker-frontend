@@ -24,8 +24,7 @@ function Dashboard() {
                             bgColor='bg-slate-900'
                             textColor='text-white'
                             className='w-full font-bold hover:bg-slate-800 duration-200 hover:duration-200
-                            dark:bg-lime-600 dark:hover:bg-lime-500 dark:text-zinc-900 flex gap-1 justify-center items-center'> <Plus size={20}/> New Entry</Button>
-                            {showModal && <CreateExpenseModal onClose={() => setShowModal(false)}/>}
+                            dark:bg-lime-500 dark:hover:bg-lime-400 dark:text-zinc-900 flex gap-1 justify-center items-center'> <Plus size={20}/> New Entry</Button>
                     </div>
                 </div>
                 <div className='lg:grid lg:grid-cols-3 lg:gap-4 mt-6'>
@@ -50,6 +49,7 @@ function Dashboard() {
                     <ExpenseList/>
                     <DonutChart data={mockData} totalBudget={totalBalance} />
                 </div>
+                {showModal && <CreateExpenseModal onClose={() => setShowModal(false)}/>}
             </Container>
         </>
     )

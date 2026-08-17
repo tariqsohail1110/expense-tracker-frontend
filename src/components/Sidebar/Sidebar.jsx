@@ -1,8 +1,10 @@
 import { NavLink } from 'react-router-dom';
-import { Button, Logo, ThemeButton } from '../index.js';
+import { useState } from 'react';
+import { Button, Logo, ThemeButton, CreateExpenseModal } from '../index.js';
 import { Plus, X } from 'lucide-react';
 
 function Sidebar({ isOpen, onClose }) {
+    const [showModal, setShowModal] = useState(false);
     return (
         <>
             {/* Backdrop overlay for mobile */}
@@ -154,6 +156,7 @@ function Sidebar({ isOpen, onClose }) {
                     </div>
                     <div className='hidden lg:block mt-auto border-b pb-2 duration-500 dark:border-zinc-600'>
                         <Button
+                            onClick={() => setShowModal(true)}
                             bgColor='bg-slate-900'
                             textColor='text-white'
                             className='w-full font-bold hover:bg-slate-800 duration-200 hover:duration-200 text-medium
@@ -212,6 +215,7 @@ function Sidebar({ isOpen, onClose }) {
                         </ul>
                     </div>
                 </div>
+                {showModal && <CreateExpenseModal onClose={() => setShowModal(false)}/>}
             </aside>
         </>
     )

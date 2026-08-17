@@ -1,5 +1,5 @@
-import React from 'react'
-import { Button } from '../index.js';
+import React, { useState } from 'react'
+import { Button, EditBudgetModal, DeleteModal } from '../index.js';
 import { Edit, Trash } from 'lucide-react';
 
 function BudgetBar({text, per, budget=0, spent=0, rem=0, rem_days=0}) {
@@ -9,6 +9,10 @@ function BudgetBar({text, per, budget=0, spent=0, rem=0, rem_days=0}) {
             else if (parsed_per >= 30) return 'bg-yellow-500';
             else return 'bg-emerald-500';
     }
+
+    const [showModal, setShowModal] = useState(false);
+    const [showDelModal, setShowDelModal] = useState(false);
+
     return (
         <>
         <div className='rounded-lg shadow-lg text-zinc-900 bg-white p-6 duration-500 dark:bg-zinc-700'>
@@ -17,6 +21,7 @@ function BudgetBar({text, per, budget=0, spent=0, rem=0, rem_days=0}) {
                 <div className='grid grid-cols-2 gap-4'>
                     <div >
                         <Button 
+                            onClick={() => setShowModal(true)}
                             textColor='text-emerald-500' 
                             bgColor='' 
                             rounded='' 
@@ -27,6 +32,7 @@ function BudgetBar({text, per, budget=0, spent=0, rem=0, rem_days=0}) {
                     </div>
                     <div>
                         <Button 
+                            onClick={() => setShowDelModal(true)}
                             textColor='text-red-500' 
                             bgColor='' 
                             rounded='!rounded-3xl' 
@@ -68,6 +74,8 @@ function BudgetBar({text, per, budget=0, spent=0, rem=0, rem_days=0}) {
                 </div>
             </div>
         </div>
+        {showModal && <EditBudgetModal onClose={() => setShowModal(false)}/>}
+        {showDelModal && <DeleteModal title='Budget' onClose={() => setShowDelModal(false)}/>}
         </>
     )
 }

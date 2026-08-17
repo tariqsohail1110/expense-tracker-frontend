@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
 import { ArrowUpDown, ChevronLeft, Search, ChevronRight, ChevronsLeft, ChevronsRight, Edit, Trash, Download } from 'lucide-react';
-import { Button, EditExpenseModal, DeleteExpenseModal } from '../index.js';
+import { Button, EditExpenseModal, DeleteModal } from '../index.js';
 import data from '../../common/data.json';
 import { convert } from '../../common/functions.js';
 
@@ -271,7 +271,7 @@ function Expenses() {
                 
             </div>
             {showModal && <EditExpenseModal onClose={() => setShowModal(false)}/>}
-            {showDeleteModal && <DeleteExpenseModal onClose={() => setShowDeleteModal(false)}/>}
+            {showDeleteModal && <DeleteModal title='Expense' onClose={() => setShowDeleteModal(false)}/>}
         </div>
     );
 }

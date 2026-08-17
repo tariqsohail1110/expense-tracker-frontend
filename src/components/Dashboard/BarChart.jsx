@@ -41,8 +41,8 @@ function SimpleBarChart({ data = mockData }) {
     })).sort((a, b) => b.amount - a.amount);
 
     // Dynamic styles based on theme
-    const barColor = isDark ? 'oklch(76.8% 0.233 130.85)' : 'oklch(69.6% 0.17 162.48)';
-    const activeBarColor = isDark ? 'oklch(45.3% 0.124 130.933)' : 'oklch(43.2% 0.095 166.913)';
+    const barColor = isDark ? 'oklch(51.1% 0.262 276.966)' : 'oklch(69.6% 0.17 162.48)';
+    const activeBarColor = isDark ? 'oklch(39.8% 0.195 277.366)' : 'oklch(43.2% 0.095 166.913)';
     const textColor = isDark ? '#e4e4e7' : '#71717a';
 
     return (
@@ -52,7 +52,7 @@ function SimpleBarChart({ data = mockData }) {
             <div className='flex items-center justify-between mb-6'>
                 <h2 className='text-zinc-900 font-bold text-lg flex items-center gap-2
                 dark:text-white'>
-                    <BarChart3 className='text-indigo-500 w-5 h-5 dark:text-lime-500' />
+                    <BarChart3 className='text-indigo-500 w-5 h-5 dark:text-indigo-600' />
                     Expenses by Category
                 </h2>
             </div>
