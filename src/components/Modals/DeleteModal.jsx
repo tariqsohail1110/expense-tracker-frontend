@@ -31,9 +31,9 @@ function DeleteModal({ title = '', isOpen = true, onClose }) {
                 <p className='text-lg text-zinc-900 dark:text-white font-semibold text-center font-sans'>This action cannot be undone</p>
                 <Button
                     onClick={() => onClose(false)}
-                    bgColor='bg-rose-500'
+                    bgColor='bg-red-700'
                     textColor='text-white'
-                    className='w-full font-bold duration-200 hover:duration-200 hover:bg-rose-400 flex gap-1 justify-center items-center !mt-6'
+                    className='w-full font-bold duration-200 hover:duration-200 hover:bg-red-500 flex gap-1 justify-center items-center !mt-6'
                 >
                     Delete
                 </Button>

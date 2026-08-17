@@ -25,7 +25,7 @@ function BudgetBar({text, per, budget=0, spent=0, rem=0, rem_days=0}) {
                             textColor='text-emerald-500' 
                             bgColor='' 
                             rounded='' 
-                            className='w-full !p-0 hover:text-emerald-800 duration-200 dark:text-lime-500 dark:hover:text-lime-300'
+                            className='w-full !p-0 hover:text-emerald-800 duration-200 dark:text-lime-600 dark:hover:text-lime-600'
                         >
                             <Edit/>
                         </Button>

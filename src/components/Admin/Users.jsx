@@ -65,7 +65,7 @@ function Users() {
                                 bgColor='' 
                                 rounded='' 
                                 className='hover:text-emerald-800 duration-200 text-xs !p-0
-                                dark:text-lime-500 dark:hover:text-lime-300'
+                                dark:text-lime-600 dark:hover:text-lime-500'
                             >
                                 <Edit/>
                             </Button>
@@ -127,16 +127,16 @@ function Users() {
                     <Button
                         bgColor='bg-slate-800'
                         textColor='text-white'
-                        className='hover:bg-slate-700 font-bold duration-200 w-full dark:bg-lime-500
-                        dark:text-zinc-900 dark:hover:bg-lime-300 flex gap-2 items-center justify-center'
+                        className='hover:bg-slate-700 font-bold duration-200 w-full dark:bg-lime-600
+                        dark:text-zinc-900 dark:hover:bg-lime-500 flex gap-2 items-center justify-center'
                     >
                         <Download size={20}/>Download .xlsx
                     </Button>
                 </div>
             </div>
             <div className='overflow-x-auto rounded-md'>
-                <table className='min-w-full divide-y divide-green-200 duration-500 dark:divide-lime-500'>
-                    <thead className='bg-emerald-300 duration-500 dark:bg-lime-500'>
+                <table className='min-w-full divide-y divide-green-200 duration-500 dark:divide-lime-600'>
+                    <thead className='bg-emerald-300 duration-500 dark:bg-lime-600'>
                         {table.getHeaderGroups().map((headerGroup) => (
                             <tr key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => (

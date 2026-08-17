@@ -89,7 +89,7 @@ function ExpenseList({ data = defaultMockData }) {
                     onClick={() => navigate('/app/transactions')}
                     bgColor='bg-slate-900'
                     textColor='text-white'
-                    className='w-full text-sm font-bold hover:bg-slate-800 transition-all duration-200 dark:bg-lime-500 dark:hover:bg-lime-400 dark:text-zinc-900'
+                    className='w-full text-sm font-bold hover:bg-slate-800 transition-all duration-200 dark:bg-lime-600 dark:hover:bg-lime-500 dark:text-zinc-900'
                 >
                     View All Transactions
                 </Button>

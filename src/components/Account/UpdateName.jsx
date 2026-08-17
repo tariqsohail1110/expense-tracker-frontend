@@ -27,7 +27,7 @@ function UpdateName() {
             </div>
             <Button onClick={() => setShowModal(true)} bgColor='bg-slate-900' textColor='text-white'
                 className='text-sm mt-4 hover:bg-slate-700 duration-200 font-bold 
-                dark:bg-lime-500 dark:hover:bg-lime-300 dark:text-zinc-900'
+                dark:bg-lime-600 dark:hover:bg-lime-500 dark:text-zinc-900'
             >
                 Update Changes
             </Button>

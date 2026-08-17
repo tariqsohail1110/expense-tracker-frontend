@@ -21,7 +21,7 @@ function OtpComponent() {
                         bgColor="bg-slate-900"
                         textColor="text-white"
                         className="mt-4 w-full hover:bg-slate-700 duration-200 text-sm font-bold 
-                        dark:bg-lime-500 dark:hover:bg-lime-300 dark:text-zinc-900"
+                        dark:bg-lime-600 dark:hover:bg-lime-500 dark:text-zinc-900"
                         >
                             Verify
                         </Button>
@@ -30,7 +30,7 @@ function OtpComponent() {
                                 <Button
                                 onClick={() => navigate('/')}
                                 bgColor="bg-none" textColor="text-emerald-500"
-                                className="!py-0 !px-1 font-bold duration-500 dark:text-lime-500"
+                                className="!py-0 !px-1 font-bold duration-500 dark:text-lime-600 dark:hover:text-lime-500"
                                 >
                                     Go Back
                                 </Button>

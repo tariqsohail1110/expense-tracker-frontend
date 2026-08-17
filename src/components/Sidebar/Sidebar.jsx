@@ -43,7 +43,7 @@ function Sidebar({ isOpen, onClose }) {
                                 to='dashboard'
                                 className={({isActive}) =>
                                 `flex gap-1 lg:gap-3 items-center justify-center lg:justify-start font-medium text-sm rounded-lg py-3 px-4 lg:p-2 duration-200
-                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-500 dark:text-zinc-900' : 'text-zinc-700 hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-600 dark:text-zinc-900' : 'text-zinc-700 hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
                                         viewBox="0 0 24 24"
@@ -67,7 +67,7 @@ function Sidebar({ isOpen, onClose }) {
                                 to='transactions'
                                 className={({isActive}) =>
                                 `flex gap-1 lg:gap-3 items-center justify-center lg:justify-start font-medium text-sm rounded-lg py-3 px-4 lg:p-2 duration-200 
-                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-500 dark:text-zinc-900' : 'text-zinc-700 hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-600 dark:text-zinc-900' : 'text-zinc-700 hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
                                     <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
@@ -89,7 +89,7 @@ function Sidebar({ isOpen, onClose }) {
                                 to='budget'
                                 className={({isActive}) =>
                                 `flex gap-1 lg:gap-3 items-center justify-center lg:justify-start font-medium text-sm rounded-lg py-3 px-4 lg:p-2 duration-200 
-                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-500 dark:text-zinc-900' : 'text-zinc-700 hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-600 dark:text-zinc-900' : 'text-zinc-700 hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
                                     <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
@@ -111,7 +111,7 @@ function Sidebar({ isOpen, onClose }) {
                                 to='admin'
                                 className={({isActive}) =>
                                 `flex gap-1 lg:gap-3 items-center justify-center lg:justify-start font-medium text-sm rounded-lg py-3 px-4 lg:p-2 duration-200 
-                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-500 dark:text-zinc-900' : 'text-zinc-700 hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
+                                ${isActive ? 'text-emerald-800 bg-emerald-300 !font-extrabold dark:bg-lime-600 dark:text-zinc-900' : 'text-zinc-700 hover:bg-gray-100 bg-transparent dark:text-white dark:hover:bg-zinc-600'}`}>
                                     <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 24 24"
@@ -160,7 +160,7 @@ function Sidebar({ isOpen, onClose }) {
                             bgColor='bg-slate-900'
                             textColor='text-white'
                             className='w-full font-bold hover:bg-slate-800 duration-200 hover:duration-200 text-medium
-                            dark:bg-lime-500 dark:hover:bg-lime-400 dark:text-zinc-900 flex gap-1 justify-center items-center'> 
+                            dark:bg-lime-600 dark:hover:bg-lime-500 dark:text-zinc-900 flex gap-1 justify-center items-center'> 
                                 <Plus size={20}/> New Entry
                         </Button>
                     </div>

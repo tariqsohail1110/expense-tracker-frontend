@@ -63,7 +63,7 @@ function EditExpenseModal({ isOpen = true, onClose }) {
                     textColor='text-white'
                     className='w-full font-bold hover:bg-slate-800 duration-200 hover:duration-200 dark:bg-lime-600 dark:hover:bg-lime-500 dark:text-zinc-900 flex gap-1 justify-center items-center !mt-6'
                 >
-                    Create
+                    Update
                 </Button>
             </div>
         </div>,
