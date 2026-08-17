@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
-import { Button } from '../index.js';
+import { Button, Input, Dropdown } from '../index.js';
 
-function DeleteExpenseModal({ isOpen = true, onClose }) {
+function UpdateModal({ title = null, isOpen = true, onClose }) {
     if (!isOpen) return null;
 
     const modalRef = useRef();
@@ -19,7 +19,7 @@ function DeleteExpenseModal({ isOpen = true, onClose }) {
             <div className='rounded-lg shadow-xl text-zinc-900 bg-white p-6 dark:bg-zinc-700 dark:text-white duration-500 w-full max-w-xl space-y-4'>
                 <div className='flex justify-between items-center pb-2 border-b dark:border-zinc-600'>
                     <h1 className='font-bold text-lg font-sans'>
-                        Delete Expense
+                        Update {title[0].toUpperCase() + title.slice(1)}
                     </h1>
                     <Button 
                         onClick={onClose}
@@ -28,14 +28,14 @@ function DeleteExpenseModal({ isOpen = true, onClose }) {
                         <X size={20} className='text-zinc-900 dark:text-white duration-500' />
                     </Button>
                 </div>
-                <h1 className='text-lg text-zinc-900 dark:text-white font-semibold text-center font-sans'>This action cannot be undone</h1>
+                <p className='text-lg text-zinc-900 dark:text-white font-semibold text-center font-sans'>Are you sure you want to update your {title}?</p>
                 <Button
                     onClick={() => onClose(false)}
                     bgColor='bg-slate-900'
                     textColor='text-white'
-                    className='w-full font-bold duration-200 hover:duration-200 bg-rose-500 hover:bg-rose-400 flex gap-1 justify-center items-center !mt-6'
+                    className='w-full font-bold hover:bg-slate-800 duration-200 hover:duration-200 dark:bg-lime-600 dark:hover:bg-lime-500 dark:text-zinc-900 flex gap-1 justify-center items-center !mt-6'
                 >
-                    Delete
+                    Update
                 </Button>
             </div>
         </div>,
@@ -43,4 +43,4 @@ function DeleteExpenseModal({ isOpen = true, onClose }) {
     );
 }
 
-export default DeleteExpenseModal;
+export default UpdateModal;

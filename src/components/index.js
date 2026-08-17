@@ -22,11 +22,14 @@ import DeleteAccount from "./Account/DeleteAccount.jsx";
 import AccountComponent from "./Account/AccountComponent.jsx";
 import ThemeButton from "./ThemeButton.jsx";
 import Header from "./Header/Header.jsx";
-import CreateExpenseModal from "./Modal/CreateExpenseModal.jsx";
-import EditExpenseModal from "./Modal/EditExpenseModal.jsx";
-import DeleteExpenseModal from "./Modal/DeleteExpenseModal.jsx";
+import CreateExpenseModal from "./Modals/CreateExpenseModal.jsx";
+import EditExpenseModal from "./Modals/EditExpenseModal.jsx";
+import DeleteModal from "./Modals/DeleteModal.jsx";
+import EditBudgetModal from "./Modals/EditBudgetModal.jsx";
+import EditUserModal from "./Modals/EditUserModal.jsx";
+import UpdateModal from "./Modals/UpdateModal.jsx";
 import Dropdown from "./Dropdown.jsx";
 
 export {
-    Button, Sidebar, Logo, Container, Info, InfoBars, DonutChart, ExpenseList, BudgetBar, Expenses, SimpleBarChart, AdminInfo, Users, Input, LoginComponent, SignUpComponent, OtpComponent, UpdatePassword, UpdateEmail, UpdateName, DeleteAccount, AccountComponent, ThemeButton, Header, CreateExpenseModal, Dropdown, EditExpenseModal, DeleteExpenseModal
+    Button, Sidebar, Logo, Container, Info, InfoBars, DonutChart, ExpenseList, BudgetBar, Expenses, SimpleBarChart, AdminInfo, Users, Input, LoginComponent, SignUpComponent, OtpComponent, UpdatePassword, UpdateEmail, UpdateName, DeleteAccount, AccountComponent, ThemeButton, Header, CreateExpenseModal, Dropdown, EditExpenseModal, DeleteModal, EditBudgetModal, EditUserModal, UpdateModal
 }
