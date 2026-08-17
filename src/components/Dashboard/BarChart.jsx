@@ -41,8 +41,8 @@ function SimpleBarChart({ data = mockData }) {
     })).sort((a, b) => b.amount - a.amount);
 
     // Dynamic styles based on theme
-    const barColor = isDark ? 'oklch(51.1% 0.262 276.966)' : 'oklch(69.6% 0.17 162.48)';
-    const activeBarColor = isDark ? 'oklch(39.8% 0.195 277.366)' : 'oklch(43.2% 0.095 166.913)';
+    const barColor = isDark ? 'oklch(79.2% 0.209 151.711)' : 'oklch(69.6% 0.17 162.48)';
+    const activeBarColor = isDark ? 'oklch(69.6% 0.17 162.48)' : 'oklch(43.2% 0.095 166.913)';
     const textColor = isDark ? '#e4e4e7' : '#71717a';
 
     return (
@@ -52,33 +52,36 @@ function SimpleBarChart({ data = mockData }) {
             <div className='flex items-center justify-between mb-6'>
                 <h2 className='text-zinc-900 font-bold text-lg flex items-center gap-2
                 dark:text-white'>
-                    <BarChart3 className='text-indigo-500 w-5 h-5 dark:text-indigo-600' />
+                    <BarChart3 className='text-indigo-500 w-5 h-5' />
                     Expenses by Category
                 </h2>
             </div>
             <div className='h-96 w-full text-xs lg:text-md'>
                 <ResponsiveContainer width="100%" height="100%" minWidth={0}>
                     <BarChart
+                        layout="vertical"
                         data={processedData}
                         margin={{
                             top: 5,
-                            right: 0,
-                            left: 0,
+                            right: 20,
+                            left: 20,
                             bottom: 5,
                         }}
                     >
-                        <XAxis 
-                            dataKey="category" 
-                            stroke={textColor} 
-                            tick={{ fill: textColor }}
-                        />
-                        <YAxis 
-                            width="auto" 
-                            tickFormatter={(val) => `₨${val.toLocaleString()}`} 
+                        <XAxis
+                            type="number"
                             stroke={textColor}
                             tick={{ fill: textColor }}
+                            tickFormatter={(val) => `₨${val.toLocaleString()}`}
                         />
-                        <Tooltip 
+                        <YAxis
+                            type="category"
+                            dataKey="category"
+                            stroke={textColor}
+                            tick={{ fill: textColor }}
+                            width={100}
+                        />
+                        <Tooltip
                             contentStyle={{
                                 backgroundColor: isDark ? '#27272a' : '#ffffff',
                                 border: isDark ? '1px solid #E5E7EB' : '1px solid #e4e4e7',
@@ -91,13 +94,13 @@ function SimpleBarChart({ data = mockData }) {
                             labelStyle={{
                                 color: isDark ? '#a1a1aa' : '#71717a'
                             }}
-                            formatter={(value) => [`₨ ${value.toLocaleString()}`, 'Amount']} 
+                            formatter={(value) => [`₨ ${value.toLocaleString()}`, 'Amount']}
                         />
-                        <Bar 
-                            dataKey="amount" 
-                            fill={barColor} 
-                            activeBar={{ fill: activeBarColor }} 
-                            radius={[10, 10, 0, 0]}
+                        <Bar
+                            dataKey="amount"
+                            fill={barColor}
+                            activeBar={{ fill: activeBarColor }}
+                            radius={[0, 10, 10, 0]}
                         />
                         <RechartsDevtools />
                     </BarChart>
