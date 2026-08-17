@@ -47,7 +47,7 @@ function DonutChart({ data = mockData, totalBudget = 60000 }) {
                     <PieChartIcon className='text-emerald-500 w-5 h-5' />
                     Category Based Spendings
                 </h2>
-                <span className='hidden lg:block text-xs text-gray-500 font-medium bg-gray-100 px-2 py-1 rounded-full dark:bg-gray-500 dark:text-white duration-500'>
+                <span className='hidden md:block lg:block text-xs text-gray-500 font-medium bg-gray-100 px-2 py-1 rounded-full dark:bg-gray-500 dark:text-white duration-500'>
                     Distribution
                 </span>
             </div>
@@ -92,7 +92,7 @@ function DonutChart({ data = mockData, totalBudget = 60000 }) {
                 </div>
 
                 {/* Custom Legend */}
-                <span className='block lg:hidden text-xs text-gray-500 font-medium bg-gray-100 px-2 py-1 rounded-full dark:bg-gray-500 dark:text-white duration-500'>
+                <span className='block md:hidden lg:hidden text-xs text-gray-500 font-medium bg-gray-100 px-2 py-1 rounded-full dark:bg-gray-500 dark:text-white duration-500'>
                     Distribution
                 </span>
                 <div className='w-full md:w-1/2 flex flex-col justify-center'>
