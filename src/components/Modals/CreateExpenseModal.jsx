@@ -34,14 +34,14 @@ function CreateExpenseModal({ isOpen = true, onClose }) {
                 <Input 
                     label='title' 
                     type='text' 
-                    placeholder='Title' 
+                    placeholder='Grocery' 
                     className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800' 
                 />
                 
                 <Input 
                     label='amount spent' 
                     type='number' 
-                    placeholder='Amount' 
+                    placeholder='1000' 
                     className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800' 
                 />
                 
@@ -53,7 +53,7 @@ function CreateExpenseModal({ isOpen = true, onClose }) {
                 <Input 
                     label='date' 
                     type='date' 
-                    placeholder='Date' 
+                    placeholder='' 
                     className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800' 
                 />
                 

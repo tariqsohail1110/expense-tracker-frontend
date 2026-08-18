@@ -32,7 +32,7 @@ function EditBudgetModal({ isOpen = true, onClose }) {
                 <Input 
                     label='amount' 
                     type='number' 
-                    placeholder='Amount' 
+                    placeholder='50000' 
                     className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800' 
                 />
                 
