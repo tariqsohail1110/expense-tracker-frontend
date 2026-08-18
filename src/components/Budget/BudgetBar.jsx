@@ -3,6 +3,7 @@ import { Button, EditBudgetModal, DeleteModal } from '../index.js';
 import { Edit, Trash } from 'lucide-react';
 
 function BudgetBar({text, per, budget=0, spent=0, rem=0, rem_days=0}) {
+    const clampedPer = Math.max(0, Math.min(100, parseFloat(per) || 0));
     const getProgressByPer = (percentage) => {
             const parsed_per = parseInt(percentage);
             if (parsed_per >= 75) return 'bg-red-500';
@@ -51,10 +52,10 @@ function BudgetBar({text, per, budget=0, spent=0, rem=0, rem_days=0}) {
             </div>
             <div className='my-2 text-right'>
                 {/* <span className='font-mono text-sm font-medium text-body'>{`Spent ${spent}`}</span> */}
-                <span className="font-mono text-sm font-medium text-body duration-500 dark:text-white">{per}%</span>
+                <span className="font-mono text-sm font-medium text-body duration-500 dark:text-white">{clampedPer}%</span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2">
-                <div className={`${getProgressByPer(per)} h-2 rounded-full`} style={{width: `${per}%`}}>
+                <div className={`${getProgressByPer(clampedPer)} h-2 rounded-full`} style={{width: `${clampedPer}%`}}>
                 </div>
             </div>
             <div className='md:grid md:grid-cols-2 md:gap-4 mt-5 mb-2'>

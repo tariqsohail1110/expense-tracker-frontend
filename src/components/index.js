@@ -28,8 +28,10 @@ import DeleteModal from "./Modals/DeleteModal.jsx";
 import EditBudgetModal from "./Modals/EditBudgetModal.jsx";
 import EditUserModal from "./Modals/EditUserModal.jsx";
 import UpdateModal from "./Modals/UpdateModal.jsx";
+import CreateBudgetModal from "./Modals/CreateBudgetModal.jsx";
 import Dropdown from "./Dropdown.jsx";
+import CreateBudget from "./Budget/CreateBudget.jsx";
 
 export {
-    Button, Sidebar, Logo, Container, Info, InfoBars, DonutChart, ExpenseList, BudgetBar, Expenses, SimpleBarChart, AdminInfo, Users, Input, LoginComponent, SignUpComponent, OtpComponent, UpdatePassword, UpdateEmail, UpdateName, DeleteAccount, AccountComponent, ThemeButton, Header, CreateExpenseModal, Dropdown, EditExpenseModal, DeleteModal, EditBudgetModal, EditUserModal, UpdateModal
+    Button, Sidebar, Logo, Container, Info, InfoBars, DonutChart, ExpenseList, BudgetBar, Expenses, SimpleBarChart, AdminInfo, Users, Input, LoginComponent, SignUpComponent, OtpComponent, UpdatePassword, UpdateEmail, UpdateName, DeleteAccount, AccountComponent, ThemeButton, Header, CreateExpenseModal, Dropdown, EditExpenseModal, DeleteModal, EditBudgetModal, EditUserModal, UpdateModal, CreateBudget, CreateBudgetModal
 }
