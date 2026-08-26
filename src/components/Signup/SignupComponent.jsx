@@ -1,11 +1,55 @@
 import { useNavigate } from "react-router-dom";
-import { Input, Button } from "../index.js"
+import { Input, Button } from "../index.js";
+import { useForm } from 'react-hook-form';
+import { passwordRegex, nameRegex } from "../../common/constants.js";
 
 function SignUpComponent() {
+    const {
+        register,
+        handleSubmit,
+        setError,
+        formState: { errors, isSubmitting },
+    } = useForm()
+
+    const delay = (d) =>{
+        return new Promise((res, rej) => {
+            setTimeout(() => {
+                res()
+            }, d * 1000)
+        })
+    }
+
+    const onSubmit = async (data) => {
+        await delay(4)
+        if (!nameRegex.test(data.firstname)) {
+            setError('firstname', {message: 'Letters only, no numbers or symbols'});
+            return;
+        }
+        if (!nameRegex.test(data.lastname)) {
+            setError('lastname', {message: 'Letters only, no numbers or symbols'});
+            return;
+        }
+        if (!data.email.includes('@')) {
+            setError('email', {message: 'Email is invalid'}); 
+            return;
+        }
+        if (!passwordRegex.test(data.password)) {
+            setError('password', {message: 'Must include uppercase, lowercase, number & special character'});
+            return;
+        }
+        if (data.confirmpass !== data.password) {
+            setError('confirmpass', {message: 'Passwords do not match'});
+            return;
+        }
+        console.log(data);
+        navigate('/', {replace: true});
+        
+    }
+
     const navigate = useNavigate();
     return (
         <>
-            <div className="bg-white shadow-lg rounded-lg w-5/6 md:w-full max-w-xl p-5 duration-500 dark:bg-zinc-700">
+            <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-lg rounded-lg w-5/6 md:w-full max-w-xl p-5 duration-500 dark:bg-zinc-700">
                 <div className="border-b border-gray-600 pb-4">
                     <h1 className="text-center font-sans text-4xl font-semibold duration-500 dark:text-white">Vault Finance</h1>
                     <p className="text-center font-sans text-xs duration-500 dark:text-white">Your personal expense manager</p>
@@ -13,47 +57,77 @@ function SignUpComponent() {
                 </div>
                 <div>
                     <div className="md:flex md:gap-2 my-4">
+                        <div className="w-full mb-4 md:mb-0">
+                            <Input
+                                {...register('firstname', { required: {value: true, message: 'First Name is required'}, maxLength: {
+                                    value: 20, message: 'First Name cannot be more than 20 letters'
+                                }})}
+                                label='first name'
+                                type='text'
+                                placeholder='John'
+                                className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800' />
+                            {errors.firstname && <p className='text-red-500 text-xs mt-1 ml-1'>{errors.firstname.message}</p>}
+                        </div>
 
-                        <Input
-                            label='first name'
-                            type='text'
-                            placeholder='John'
-                            className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800 mb-4 md:mb-0' />
-
-                        <Input
-                            label='last name'
-                            type='text'
-                            placeholder='Doe'
-                            className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800 md:m-0' />
+                        <div className="w-full">
+                            <Input
+                                {...register('lastname', { required: {value: true, message: 'Last Name is required'}, maxLength: {
+                                    value: 20, message: 'Last Name Name cannot be more than 20 letters'
+                                }})}
+                                label='last name'
+                                type='text'
+                                placeholder='Doe'
+                                className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800' />
+                            {errors.lastname && <p className='text-red-500 text-xs mt-1 ml-1'>{errors.lastname.message}</p>}
+                        </div>
                     </div>
 
-                    <Input
-                        label='email'
-                        type='email'
-                        placeholder='johnd@mail.com'
-                        className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800 mb-4' />
+                    <div className="mb-4">
+                        <Input
+                            {...register('email', { required: {value: true, message: 'Email is required'}, maxLength: {
+                                    value: 50, message: 'Email cannot be more than 50 letters'
+                                }})}
+                            label='email'
+                            type='email'
+                            placeholder='johnd@mail.com'
+                            className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800' />
+                        {errors.email && <p className='text-red-500 text-xs mt-1 ml-1'>{errors.email.message}</p>}
+                    </div>
 
-                    <Input
-                        label='password'
-                        type='password'
-                        placeholder='123456'
-                        className=' border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800 mb-4' />
+                    <div className="mb-4">
+                        <Input
+                            {...register('password', { required: {value: true, message: 'Password is Required'}, minLength: {
+                                value: 8, message: 'Password must be more than 7 letters'
+                            }})}
+                            label='password'
+                            type='password'
+                            placeholder='123456'
+                            className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800' />
+                    </div>
 
-                    <Input
-                        label='confirm password'
-                        type='password'
-                        placeholder='123456'
-                        className=' border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800' />
+                    <div className="mb-2">
+                        <Input
+                            {...register('confirmpass', { required: {value: true, message: 'Password is Required'}, minLength: {
+                                value: 8, message: 'Password must of more than 7 letters'
+                            }})}
+                            label='confirm password'
+                            type='password'
+                            placeholder='123456'
+                            className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800' />
+                        {errors.confirmpass && <p className='text-red-500 text-xs mt-1 ml-1'>{errors.confirmpass.message}</p>}
+                    </div>
                 </div>
                 <div className="flex items-center justify-center w-full">
                     <div className="w-4/6">
                         <Button
+                            disabled={isSubmitting}
+                            type="submit"
                             bgColor="bg-slate-900"
                             textColor="text-white"
                             className="mt-4 w-full hover:bg-slate-700 duration-200 text-sm font-bold 
                         dark:bg-lime-600 dark:hover:bg-lime-500 dark:text-zinc-900"
                         >
-                            Signup
+                            {isSubmitting? 'Signing up....' : 'Signup'}
                         </Button>
                         <Button
                             bgColor="bg-slate-900"
@@ -76,7 +150,7 @@ function SignUpComponent() {
                         </p>
                     </div>
                 </div>
-            </div>
+            </form>
         </>
     );
 }
