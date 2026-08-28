@@ -1,9 +1,13 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Input, Button } from "../index.js";
 import { useForm } from "react-hook-form";
 import { numberRegex } from "../../common/constants.js";
+import api from "../../config/axios.config.js";
 
 function OtpComponent() {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const email = location.state?.email;
     const {
         register,
         handleSubmit,
@@ -20,17 +24,22 @@ function OtpComponent() {
     }
 
     const onSubmit = async (data) => {
-        await delay(4)
-        if (!numberRegex.test(data.otp)) {
-            setError('otp', {message: 'Numbers only'});
+        if (!numberRegex.test(data.code)) {
+            setError('code', {message: 'Numbers only'});
             return;
         }
-        console.log(data);
-        navigate('/app/dashboard', {replace: true})
-        
+        try {
+            await delay(2);
+            const response = await api.post('/api/v1/auth/verify', { email: email, code: data.code})
+            localStorage.setItem('accessToken', response.data.data.accessToken);
+            navigate('/app/dashboard', {replace: true})
+        } catch (error) {
+            if (error.response) {
+                setError('code', {message: error.message})
+            }
+        }
     }
 
-    const navigate = useNavigate();
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-lg rounded-lg w-5/6 md:w-full max-w-xl p-5 duration-500 dark:bg-zinc-700">
@@ -41,9 +50,9 @@ function OtpComponent() {
                 </div>
                 <div className="my-4">
                     <Input
-                    {...register('otp', {required: {value: true, message: 'OTP is required'}, minLength: {value: 6, message: 'OTP must be of 6 digits'}})}
+                    {...register('code', {required: {value: true, message: 'OTP is required'}, minLength: {value: 6, message: 'OTP must be of 6 digits'}})}
                     type='text' placeholder='000000' className= ' border-2 focus:border-black mt-4 text-center font-bold text-4xl duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800'/>
-                    {errors.otp && <p className="text-red-500 text-center text-xs mt-1 ml-1">{errors.otp.message}</p>}
+                    {errors.code && <p className="text-red-500 text-center text-xs mt-1 ml-1">{errors.code.message}</p>}
                 </div>
                 <div className="flex items-center justify-center w-full">
                     <div className="w-4/6">

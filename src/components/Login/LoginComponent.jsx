@@ -2,6 +2,7 @@ import { replace, useNavigate } from "react-router-dom";
 import { Input, Button } from "../index.js";
 import { useForm } from "react-hook-form";
 import { passwordRegex } from "../../common/constants.js";
+import api from "../../config/axios.config.js";
 
 function LoginComponent() {
     const {
@@ -20,7 +21,6 @@ function LoginComponent() {
     }
 
     const onSubmit = async (data) => {
-        await delay(4)
         if (!data.email.includes('@')) {
             setError('email', {message: 'Email is invalid'}); 
             return;
@@ -29,9 +29,14 @@ function LoginComponent() {
             setError('password', {message: 'Must include uppercase, lowercase, number & special character'});
             return;
         }
-        console.log(data)
-        navigate('otp', {replace: true});
-        
+        await delay(2);
+        try {
+            const response = await api.post('/api/v1/auth/login', { email: data.email, password: data.password });
+            navigate('/otp', {replace: true, state: { email: data.email }});
+            alert(response.data.data);
+        } catch (error) {
+            setError('password', { message: error.message})
+        }
     }
 
     const navigate = useNavigate();
