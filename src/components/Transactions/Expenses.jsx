@@ -1,20 +1,47 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
 import { ArrowUpDown, ChevronLeft, Search, ChevronRight, ChevronsLeft, ChevronsRight, Edit, Trash, Download } from 'lucide-react';
 import { Button, EditExpenseModal, DeleteModal } from '../index.js';
 import data from '../../common/data.json';
 import { convert } from '../../common/functions.js';
+import api from '../../config/axios.config.js';
 
 const mockData = data;
 
 function Expenses() {
-    const [data] = useState(() => [...mockData]);
+    // const [data] = useState(() => [...mockData]);
+    const [data, setSpendings] = useState([])
     const [sorting, setSorting] = useState([]);
     const [globalFilter, setGlobalFilter] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     const columnHelper = createColumnHelper();
+
+        useEffect(() => {
+        api.get('/api/v1/expenses/user/me')
+            .then (response => {
+                setSpendings(response.data.data);
+                
+            })
+            .catch(error => console.log(error));
+    }, []);
+
+    const handleDownloadXlsx = () => {
+        api.get('/api/v1/expenses/downloadxlsx', { responseType: 'blob' })
+        .then(response => {
+            const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+            const blobUrl = window.URL.createObjectURL(blob);
+            const hiddenAnchor = document.createElement('a');
+            hiddenAnchor.href = blobUrl;
+            hiddenAnchor.download = 'expenses.xlsx';
+            document.body.appendChild(hiddenAnchor);
+            hiddenAnchor.click();
+            document.body.removeChild(hiddenAnchor);
+            window.URL.revokeObjectURL(blobUrl);
+        })
+        .catch(error => alert(error.message));
+    }
 
     const columns = [
         columnHelper.accessor('id', {
@@ -132,6 +159,7 @@ function Expenses() {
                 </div>
                 <div className='md:flex-1'>
                     <Button
+                        onClick={handleDownloadXlsx}
                         bgColor='bg-slate-800'
                         textColor='text-white'
                         className='hover:bg-slate-700 font-bold duration-200 w-full dark:bg-lime-600
