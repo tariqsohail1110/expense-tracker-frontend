@@ -3,11 +3,8 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recha
 import { RechartsDevtools } from '@recharts/devtools';
 import { BarChart3 } from 'lucide-react';
 import useTheme from '../../contexts/theme.js';
-import data from '../../common/data.json';
 
-const mockData = data;
-
-function SimpleBarChart({ data = mockData }) {
+function SimpleBarChart({ data }) {
     const { themeMode } = useTheme();
     const isDark = themeMode === 'dark';
 

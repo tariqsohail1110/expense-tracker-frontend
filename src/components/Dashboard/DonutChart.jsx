@@ -1,7 +1,6 @@
 import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import { PieChart as PieChartIcon } from 'lucide-react';
-import mockData from '../../common/data.json';
 import useTheme from '../../contexts/theme';
 
 const categoryColors = {
@@ -15,7 +14,7 @@ const categoryColors = {
     default: '#6B7280'
 };
 
-function DonutChart({ data = mockData, totalBudget = 60000 }) {
+function DonutChart({ data, totalBudget = 0 }) {
 
     const { themeMode } = useTheme();
     const isDark = themeMode === 'dark';

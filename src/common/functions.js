@@ -3,10 +3,9 @@
     };
 
     const calculateTotalSpendings = (data) => {
-        const array = (data.map((i) => i.amount)).reduce((acc, curr) => {
-            return acc + curr;
+        return data.reduce((acc, curr) => {
+            return acc + Number(curr.amount);
         }, 0);
-        return array;
     };
 
     const calculatePercentage = (num, total) => {

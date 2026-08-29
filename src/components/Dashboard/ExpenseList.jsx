@@ -10,7 +10,6 @@ import {
     TrendingDown
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import data from '../../common/data.json';
 
 const categoryConfig = {
     Food: { icon: Utensils, bgColor: 'bg-emerald-100', iconColor: 'text-emerald-600' },
@@ -21,9 +20,7 @@ const categoryConfig = {
     default: { icon: CreditCard, bgColor: 'bg-slate-100', iconColor: 'text-slate-600' }
 };
 
-const defaultMockData = data;
-
-function ExpenseList({ data = defaultMockData }) {
+function ExpenseList({ data }) {
     // Sort descending by amount and take the top 5
     const topExpenses = [...data]
         .sort((a, b) => b.amount - a.amount)
