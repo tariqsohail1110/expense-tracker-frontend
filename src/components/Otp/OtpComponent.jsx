@@ -32,6 +32,7 @@ function OtpComponent() {
             await delay(2);
             const response = await api.post('/api/v1/auth/verify', { email: email, code: data.code})
             localStorage.setItem('accessToken', response.data.data.accessToken);
+            localStorage.setItem('refreshToken', response.data.data.accessToken);
             navigate('/app/dashboard', {replace: true})
         } catch (error) {
             if (error.response) {
