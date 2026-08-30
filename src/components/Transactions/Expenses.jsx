@@ -3,7 +3,7 @@ import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, g
 import { ArrowUpDown, ChevronLeft, Search, ChevronRight, ChevronsLeft, ChevronsRight, Edit, Trash, Download } from 'lucide-react';
 import { Button, EditExpenseModal, DeleteModal, Container } from '../index.js';
 import data from '../../common/data.json';
-import { convert } from '../../common/functions.js';
+import { convert, formatDate } from '../../common/functions.js';
 import api from '../../config/axios.config.js';
 
 const mockData = data;
@@ -78,7 +78,7 @@ function Expenses() {
         }),
 
         columnHelper.accessor('date', {
-            cell: (info) => info.getValue(),
+            cell: (info) => formatDate(info.getValue()),
             header: () => (
                 <h1>Date</h1>
             )
