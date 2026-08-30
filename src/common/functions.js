@@ -27,7 +27,7 @@
     };
 
     const calculateActiveUsers = (arr) => {
-        return (arr.filter(status => status.status === 'Active')).length
+        return (arr.filter(status => status.is_active === 'Active')).length
     };
 
     const welcomeMessage = (num, totalAm, userName) => {

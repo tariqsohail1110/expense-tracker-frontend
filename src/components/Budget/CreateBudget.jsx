@@ -9,7 +9,7 @@ function CreateBudget() {
             <div className="">
                 <h1 className="font-sans text-md lg:text-xl text-center font-bold text-body duration-500 dark:text-white mb-6">You haven't initlialized your budget yet, kindly initialize it first</h1>
                 <div className='flex items-center justify-center'>
-                    <div className='w-1/6'>
+                    <div className='lg:w-1/6'>
                         <Button 
                         onClick={() => setShowModal(true)}
                         bgColor='bg-slate-900'

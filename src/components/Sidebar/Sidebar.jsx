@@ -1,15 +1,32 @@
 import { NavLink } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Logo, ThemeButton, CreateExpenseModal } from '../index.js';
 import { Plus, X, ChevronLeft, User } from 'lucide-react';
+import { jwtDecode } from "jwt-decode";
+import api from '../../config/axios.config.js';
 
 function Sidebar({ isOpen, onClose }) {
     const [showModal, setShowModal] = useState(false);
-    const username = localStorage.getItem('username') || 'Muhammad Tariq';
     const [isCollapsed, setIsCollapsed] = useState(() => {
         const saved = localStorage.getItem('sidebar_collapsed');
         return saved ? JSON.parse(saved) : false;
     });
+    const [user, setUser] = useState('user')
+
+    const token = localStorage.getItem('accessToken');
+    const decode = jwtDecode(token);
+    
+    useEffect(() => {
+            Promise.allSettled([
+            api.get('/api/v1/users/me')
+            ])
+            .then(([response]) => {
+                if (response.status === 'fulfilled') {
+                    setUser(response.value.data.data.firstname + " " + response.value.data.data.lastname);
+                }
+            })
+            .catch(error => console.log(error.message))
+    }, [])
 
     const toggleCollapse = () => {
         setIsCollapsed(prev => {
@@ -102,6 +119,8 @@ function Sidebar({ isOpen, onClose }) {
         }
     ];
 
+    decode.role === 'user'? navItems.pop() : null;
+
     return (
         <>
             {/* Backdrop overlay for mobile */}
@@ -154,7 +173,7 @@ function Sidebar({ isOpen, onClose }) {
                                     <div className="flex flex-col min-w-0">
                                         <span className="text-[10px] uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-semibold">Signed in as</span>
                                         <span className="font-bold text-sm text-zinc-900 dark:text-white truncate">
-                                            {username}
+                                            {user}
                                         </span>
                                     </div>
                                 </div>

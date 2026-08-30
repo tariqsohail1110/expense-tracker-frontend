@@ -4,15 +4,31 @@ import { ArrowUpDown, ChevronLeft, Search, ChevronRight, ChevronsLeft, ChevronsR
 import { Button, EditUserModal, DeleteModal } from '../index.js';
 import data from '../../common/users.json';
 import { formatDate } from '../../common/functions.js';
+import api from '../../config/axios.config.js';
 
 const mockData = data;
 
-function Users() {
-    const [data] = useState(() => [...mockData]);
+function Users({data}) {
     const [sorting, setSorting] = useState([]);
     const [globalFilter, setGlobalFilter] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [showDelModal, setShowDelModal] = useState(false);
+
+    const handleDownloadXlsx = () => {
+        api.get('/api/v1/admin/users/downloadusersxlsx', { responseType: 'blob' })
+        .then(response => {
+            const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+            const blobUrl = window.URL.createObjectURL(blob);
+            const hiddenAnchor = document.createElement('a');
+            hiddenAnchor.href = blobUrl;
+            hiddenAnchor.download = 'users.xlsx';
+            document.body.appendChild(hiddenAnchor);
+            hiddenAnchor.click();
+            document.body.removeChild(hiddenAnchor);
+            window.URL.revokeObjectURL(blobUrl)
+        })
+        .catch(error => alert(error.message));
+    }
 
     const columnHelper = createColumnHelper();
 
@@ -24,7 +40,14 @@ function Users() {
             )
         }),
 
-        columnHelper.accessor('name', {
+        columnHelper.accessor('firstname', {
+            cell: (info) => info.getValue(),
+            header: () => (
+                <h1>Name</h1>
+            )
+        }),
+
+            columnHelper.accessor('lastname', {
             cell: (info) => info.getValue(),
             header: () => (
                 <h1>Name</h1>
@@ -38,7 +61,7 @@ function Users() {
             )
         }),
 
-        columnHelper.accessor('status', {
+        columnHelper.accessor('is_active', {
             cell: (info) => info.getValue(),
             header: () => (
                 <h1>Status</h1>
@@ -125,6 +148,7 @@ function Users() {
                 </div>
                 <div className='md:flex-1'>
                     <Button
+                        onClick={handleDownloadXlsx}
                         bgColor='bg-slate-800'
                         textColor='text-white'
                         className='hover:bg-slate-700 font-bold duration-200 w-full dark:bg-lime-600

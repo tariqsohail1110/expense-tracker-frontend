@@ -10,33 +10,53 @@ function Dashboard() {
     const [totalBalance, setTotalbalance] = useState(0);
     const [spendings, setSpendings] = useState([]);
     const [remainingBudget, setRemainingBudget] = useState(0);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        api.get('/api/v1/users/me')
-            .then(response => {
-                setUsername(response.data.data.firstname + " " + response.data.data.lastname)
-            })
-            .catch(error => {console.log(error)});
-
-        api.get('/api/v1/budget/me')
-            .then(response => {
-                setTotalbalance(response.data.data.totalBudget)
-                setRemainingBudget(response.data.data.remainingBudget);
-                // console.log(response.data.data);
-                
-            })
-            .catch(error => {console.log(error)});
-
-        api.get('/api/v1/expenses/user/me')
-            .then (response => {
-                // console.log(response.data.data);
-                // console.log(JSON.stringify(response.data.data, null, 2));
-                setSpendings(response.data.data);
-                
-            })  
+        Promise.allSettled([
+            api.get('/api/v1/users/me'),
+            api.get('/api/v1/budget/me'),
+            api.get('/api/v1/expenses/user/me')
+        ])
+        .then(([userRes, budgetRes, expensesRes]) => {
+            if (userRes.status === 'fulfilled') {
+                setUsername(userRes.value.data.data.firstname + " " + userRes.value.data.data.lastname);
+            }
+            if (budgetRes.status === 'fulfilled') {
+                setTotalbalance(budgetRes.value.data.data.totalBudget);
+                setRemainingBudget(budgetRes.value.data.data.remainingBudget);
+            }
+            if (expensesRes.status === 'fulfilled') {
+                setSpendings(expensesRes.value.data.data);
+            }
+        })
+        .finally(() => setLoading(false));
     }, []);
 
     const [showModal, setShowModal] = useState(false);
+
+    if (loading) {
+        return (
+            <Container>
+                <div className='animate-pulse'>
+                    <div className='h-8 bg-gray-300 dark:bg-zinc-700 rounded w-64 mb-2'></div>
+                    <div className='h-4 bg-gray-300 dark:bg-zinc-700 rounded w-96 mb-6'></div>
+                    <div className='lg:grid lg:grid-cols-3 lg:gap-4 mt-6'>
+                        <div className='h-24 bg-gray-300 dark:bg-zinc-700 rounded mb-4'></div>
+                        <div className='h-24 bg-gray-300 dark:bg-zinc-700 rounded mb-4'></div>
+                        <div className='h-24 bg-gray-300 dark:bg-zinc-700 rounded mb-4'></div>
+                    </div>
+                    <div className='h-16 bg-gray-300 dark:bg-zinc-700 rounded mb-6'></div>
+                    <div className='h-64 bg-gray-300 dark:bg-zinc-700 rounded mb-6'></div>
+                    <div className='lg:grid lg:grid-cols-2 lg:gap-4'>
+                        <div className='h-48 bg-gray-300 dark:bg-zinc-700 rounded mb-4'></div>
+                        <div className='h-48 bg-gray-300 dark:bg-zinc-700 rounded mb-4'></div>
+                    </div>
+                </div>
+            </Container>
+        );
+    }
+
     return (
         <>
             <Container>
