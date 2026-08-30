@@ -29,7 +29,7 @@ function LoginComponent() {
             setError('password', {message: 'Must include uppercase, lowercase, number & special character'});
             return;
         }
-        await delay(2);
+        await delay(1);
         try {
             const response = await api.post('/api/v1/auth/login', { email: data.email, password: data.password });
             navigate('/otp', {replace: true, state: { email: data.email }});
