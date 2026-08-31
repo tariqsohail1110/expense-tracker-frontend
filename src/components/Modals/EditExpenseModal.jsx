@@ -2,8 +2,11 @@ import React, { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { Button, Input, Dropdown } from '../index.js';
+import { useForm } from 'react-hook-form';
+import { numberRegex } from '../../common/constants.js';
+import api from '../../config/axios.config.js';
 
-function EditExpenseModal({ isOpen = true, onClose }) {
+function EditExpenseModal({ isOpen = true, onClose, url, id }) {
     if (!isOpen) return null;
 
     const modalRef = useRef();
@@ -14,11 +17,46 @@ function EditExpenseModal({ isOpen = true, onClose }) {
         }
     }
 
+    const {
+        register,
+        handleSubmit,
+        setError,
+        formState: { errors },
+    } = useForm();
+
+    const onSubmit = async (data) => {
+        console.log(data);
+        const payload = Object.fromEntries(
+            Object.entries(data)
+            .filter(([_, value]) => value !== '' && value !== null && value !== undefined)
+        );
+        if(payload.title) {
+            if (numberRegex.test(data.title)) {
+                setError('title', { message: 'Title cannot be a number'})
+            }
+        }
+        if (payload.amount) {
+            if (!numberRegex.test(data.amount)) {
+                setError('amount', { message: 'Numbers only'})
+            }
+        }
+        try{
+            await api.patch(`${url}/${id}`, payload);
+            onClose();
+            window.location.reload();
+            null;
+            
+        }
+        catch(error) {
+            setError('date', { message: error.message});
+        }
+    };
+
     const cats = ['Food', 'Transport', 'Shopping', 'Health', 'Entertainment', 'Bills', 'Others'];
 
     return createPortal(
         <div ref={modalRef} onClick={closeModal} className='fixed inset-0 z-[100] bg-black/40       backdrop-blur-sm text-zinc-900 dark:text-white flex justify-center items-center p-4'>
-            <div className='rounded-lg shadow-xl text-zinc-900 bg-white p-6 dark:bg-zinc-700 dark:text-white duration-500 w-full max-w-xl space-y-4'>
+            <form onSubmit={handleSubmit(onSubmit)} className='rounded-lg shadow-xl text-zinc-900 bg-white p-6 dark:bg-zinc-700 dark:text-white duration-500 w-full max-w-xl space-y-4'>
                 <div className='flex justify-between items-center pb-2 border-b dark:border-zinc-600'>
                     <h1 className='font-bold text-lg font-sans'>
                         Edit Expense
@@ -31,41 +69,48 @@ function EditExpenseModal({ isOpen = true, onClose }) {
                     </Button>
                 </div>
                 
-                <Input 
+                <Input
+                    {...register('title', {required: false})}
                     label='title' 
                     type='text' 
                     placeholder='Grocery' 
                     className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800' 
                 />
+                {errors.title && <p className="text-red-500 text-xs mt-1 ml-1">{errors.title.message}</p>}
                 
-                <Input 
+                <Input
+                    {...register('amount', { valueAsNumber: true }, { required: false})}
                     label='amount spent' 
                     type='number' 
                     placeholder='1500' 
                     className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800' 
                 />
+                {errors.amount && <p className="text-red-500 text-xs mt-1 ml-1">{errors.amount.message}</p>}
                 
-                <Dropdown 
+                <Dropdown
+                    {...register('category')}
                     label='category' 
                     categories={cats} 
                 />
                 
-                <Input 
+                <Input
+                    {...register('date', { required: false })}
                     label='date' 
                     type='date' 
                     placeholder='Date' 
                     className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800' 
                 />
+                {errors.date && <p className="text-red-500 text-xs mt-1 ml-1">{errors.date.message}</p>}
                 
                 <Button
-                    onClick={() => onClose(false)}
+                    type='submit'
                     bgColor='bg-slate-900'
                     textColor='text-white'
                     className='w-full font-bold hover:bg-slate-800 duration-200 hover:duration-200 dark:bg-lime-600 dark:hover:bg-lime-500 dark:text-zinc-900 flex gap-1 justify-center items-center !mt-6'
                 >
                     Update
                 </Button>
-            </div>
+            </form>
         </div>,
         document.body
     );

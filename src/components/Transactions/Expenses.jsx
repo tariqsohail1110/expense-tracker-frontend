@@ -13,6 +13,7 @@ function Expenses() {
     const [showModal, setShowModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [selectedId, setSelectedId] = useState(null);
 
     const columnHelper = createColumnHelper();
 
@@ -80,23 +81,16 @@ function Expenses() {
                 <h1>Date</h1>
             )
         }),
-
-        // columnHelper.accessor('note', {
-        //     cell: (info) => info.getValue(),
-        //     heder: () => (
-        //         <h1>Note</h1>
-        //     )
-        // }),
-        {
+        columnHelper.display({
             id: 'actions',
             header: 'Actions',
             enableSorting: false,
-            cell: () => (
-                <>
+            cell: (info) => {
+                return (
                     <div className='grid grid-cols-2 gap-2'>
                         <div>
-                            <Button 
-                                onClick={() => setShowModal(true)}
+                            <Button
+                                onClick={() => {setSelectedId(info.row.original.id); setShowModal(true)}}
                                 textColor='text-emerald-500' 
                                 bgColor='' 
                                 rounded='' 
@@ -108,7 +102,7 @@ function Expenses() {
                         </div>
                         <div>
                             <Button
-                                onClick={() => setShowDeleteModal(true)}
+                                onClick={() => {setSelectedId(info.row.original.id); setShowDeleteModal(true)}}
                                 textColor='text-red-500' 
                                 bgColor='' 
                                 rounded='' 
@@ -119,9 +113,9 @@ function Expenses() {
                             </Button>
                         </div>
                     </div>
-                </>
-            )
-        }
+                )
+            }
+        })
     ];
 
     const table = useReactTable({
@@ -136,6 +130,7 @@ function Expenses() {
                 pageSize: 5,
             },
         },
+        getRowId: (originalRow) => originalRow.uuid,
         getCoreRowModel: getCoreRowModel(),
         onSortingChange: setSorting,
         getSortedRowModel: getSortedRowModel(),
@@ -346,8 +341,8 @@ function Expenses() {
                 </div>
                 
             </div>
-            {showModal && <EditExpenseModal onClose={() => setShowModal(false)}/>}
-            {showDeleteModal && <DeleteModal title='Expense' onClose={() => setShowDeleteModal(false)}/>}
+            {showModal && <EditExpenseModal onClose={() => {setShowModal(false); setSelectedId(false)}} url={'/api/v1/expenses'} id={selectedId}/>}
+            {showDeleteModal && <DeleteModal title='Expense' onClose={() => {setShowDeleteModal(false); setSelectedId(false)}} url={'/api/v1/expenses'} id={selectedId} />}
         </div>
     );
 }
