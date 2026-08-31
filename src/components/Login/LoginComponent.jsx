@@ -32,8 +32,15 @@ function LoginComponent() {
         await delay(1);
         try {
             const response = await api.post('/api/v1/auth/login', { email: data.email, password: data.password });
-            navigate('/otp', {replace: true, state: { email: data.email }});
-            alert(response.data.data);
+            localStorage.setItem('accessToken', response.data.data.accessToken);
+            localStorage.setItem('refreshToken', response.data.data.accessToken);
+            if (response.data.data.user.is_active === true) {
+                navigate('/app/dashboard', {replace: true})
+            }
+            else {
+                navigate('/otp', {replace: true, state: { email: data.email }});
+                alert(response.data.data.message);
+            }
         } catch (error) {
             setError('password', { message: error.message})
         }
