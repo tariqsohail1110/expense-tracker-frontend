@@ -2,14 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
 import { ArrowUpDown, ChevronLeft, Search, ChevronRight, ChevronsLeft, ChevronsRight, Edit, Trash, Download } from 'lucide-react';
 import { Button, EditExpenseModal, DeleteModal, Container } from '../index.js';
-import data from '../../common/data.json';
 import { convert, formatDate } from '../../common/functions.js';
 import api from '../../config/axios.config.js';
 
-const mockData = data;
 
 function Expenses() {
-    // const [data] = useState(() => [...mockData]);
     const [data, setSpendings] = useState([])
     const [sorting, setSorting] = useState([]);
     const [globalFilter, setGlobalFilter] = useState('');

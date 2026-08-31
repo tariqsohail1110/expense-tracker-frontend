@@ -5,12 +5,9 @@ import { Button, Input, Dropdown } from '../index.js';
 import { set, useForm } from 'react-hook-form';
 import { numberRegex } from '../../common/constants.js';
 import api from '../../config/axios.config.js';
-import { useNavigate } from 'react-router-dom';
 
 function EditBudgetModal({ isOpen = true, onClose }) {
     if (!isOpen) return null;
-
-    const navigate = useNavigate();
 
         const {
         register,
