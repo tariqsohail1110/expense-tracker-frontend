@@ -2,8 +2,9 @@ import React, { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { Button } from '../index.js';
+import api from '../../config/axios.config.js';
 
-function DeleteModal({ title = '', isOpen = true, onClose }) {
+function DeleteModal({ title = '', isOpen = true, onClose, url, id = undefined }) {
     if (!isOpen) return null;
 
     const modalRef = useRef();
@@ -13,6 +14,17 @@ function DeleteModal({ title = '', isOpen = true, onClose }) {
             onClose();
         }
     };
+
+    const handleSubmit = async () => {
+        try {
+            const endpoint = id ? `${url}/${id}` : url;
+            await api.delete(endpoint);
+            onClose();
+            window.location.reload();
+        } catch (error) {
+            return (error.message);
+        }
+    }
 
     return createPortal(
         <div ref={modalRef} onClick={closeModal} className='fixed inset-0 z-[100] bg-black/40       backdrop-blur-sm text-zinc-900 dark:text-white flex justify-center items-center p-4'>
@@ -30,7 +42,7 @@ function DeleteModal({ title = '', isOpen = true, onClose }) {
                 </div>
                 <p className='text-lg text-zinc-900 dark:text-white font-semibold text-center font-sans'>This action cannot be undone</p>
                 <Button
-                    onClick={() => onClose(false)}
+                    onClick={() => handleSubmit()}
                     bgColor='bg-red-700'
                     textColor='text-white'
                     className='w-full font-bold duration-200 hover:duration-200 hover:bg-red-500 flex gap-1 justify-center items-center !mt-6'

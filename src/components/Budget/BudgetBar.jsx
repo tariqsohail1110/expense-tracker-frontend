@@ -76,7 +76,7 @@ function BudgetBar({text, per, budget=0, spent=0, rem=0, rem_days=0}) {
             </div>
         </div>
         {showModal && <EditBudgetModal onClose={() => setShowModal(false)}/>}
-        {showDelModal && <DeleteModal title='Budget' onClose={() => setShowDelModal(false)}/>}
+        {showDelModal && <DeleteModal title='Budget' onClose={() => setShowDelModal(false)} url={'/api/v1/budget/me'}/>}
         </>
     )
 }
