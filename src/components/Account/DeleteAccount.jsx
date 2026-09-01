@@ -21,7 +21,7 @@ function DeleteAccount() {
             >
                 Delete My Account
             </Button>
-            {showModal && <DeleteModal title='Account' onClose={() => setShowModal(false)}/>}
+            {showModal && <DeleteModal title='Account' onClose={() => setShowModal(false)} url={'/api/v1/users/me'}/>}
         </div>
     );
 }

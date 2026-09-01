@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { Button } from '../index.js';
 import api from '../../config/axios.config.js';
+import { useNavigate } from 'react-router-dom';
 
 function DeleteModal({ title = '', isOpen = true, onClose, url, id = undefined }) {
     if (!isOpen) return null;
@@ -15,12 +16,18 @@ function DeleteModal({ title = '', isOpen = true, onClose, url, id = undefined }
         }
     };
 
+    const navigate = useNavigate();
+
     const handleSubmit = async () => {
         try {
             const endpoint = id ? `${url}/${id}` : url;
             await api.delete(endpoint);
-            onClose();
-            window.location.reload();
+            if (endpoint === '/api/v1/users/me') {
+                navigate('/');
+            } else {
+                onClose();
+                window.location.reload();
+            }
         } catch (error) {
             return (error.message);
         }
