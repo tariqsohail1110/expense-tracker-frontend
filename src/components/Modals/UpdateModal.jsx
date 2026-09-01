@@ -2,8 +2,9 @@ import React, { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { Button, Input, Dropdown } from '../index.js';
+import api from '../../config/axios.config.js';
 
-function UpdateModal({ title = null, isOpen = true, onClose }) {
+function UpdateModal({ title = null, isOpen = true, onClose, url, data }) {
     if (!isOpen) return null;
 
     const modalRef = useRef();
@@ -13,6 +14,23 @@ function UpdateModal({ title = null, isOpen = true, onClose }) {
             onClose();
         }
     };
+
+    const handleSubmit = async () => {
+        try {
+            if(data.password && data.confirmPass) {
+                if(data.password !== data.confirmPass) {
+                    alert("Passwords do not match");
+                    return;
+                }
+            }
+
+            await api.patch(url, data);
+            onClose();
+            window.location.reload();
+        }catch (error) {
+            console.log(error.message);
+        }
+    }
 
     return createPortal(
         <div ref={modalRef} onClick={closeModal} className='fixed inset-0 z-[100] bg-black/40       backdrop-blur-sm text-zinc-900 dark:text-white flex justify-center items-center p-4'>
@@ -30,7 +48,7 @@ function UpdateModal({ title = null, isOpen = true, onClose }) {
                 </div>
                 <p className='text-lg text-zinc-900 dark:text-white font-semibold text-center font-sans'>Are you sure you want to update your {title}?</p>
                 <Button
-                    onClick={() => onClose(false)}
+                    onClick={() => handleSubmit()}
                     bgColor='bg-slate-900'
                     textColor='text-white'
                     className='w-full font-bold hover:bg-slate-800 duration-200 hover:duration-200 dark:bg-lime-600 dark:hover:bg-lime-500 dark:text-zinc-900 flex gap-1 justify-center items-center !mt-6'
