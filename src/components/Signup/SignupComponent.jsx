@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Input, Button } from "../index.js";
 import { useForm } from 'react-hook-form';
 import { passwordRegex, nameRegex } from "../../common/constants.js";
+import api from "../../config/axios.config.js";
 
 function SignUpComponent() {
     const {
@@ -37,13 +38,17 @@ function SignUpComponent() {
             setError('password', {message: 'Must include uppercase, lowercase, number & special character'});
             return;
         }
-        if (data.confirmpass !== data.password) {
+        if (data.confirmPass !== data.password) {
             setError('confirmpass', {message: 'Passwords do not match'});
             return;
         }
-        console.log(data);
-        navigate('/', {replace: true});
-        
+        await delay(1);
+        try {
+            const response = await api.post('/api/v1/auth/register', data);
+            navigate('/', {replace: true});
+        } catch (error) {
+            setError('confirmPass', { message: error.message })
+        }
     }
 
     const navigate = useNavigate();
@@ -103,18 +108,19 @@ function SignUpComponent() {
                             type='password'
                             placeholder='123456'
                             className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800' />
+                            {errors.password && <p className='text-red-500 text-xs mt-1 ml-1'>{errors.password.message}</p>}
                     </div>
 
                     <div className="mb-2">
                         <Input
-                            {...register('confirmpass', { required: {value: true, message: 'Password is Required'}, minLength: {
+                            {...register('confirmPass', { required: {value: true, message: 'Password is Required'}, minLength: {
                                 value: 8, message: 'Password must of more than 7 letters'
                             }})}
                             label='confirm password'
                             type='password'
                             placeholder='123456'
                             className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800' />
-                        {errors.confirmpass && <p className='text-red-500 text-xs mt-1 ml-1'>{errors.confirmpass.message}</p>}
+                        {errors.confirmPass && <p className='text-red-500 text-xs mt-1 ml-1'>{errors.confirmPass.message}</p>}
                     </div>
                 </div>
                 <div className="flex items-center justify-center w-full">
