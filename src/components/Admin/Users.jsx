@@ -2,17 +2,15 @@ import React, { useState } from 'react';
 import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
 import { ArrowUpDown, ChevronLeft, Search, ChevronRight, ChevronsLeft, ChevronsRight, Edit, Trash, Download } from 'lucide-react';
 import { Button, EditUserModal, DeleteModal } from '../index.js';
-import data from '../../common/users.json';
 import { formatDate } from '../../common/functions.js';
 import api from '../../config/axios.config.js';
-
-const mockData = data;
 
 function Users({data}) {
     const [sorting, setSorting] = useState([]);
     const [globalFilter, setGlobalFilter] = useState('');
     const [showModal, setShowModal] = useState(false);
     const [showDelModal, setShowDelModal] = useState(false);
+    const [selectedId, setSelectedId] = useState(null);
 
     const handleDownloadXlsx = () => {
         api.get('/api/v1/admin/users/downloadusersxlsx', { responseType: 'blob' })
@@ -74,16 +72,17 @@ function Users({data}) {
                 <h1>Date Created</h1>
             )
         }),
-        {
+        
+        columnHelper.display({
             id: 'actions',
             header: 'Actions',
             enableSorting: false,
-            cell: () => (
-                <>
+            cell: (info) => {
+                return (
                     <div className='grid grid-cols-2 gap-2'>
                         <div>
                             <Button 
-                                onClick={() => setShowModal(true)}
+                                onClick={() => {setSelectedId(info.row.original.id); setShowModal(true)}}
                                 textColor='text-emerald-500' 
                                 bgColor='' 
                                 rounded='' 
@@ -95,20 +94,20 @@ function Users({data}) {
                         </div>
                         <div>
                             <Button 
-                                onClick={() => setShowDelModal(true)}
+                                onClick={() => { setSelectedId(info.row.original.id); setShowDelModal(true)}}
                                 textColor='text-red-500' 
                                 bgColor='' 
                                 rounded='' 
                                 className='hover:text-red-800 duration-200 text-xs !p-0
-                                dark:hover:text-red-300'
+                                dark:hover:text-red-400'
                             >
                                 <Trash />
                             </Button>
                         </div>
                     </div>
-                </>
-            )
-        }
+                )
+            }
+        })
     ];
 
     const table = useReactTable({
@@ -285,8 +284,8 @@ function Users({data}) {
                 </div>
                 
             </div>
-            {showModal && <EditUserModal onClose={() => setShowModal(false)}/>}
-            {showDelModal && <DeleteModal title='User' onClose={() => setShowDelModal(false)}/>}
+            {showModal && <EditUserModal onClose={() => {setShowModal(false); setSelectedId(false)}} url={'/api/v1/admin/users'} id={selectedId}/>}
+            {showDelModal && <DeleteModal title='User' onClose={() => {setShowDelModal(false); setSelectedId(false)}} url={'/api/v1/admin/users'} id={selectedId}/>}
         </div>
     );
 }
