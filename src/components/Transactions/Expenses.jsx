@@ -130,7 +130,6 @@ function Expenses() {
                 pageSize: 5,
             },
         },
-        getRowId: (originalRow) => originalRow.uuid,
         getCoreRowModel: getCoreRowModel(),
         onSortingChange: setSorting,
         getSortedRowModel: getSortedRowModel(),

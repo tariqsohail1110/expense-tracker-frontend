@@ -25,10 +25,9 @@ function EditExpenseModal({ isOpen = true, onClose, url, id }) {
     } = useForm();
 
     const onSubmit = async (data) => {
-        console.log(data);
         const payload = Object.fromEntries(
             Object.entries(data)
-            .filter(([_, value]) => value !== '' && value !== null && value !== undefined)
+            .filter(([_, value]) => value !== '' && value !== null && value !== undefined && !Number.isNaN(value))
         );
         if(payload.title) {
             if (numberRegex.test(data.title)) {
@@ -44,8 +43,6 @@ function EditExpenseModal({ isOpen = true, onClose, url, id }) {
             await api.patch(`${url}/${id}`, payload);
             onClose();
             window.location.reload();
-            null;
-            
         }
         catch(error) {
             setError('date', { message: error.message});
@@ -79,7 +76,7 @@ function EditExpenseModal({ isOpen = true, onClose, url, id }) {
                 {errors.title && <p className="text-red-500 text-xs mt-1 ml-1">{errors.title.message}</p>}
                 
                 <Input
-                    {...register('amount', { valueAsNumber: true }, { required: false})}
+                    {...register('amount', { valueAsNumber: true, required: false})}
                     label='amount spent' 
                     type='number' 
                     placeholder='1500' 
