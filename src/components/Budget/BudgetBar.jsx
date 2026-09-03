@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Button, EditBudgetModal, DeleteModal } from '../index.js';
 import { Edit, Trash } from 'lucide-react';
 
-function BudgetBar({text, per, budget=0, spent=0, rem=0, rem_days=0}) {
+function BudgetBar({text, per, budget=0, spent=0, rem=0, date= '', rem_days=0}) {
     const clampedPer = Math.max(0, Math.min(100, parseFloat(per) || 0));
     const getProgressByPer = (percentage) => {
             const parsed_per = parseInt(percentage);
@@ -48,7 +48,7 @@ function BudgetBar({text, per, budget=0, spent=0, rem=0, rem_days=0}) {
                 <span className='text-3xl font-bold text-zinc-900 duration-500 dark:text-white'>{budget}</span>
             </div>
             <div>
-                <span className='font-mono text-sm font-medium text-body duration-500 dark:text-white'>{`Remianing Days: ${rem_days}`}</span>
+                <span className='font-mono text-sm font-medium text-body duration-500 dark:text-white'>{`Date: ${date} (Remianing Days: ${rem_days})`}</span>
             </div>
             <div className='my-2 text-right'>
                 {/* <span className='font-mono text-sm font-medium text-body'>{`Spent ${spent}`}</span> */}

@@ -12,6 +12,27 @@ function Budgets() {
     const [loading, setLoading] = useState(true);
     // const []
 
+    function getRemainingDays() {
+        const today = new Date();
+        const totalDays = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
+        const remainingDays = totalDays - today.getDate();
+        return remainingDays;
+    }
+
+    function getToday() {
+        const date = new Date();
+        const dateString = date;
+        const newDate = new Date(dateString);
+        const options = {
+            weekday: 'long', 
+            day: 'numeric', 
+            month: 'long', 
+            year: 'numeric'
+        }
+        const formattedDate = date.toLocaleDateString('en-GB', options);
+        return formattedDate
+    }
+
     useEffect( () => {
         Promise.allSettled([
             api.get('/api/v1/budget/me'),
@@ -67,7 +88,7 @@ function Budgets() {
                         <p className='text-center lg:text-left text-sm mt-1 duration-500 dark:text-white'>Optimize your capital allocation and monitor spend.</p>
                     </div>
                     <div className='mt-6'>
-                        <BudgetBar text='Monthly Budget' budget={convert(totalBudget)} per={calculatePercentage(calculateTotalSpendings(data), totalBudget)} spent={convert(calculateTotalSpendings(data))} rem={convert(remainingBudget)} rem_days='26'/>
+                        <BudgetBar text='Monthly Budget' budget={convert(totalBudget)} per={calculatePercentage(calculateTotalSpendings(data), totalBudget)} spent={convert(calculateTotalSpendings(data))} rem={convert(remainingBudget)} date={getToday()} rem_days={getRemainingDays()}/>
                     </div>
                     <div>
                         <h1 className='text-center lg:text-left text-3xl font-bold text-zinc-900 lg:my-5 mt-5 duration-500 dark:text-white'>Category Overview</h1>
