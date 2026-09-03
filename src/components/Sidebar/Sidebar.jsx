@@ -195,7 +195,7 @@ function Sidebar({ isOpen, onClose }) {
                                         to={item.to}
                                         title={isCollapsed ? item.label : undefined}
                                         className={({ isActive }) =>
-                                            `flex items-center font-medium text-sm rounded-lg py-3 px-3 duration-200 ${
+                                            `flex items-center font-medium text-sm rounded-lg py-3 px-3 duration-200 gap-2 ${
                                                 isCollapsed ? 'lg:justify-center' : 'gap-3 justify-start'
                                             } ${
                                                 isActive
@@ -213,7 +213,7 @@ function Sidebar({ isOpen, onClose }) {
                             ))}
                             <li className='mt-1 lg:hidden'>
                                 <NavLink
-                                    className='flex gap-3 items-center justify-start font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg py-3 px-3 duration-200 dark:text-white dark:hover:bg-zinc-600 w-full'
+                                    className='flex gap-2 items-center justify-start font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg py-3 px-3 duration-200 dark:text-white dark:hover:bg-zinc-600 w-full'
                                     to={'/'}
                                 >
                                     <svg
