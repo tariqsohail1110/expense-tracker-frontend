@@ -47,7 +47,7 @@ export default function ThemeButton({ children, className }) {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    className="w-5 h-5"
+                    className="w-5 h-5 flex-shrink-0"
                     >
                     <circle cx="12" cy="12" r="4" />
 
