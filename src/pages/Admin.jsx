@@ -7,14 +7,19 @@ function Admin() {
     // const data = users;
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [allTransactions, setAllTransactions] = useState(0);
 
     useEffect(() => {
         Promise.allSettled([
-            api.get('/api/v1/admin/users')
+            api.get('/api/v1/admin/users'),
+            api.get('/api/v1/admin/expenses/alltransactions')
             ])
-            .then(([respose]) => {
+            .then(([respose, allTransactions]) => {
                 if (respose.status === 'fulfilled') {
                     setData(respose.value.data.data);
+                }
+                if(allTransactions.status === 'fulfilled') {
+                    setAllTransactions(allTransactions.value.data);
                 }
             })
             .catch(error => console.log(error.message)
@@ -93,7 +98,7 @@ function Admin() {
                         <AdminInfo text={'Active Users'} number={convertNumbers(calculateActiveUsers(data))}/>
                     </div>
                     <div className='lg:cols-span-4'>
-                        <AdminInfo text={'Total Transactions'} number={convert(120000)}/>
+                        <AdminInfo text={'Total Transactions'} number={convert(allTransactions)}/>
                     </div>
                 </div>
                 <div>
