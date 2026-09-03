@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { Button, Logo, ThemeButton, CreateExpenseModal } from '../index.js';
 import { Plus, X, ChevronLeft, User } from 'lucide-react';
@@ -12,9 +12,14 @@ function Sidebar({ isOpen, onClose }) {
         return saved ? JSON.parse(saved) : false;
     });
     const [user, setUser] = useState('user')
-
+    const navigate = useNavigate();
     const token = localStorage.getItem('accessToken');
     const decode = jwtDecode(token);
+
+    const signOut = () => {
+        localStorage.clear();
+        navigate('/');
+    }
     
     useEffect(() => {
             Promise.allSettled([
@@ -294,11 +299,12 @@ function Sidebar({ isOpen, onClose }) {
                                     </div>
                                 </li>
                                 <li>
-                                    <NavLink
+                                    <Button
+                                        onClick={() => signOut()}
+                                        bgColor='bg-transparent'
                                         className={`flex items-center font-medium text-sm text-zinc-700 hover:bg-gray-100 rounded-lg py-3 px-3 duration-200 dark:text-white dark:hover:bg-zinc-600 w-full ${
-                                            isCollapsed ? 'lg:justify-center' : 'gap-3 justify-start'
+                                            isCollapsed ? 'lg:justify-center' : 'gap-2 justify-start'
                                         }`}
-                                        to={'/'}
                                         title={isCollapsed ? "Sign Out" : undefined}
                                     >
                                         <svg
@@ -316,7 +322,7 @@ function Sidebar({ isOpen, onClose }) {
                                             <path d="M20 10H9" />
                                         </svg>
                                         {!isCollapsed && <span className="whitespace-nowrap">Sign Out</span>}
-                                    </NavLink>
+                                    </Button>
                                 </li>
                             </ul>
                         </div>
