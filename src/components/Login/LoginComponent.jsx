@@ -50,7 +50,7 @@ function LoginComponent() {
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-lg rounded-lg w-5/6 md:w-full max-w-xl p-5 duration-500 dark:bg-zinc-700">
-                <div className="border-b border-gray-600 pb-4">
+                <div className="border-b dark:border-gray-600 pb-4">
                     <h1 className="text-center font-sans text-4xl font-semibold duration-500 dark:text-white">Vault Finance</h1>
                     <p className="text-center font-sans text-xs duration-500 dark:text-white">Your personal expense manager</p>
                     <h2 className="text-center font-mono text-xl uppercase mt-6 duration-500 dark:text-white">Login</h2>
@@ -118,6 +118,7 @@ function LoginComponent() {
                                 </Button>
                             </span>
                         </p>
+                        <p className="text-xs md:text-sm mt-4 text-center duration-500 text-gray-300 dark:text-gray-500">Facing any issues? <a href="https://mail.google.com/mail/?view=cm&fs=1&to=tariqsohail1110@gmail.com&su=Help with Vault Finance"  target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-emerald-500 font-bold duration-500 dark:text-gray-500 dark:hover:text-lime-500">Contact Me Here</a></p>
                     </div>
                 </div>
             </form>
