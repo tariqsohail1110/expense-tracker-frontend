@@ -5,6 +5,8 @@ import { passwordRegex, nameRegex } from "../../common/constants.js";
 import api from "../../config/axios.config.js";
 
 function SignUpComponent() {
+    const navigate = useNavigate();
+
     const {
         register,
         handleSubmit,
@@ -21,7 +23,7 @@ function SignUpComponent() {
     }
 
     const onSubmit = async (data) => {
-        await delay(4)
+        await delay(1)
         if (!nameRegex.test(data.firstname)) {
             setError('firstname', {message: 'Letters only, no numbers or symbols'});
             return;
@@ -39,19 +41,18 @@ function SignUpComponent() {
             return;
         }
         if (data.confirmPass !== data.password) {
-            setError('confirmpass', {message: 'Passwords do not match'});
+            setError('confirmPass', {message: 'Passwords do not match'});
             return;
         }
         await delay(1);
         try {
-            const response = await api.post('/api/v1/auth/register', data);
+            await api.post('/api/v1/auth/register', data);
             navigate('/', {replace: true});
         } catch (error) {
             setError('confirmPass', { message: error.message })
         }
     }
 
-    const navigate = useNavigate();
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-lg rounded-lg w-5/6 md:w-full max-w-xl p-5 duration-500 dark:bg-zinc-700">
