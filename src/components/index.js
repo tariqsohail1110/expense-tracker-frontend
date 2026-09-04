@@ -31,7 +31,10 @@ import UpdateModal from "./Modals/UpdateModal.jsx";
 import CreateBudgetModal from "./Modals/CreateBudgetModal.jsx";
 import Dropdown from "./Dropdown.jsx";
 import CreateBudget from "./Budget/CreateBudget.jsx";
+import EmailComponent from "./Otp/EmailComponent.jsx";
+import OtpForResetComponent from "./Otp/OtpForResetComponent.jsx";
+import ResetPassComponent from "./Otp/ResetPassComponent.jsx";
 
 export {
-    Button, Sidebar, Logo, Container, Info, InfoBars, DonutChart, ExpenseList, BudgetBar, Expenses, SimpleBarChart, AdminInfo, Users, Input, LoginComponent, SignUpComponent, OtpComponent, UpdatePassword, UpdateEmail, UpdateName, DeleteAccount, AccountComponent, ThemeButton, Header, CreateExpenseModal, Dropdown, EditExpenseModal, DeleteModal, EditBudgetModal, EditUserModal, UpdateModal, CreateBudget, CreateBudgetModal
+    Button, Sidebar, Logo, Container, Info, InfoBars, DonutChart, ExpenseList, BudgetBar, Expenses, SimpleBarChart, AdminInfo, Users, Input, LoginComponent, SignUpComponent, OtpComponent, UpdatePassword, UpdateEmail, UpdateName, DeleteAccount, AccountComponent, ThemeButton, Header, CreateExpenseModal, Dropdown, EditExpenseModal, DeleteModal, EditBudgetModal, EditUserModal, UpdateModal, CreateBudget, CreateBudgetModal, EmailComponent, OtpForResetComponent, ResetPassComponent
 }
