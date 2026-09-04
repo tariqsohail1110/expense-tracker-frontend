@@ -79,7 +79,7 @@ function LoginComponent() {
                 <div>
                     <p className="text-xs md:text-sm mt-4 text-center"> 
                         <span>
-                            <Button bgColor="bg-none" textColor="text-emerald-500"
+                            <Button onClick={() => navigate('/forget')} bgColor="bg-none" textColor="text-emerald-500"
                             className="!py-0 !px-1 font-bold duration-500 dark:text-lime-600 dark:hover:text-lime-500"
                             >
                                 Forgot Password?
