@@ -1,9 +1,17 @@
 import { Sidebar, Header } from './components';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { ThemeProvider } from './contexts/theme.js';
 import { useState, useEffect } from 'react';
 
 function App() {
+  const token = localStorage.getItem('accessToken')
+  ||
+  localStorage.getItem('refreshToken');
+
+  if (!token) {
+    return <Navigate to='/' replace/>;
+  }
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
 

@@ -14,7 +14,12 @@ function Sidebar({ isOpen, onClose }) {
     const [user, setUser] = useState('user')
     const navigate = useNavigate();
     const token = localStorage.getItem('accessToken');
-    const decode = jwtDecode(token);
+    let decode = null;
+    try {
+        decode = token ? jwtDecode(token) : null;
+    } catch {
+        decode = null;
+    }
 
     const signOut = () => {
         localStorage.clear();
@@ -124,7 +129,9 @@ function Sidebar({ isOpen, onClose }) {
         }
     ];
 
-    decode.role === 'user'? navItems.pop() : null;
+    if (decode?.role === 'user') {
+        navItems.pop();
+    }
 
     return (
         <>

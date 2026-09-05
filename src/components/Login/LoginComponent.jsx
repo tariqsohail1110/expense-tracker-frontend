@@ -33,7 +33,7 @@ function LoginComponent() {
         try {
             const response = await api.post('/api/v1/auth/login', { email: data.email, password: data.password });
             localStorage.setItem('accessToken', response.data.data.accessToken);
-            localStorage.setItem('refreshToken', response.data.data.accessToken);
+            localStorage.setItem('refreshToken', response.data.data.refreshToken);
             if (response.data.data.user.is_active === true) {
                 navigate('/app/dashboard', {replace: true})
             }
