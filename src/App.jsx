@@ -8,10 +8,6 @@ function App() {
   ||
   localStorage.getItem('refreshToken');
 
-  if (!token) {
-    return <Navigate to='/' replace/>;
-  }
-
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
 
@@ -45,6 +41,10 @@ function App() {
   useEffect(() => {
     setIsSidebarOpen(false);
   }, [location]);
+
+  if (!token) {
+    return <Navigate to='/' replace/>;
+  }
 
   return (
     <ThemeProvider value={{themeMode, lightTheme, darkTheme}}>
