@@ -22,7 +22,8 @@ function Sidebar({ isOpen, onClose }) {
     }
 
     const signOut = () => {
-        localStorage.clear();
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
         navigate('/');
     }
     

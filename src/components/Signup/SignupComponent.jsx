@@ -3,8 +3,11 @@ import { Input, Button } from "../index.js";
 import { useForm } from 'react-hook-form';
 import { passwordRegex, nameRegex } from "../../common/constants.js";
 import api from "../../config/axios.config.js";
+import { useState } from "react";
+import { Eye, EyeOff } from 'lucide-react';
 
 function SignUpComponent() {
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
     const {
@@ -53,6 +56,10 @@ function SignUpComponent() {
         }
     }
 
+    const togglePasswordVisibility = () => {
+        setShowPassword((prevShowPassword) => !prevShowPassword);
+    };
+
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-lg rounded-lg w-5/6 md:w-full max-w-xl p-5 duration-500 dark:bg-zinc-700">
@@ -100,27 +107,47 @@ function SignUpComponent() {
                         {errors.email && <p className='text-red-500 text-xs mt-1 ml-1'>{errors.email.message}</p>}
                     </div>
 
-                    <div className="mb-4">
+                    <div className="mb-4 relative">
                         <Input
                             {...register('password', { required: {value: true, message: 'Password is Required'}, minLength: {
                                 value: 8, message: 'Password must be more than 7 letters'
                             }})}
                             label='password'
-                            type='password'
-                            placeholder='123456'
-                            className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800' />
+                            type={showPassword ? 'text' : 'password'}
+                            placeholder='Password_123'
+                            className='pr-10 border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800' />
+                            <Button
+                                type="button"
+                                bgColor="bg-transparent"
+                                textColor="text-gray-300"
+                                onClick={togglePasswordVisibility}
+                                aria-label={showPassword ? "Hide password" : "Show password"}
+                                className="!p-0 dark:text-gray-500 absolute right-3 top-[44px] -translate-y-1/2"
+                                >
+                                {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                            </Button>
                             {errors.password && <p className='text-red-500 text-xs mt-1 ml-1'>{errors.password.message}</p>}
                     </div>
 
-                    <div className="mb-2">
+                    <div className="mb-2 relative">
                         <Input
                             {...register('confirmPass', { required: {value: true, message: 'Password is Required'}, minLength: {
                                 value: 8, message: 'Password must of more than 7 letters'
                             }})}
                             label='confirm password'
-                            type='password'
-                            placeholder='123456'
-                            className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800' />
+                            type={ showPassword ? 'text' : 'password'}
+                            placeholder='Password_123'
+                            className='pr-10 border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800' />
+                            <Button
+                                type="button"
+                                bgColor="bg-transparent"
+                                textColor="text-gray-300"
+                                onClick={togglePasswordVisibility}
+                                aria-label={showPassword ? "Hide password" : "Show password"}
+                                className="!p-0 dark:text-gray-500 absolute right-3 top-[44px] -translate-y-1/2"
+                                >
+                                {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                            </Button>
                         {errors.confirmPass && <p className='text-red-500 text-xs mt-1 ml-1'>{errors.confirmPass.message}</p>}
                     </div>
                 </div>
