@@ -1,5 +1,5 @@
 import { Container, InfoBars, BudgetBar, CreateBudget } from '../components';
-import { convert, calculateTotalSpendings, calculatePercentage } from '../common/functions';
+import { convert, calculatePercentage } from '../common/functions';
 import data from '../common/data.json';
 import api from '../config/axios.config';
 import { useState, useEffect } from 'react';
@@ -9,8 +9,8 @@ function Budgets() {
     const [totalBudget, setTotalBudget] = useState(0);
     const [data, setData] = useState([]);
     const [ remainingBudget, setRemainingBudget] = useState(0);
+    const[totalSpending, setTotalSpending] = useState(0);
     const [loading, setLoading] = useState(true);
-    // const []
 
     function getRemainingDays() {
         const today = new Date();
@@ -42,6 +42,7 @@ function Budgets() {
             if (budgetRes.status === 'fulfilled') {
                 setTotalBudget(budgetRes.value.data.data.totalBudget);
                 setRemainingBudget(budgetRes.value.data.data.remainingBudget);
+                setTotalSpending(budgetRes.value.data.data.totalBudget - budgetRes.value.data.data.remainingBudget);
             }
             if (expensesRes.status === 'fulfilled') {
                 setData(expensesRes.value.data.data);
@@ -88,7 +89,7 @@ function Budgets() {
                         <p className='text-center lg:text-left text-sm mt-1 duration-500 dark:text-white'>Optimize your capital allocation and monitor spend.</p>
                     </div>
                     <div className='mt-6'>
-                        <BudgetBar text='Monthly Budget' budget={convert(totalBudget)} per={calculatePercentage(calculateTotalSpendings(data), totalBudget)} spent={convert(calculateTotalSpendings(data))} rem={convert(remainingBudget)} date={getToday()} rem_days={getRemainingDays()}/>
+                        <BudgetBar text='Monthly Budget' budget={convert(totalBudget)} per={calculatePercentage(totalSpending, totalBudget)} spent={convert(totalSpending)} rem={convert(remainingBudget)} date={getToday()} rem_days={getRemainingDays()}/>
                     </div>
                     <div>
                         <h1 className='text-center lg:text-left text-3xl font-bold text-zinc-900 lg:my-5 mt-5 duration-500 dark:text-white'>Category Overview</h1>

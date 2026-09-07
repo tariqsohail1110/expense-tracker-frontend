@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Info, Button, InfoBars, DonutChart, ExpenseList, SimpleBarChart, CreateExpenseModal } from '../components';
-import { convert, calculateTotalSpendings, calculatePercentage, welcomeMessage } from '../common/functions.js';
+import { convert, calculatePercentage, welcomeMessage } from '../common/functions.js';
 import { Plus } from 'lucide-react';
 import api from '../config/axios.config.js';
 
@@ -11,6 +11,8 @@ function Dashboard() {
     const [spendings, setSpendings] = useState([]);
     const [remainingBudget, setRemainingBudget] = useState(0);
     const [loading, setLoading] = useState(true);
+    const [totalSpending, setTotalSpending] = useState(0);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         Promise.allSettled([
@@ -25,6 +27,7 @@ function Dashboard() {
             if (budgetRes.status === 'fulfilled') {
                 setTotalbalance(budgetRes.value.data.data.totalBudget);
                 setRemainingBudget(budgetRes.value.data.data.remainingBudget);
+                setTotalSpending(budgetRes.value.data.data.totalBudget - budgetRes.value.data.data.remainingBudget);
             }
             if (expensesRes.status === 'fulfilled') {
                 setSpendings(expensesRes.value.data.data);
@@ -33,7 +36,6 @@ function Dashboard() {
         .finally(() => setLoading(false));
     }, []);
 
-    const [showModal, setShowModal] = useState(false);
 
     if (loading) {
         return (
@@ -63,7 +65,7 @@ function Dashboard() {
                 <div className='lg:grid lg:grid-cols-2 lg:gap-4'>
                     <div className='lg:cols-span-10'>
                         <h1 className='text-center lg:text-left text-3xl font-bold text-zinc-900 dark:text-white duration-500'>Dashboard Overview</h1>
-                        <p className='text-sm mt-1 dark:text-white duration-500 text-center lg:text-left'>{welcomeMessage(calculateTotalSpendings(spendings), totalBalance, username)}</p>
+                        <p className='text-sm mt-1 dark:text-white duration-500 text-center lg:text-left'>{welcomeMessage(totalSpending, totalBalance, username)}</p>
                     </div>
                     <div className='mt-6 lg:cols-span-2 xl:w-64 lg:ml-auto lg:mt-auto pb-2'>
                             <Button
@@ -79,7 +81,7 @@ function Dashboard() {
                         <Info text='TOTAL BALANCE' amount={convert(totalBalance)}/>
                     </div>
                     <div className='lg:cols-span-4'>
-                        <Info text='MONTHLY SPENDING' amount={convert(calculateTotalSpendings(spendings))}/>
+                        <Info text='MONTHLY SPENDING' amount={convert(totalSpending)}/>
                     </div>
                     <div className='lg:cols-span-4'>
                         <Info text='REMAINING BALANCE' amount={convert(remainingBudget)}/>
@@ -87,7 +89,7 @@ function Dashboard() {
                 </div>
                 <div className='mt-6'>
                     {/* dynamic spendings indicator */}
-                    <InfoBars text='Budget Usage' per={calculatePercentage(calculateTotalSpendings(spendings), totalBalance)} spent={convert(calculateTotalSpendings(spendings))}/>
+                    <InfoBars text='Budget Usage' per={calculatePercentage(totalSpending, totalBalance)} spent={convert(totalSpending)}/>
                 </div>
                 <div>
                     <SimpleBarChart data={spendings}/>
