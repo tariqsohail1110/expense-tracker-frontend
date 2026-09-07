@@ -21,10 +21,16 @@ function Sidebar({ isOpen, onClose }) {
         decode = null;
     }
 
-    const signOut = () => {
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
-        navigate('/');
+    const signOut = async () => {
+        try {
+            await api.post('api/v1/auth/logout');
+        } catch (error) {
+            console.log('Sign Out error:', error);
+        } finally {
+            localStorage.removeItem('accessToken');
+            localStorage.removeItem('refreshToken');
+            navigate('/');
+        }
     }
     
     useEffect(() => {
