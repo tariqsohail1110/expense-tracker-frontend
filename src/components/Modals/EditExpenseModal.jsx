@@ -67,7 +67,9 @@ function EditExpenseModal({ isOpen = true, onClose, url, id }) {
                 </div>
                 
                 <Input
-                    {...register('title', {required: false})}
+                    {...register('title', { required: false, maxLength: {
+                        value: 100, message: 'Title cannot be more than 100 letters'
+                    }})}
                     label='title' 
                     type='text' 
                     placeholder='Grocery' 

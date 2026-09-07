@@ -81,7 +81,7 @@ function EditUserModal({ isOpen = true, onClose, url, id }) {
                 
                 <div className='md:flex md:gap-2'>
                     <Input 
-                        {...register('firstname', {required: false})}
+                        {...register('firstname', {required: false, maxLength: { value: 50, message: 'First name cannot be more than 50 letters'}})}
                         label='first name' 
                         type='text' 
                         placeholder='John' 
@@ -90,7 +90,7 @@ function EditUserModal({ isOpen = true, onClose, url, id }) {
                     {errors.firstname && <p className="text-red-500 text-xs mt-1 ml-1">{errors.firstname.message}</p>}
                     
                     <Input
-                        {...register('lastname', {required: false})}
+                        {...register('lastname', {required: false, maxLength: { value: 50, message: 'Last name cannot be more than 50 letters'}})}
                         label='last name' 
                         type='text' 
                         placeholder='Doe' 
@@ -101,7 +101,7 @@ function EditUserModal({ isOpen = true, onClose, url, id }) {
                 </div>
 
                 <Input 
-                    {...register('email', {required: false})}
+                    {...register('email', {required: false, maxLength: { value: 50, message: 'Email cannot be more than 50 letters'}})}
                     label='email' 
                     type='email' 
                     placeholder='johnd@mail.com' 

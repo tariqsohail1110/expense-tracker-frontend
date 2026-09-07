@@ -62,7 +62,7 @@ function CreateExpenseModal({ isOpen = true, onClose }) {
                 
                 <Input
                     {...register('title', { required: { value: true, message: 'Title is required'}, maxLength: {
-                        value: 20, message: 'Title cannot be more than 20 letters'
+                        value: 100, message: 'Title cannot be more than 100 letters'
                     }})}
                     label='title' 
                     type='text' 
