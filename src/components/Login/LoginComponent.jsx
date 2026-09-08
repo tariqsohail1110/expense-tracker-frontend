@@ -7,6 +7,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
 
 function LoginComponent() {
+    const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
 
     const {
@@ -50,10 +51,12 @@ function LoginComponent() {
         }
     }
 
-    const navigate = useNavigate();
-
     const togglePasswordVisibility = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
+    };
+
+    const handleGoogleAuth = () => {
+        window.location.href = 'http://localhost:3000/api/v1/auth/google';
     };
 
     return (
@@ -121,6 +124,8 @@ function LoginComponent() {
                             {isSubmitting? 'Logging in...' : 'Login'}
                         </Button>
                         <Button 
+                        type="button"
+                        onClick={handleGoogleAuth}
                         bgColor="bg-slate-900"
                         textColor="text-white"
                         className="mt-4 w-full hover:bg-slate-700 duration-200 text-sm font-bold 

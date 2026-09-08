@@ -60,6 +60,10 @@ function SignUpComponent() {
         setShowPassword((prevShowPassword) => !prevShowPassword);
     };
 
+    const handleGoogleAuth = () => {
+        window.location.href = 'http://localhost:3000/api/v1/auth/google';
+    };
+
     return (
         <>
             <form onSubmit={handleSubmit(onSubmit)} className="bg-white shadow-lg rounded-lg w-5/6 md:w-full max-w-xl p-5 duration-500 dark:bg-zinc-700">
@@ -164,6 +168,8 @@ function SignUpComponent() {
                             {isSubmitting? 'Signing up....' : 'Signup'}
                         </Button>
                         <Button
+                            type="button"
+                            onClick={handleGoogleAuth}
                             bgColor="bg-slate-900"
                             textColor="text-white"
                             className="mt-4 w-full hover:bg-slate-700 duration-200 text-sm font-bold 

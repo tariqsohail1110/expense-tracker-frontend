@@ -15,6 +15,7 @@ import Account from './pages/Account.jsx'
 import Email from './pages/Email.jsx'
 import OtpForReset from './pages/OtpForReset.jsx'
 import ResetPassword from './pages/ResetPassword.jsx'
+import OAuthSuccess from './pages/OAuthSuccess.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,6 +35,7 @@ const router = createBrowserRouter(
         <Route path='verifyforreset' element={<OtpForReset/>}></Route>
         <Route path='reset' element={<ResetPassword/>}></Route>
       </Route>
+      <Route path='/oauth-success' element={<OAuthSuccess/>}></Route>
     </>
   )
 )
