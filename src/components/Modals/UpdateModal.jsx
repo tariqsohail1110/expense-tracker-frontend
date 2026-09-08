@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { Button, Input, Dropdown } from '../index.js';
@@ -6,9 +6,8 @@ import api from '../../config/axios.config.js';
 
 function UpdateModal({ title = null, isOpen = true, onClose, url, data }) {
     if (!isOpen) return null;
-
     const modalRef = useRef();
-
+    
     const closeModal = (e) => {
         if(modalRef.current === e.target) {
             onClose();

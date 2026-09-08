@@ -1,18 +1,18 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Button, EditBudgetModal, DeleteModal } from '../index.js';
 import { Edit, Trash } from 'lucide-react';
 
 function BudgetBar({text, per, budget=0, spent=0, rem=0, date= '', rem_days=0}) {
     const clampedPer = Math.max(0, Math.min(100, parseFloat(per) || 0));
+    const [showModal, setShowModal] = useState(false);
+    const [showDelModal, setShowDelModal] = useState(false);
+
     const getProgressByPer = (percentage) => {
             const parsed_per = parseInt(percentage);
             if (parsed_per >= 75) return 'bg-red-500';
             else if (parsed_per >= 30) return 'bg-yellow-500';
             else return 'bg-emerald-500';
     }
-
-    const [showModal, setShowModal] = useState(false);
-    const [showDelModal, setShowDelModal] = useState(false);
 
     return (
         <>

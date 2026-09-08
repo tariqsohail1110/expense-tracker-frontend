@@ -1,5 +1,3 @@
-import React from 'react'
-
 function AdminInfo({text, number}) {
     return (
         <>

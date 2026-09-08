@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Container, Info, Button, InfoBars, DonutChart, ExpenseList, SimpleBarChart, CreateExpenseModal } from '../components';
 import { convert, calculatePercentage, welcomeMessage } from '../common/functions.js';
 import { Plus } from 'lucide-react';

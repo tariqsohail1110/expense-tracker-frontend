@@ -1,4 +1,3 @@
-import React from 'react'
 import { Container, Expenses } from '../components'
 
 function Transactions() {

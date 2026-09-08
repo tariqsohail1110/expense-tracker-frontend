@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import api from '../config/axios.config.js';
 
 function Admin() {
-    // const data = users;
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [allTransactions, setAllTransactions] = useState(0);

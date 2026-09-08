@@ -1,29 +1,21 @@
-import { replace, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Input, Button } from "../index.js";
 import { useForm } from "react-hook-form";
 import { passwordRegex } from "../../common/constants.js";
 import api from "../../config/axios.config.js";
 import { Eye, EyeOff } from "lucide-react";
 import { useState } from "react";
+import { delay } from "../../common/functions.js";
 
 function LoginComponent() {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
-
     const {
         register,
         handleSubmit,
         setError,
         formState: { errors, isSubmitting },
     } = useForm()
-
-    const delay = (d) =>{
-        return new Promise((res, rej) => {
-            setTimeout(() => {
-                res()
-            }, d * 1000)
-        })
-    }
 
     const onSubmit = async (data) => {
         if (!data.email.includes('@')) {

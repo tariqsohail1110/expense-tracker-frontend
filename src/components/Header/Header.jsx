@@ -1,4 +1,3 @@
-import React from 'react';
 import { Logo, Button, ThemeButton } from '../index.js';
 import { Menu, User } from 'lucide-react';
 import { Link } from 'react-router-dom';

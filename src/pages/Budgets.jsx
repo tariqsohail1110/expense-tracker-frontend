@@ -4,7 +4,6 @@ import data from '../common/data.json';
 import api from '../config/axios.config';
 import { useState, useEffect } from 'react';
 
-const mockData = data;
 function Budgets() {
     const [totalBudget, setTotalBudget] = useState(0);
     const [data, setData] = useState([]);

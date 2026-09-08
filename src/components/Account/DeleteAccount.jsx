@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button, DeleteModal } from '../index.js';
 import { TriangleAlert } from 'lucide-react';
 

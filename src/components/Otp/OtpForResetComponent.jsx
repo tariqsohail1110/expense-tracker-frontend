@@ -3,6 +3,7 @@ import { Input, Button } from "../index.js";
 import { useForm } from "react-hook-form";
 import { numberRegex } from "../../common/constants.js";
 import api from "../../config/axios.config.js";
+import { delay } from "../../common/functions.js";
 
 function OtpForResetComponent() {
     const navigate = useNavigate();
@@ -14,14 +15,6 @@ function OtpForResetComponent() {
         setError,
         formState: { errors, isSubmitting },
     } = useForm()
-
-    const delay = (d) =>{
-        return new Promise((res, rej) => {
-            setTimeout(() => {
-                res()
-            }, d * 1000)
-        })
-    }
 
     const onSubmit = async (data) => {
         if (!numberRegex.test(data.code)) {

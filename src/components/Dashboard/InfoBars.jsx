@@ -1,5 +1,3 @@
-import React from 'react'
-
 function InfoBars({text, per, spent='0'}) {
     const clampedPer = Math.max(0, Math.min(100, parseFloat(per) || 0));
     const getProgressByPer = (percentage) => {

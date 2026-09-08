@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { RechartsDevtools } from '@recharts/devtools';
 import { BarChart3 } from 'lucide-react';
@@ -7,12 +7,11 @@ import useTheme from '../../contexts/theme.js';
 function SimpleBarChart({ data }) {
     const { themeMode } = useTheme();
     const isDark = themeMode === 'dark';
-
-    const [isMobile, setIsMobile] = React.useState(
+    const [isMobile, setIsMobile] = useState(
         typeof window !== 'undefined' ? window.innerWidth < 768 : false
     );
 
-    React.useEffect(() => {
+    useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth < 768);
         };

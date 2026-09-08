@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { Button, Input, Dropdown } from '../index.js';
@@ -8,21 +8,20 @@ import { nameRegex } from '../../common/constants.js';
 
 function EditUserModal({ isOpen = true, onClose, url, id }) {
     if (!isOpen) return null;
-
+    const cats = ['Active', 'Inactive'];
     const modalRef = useRef();
+    const {
+        register,
+        handleSubmit,
+        setError,
+        formState: { errors },
+    } = useForm();
 
     const closeModal = (e) => {
         if(modalRef.current === e.target) {
             onClose();
         }
     }
-
-    const {
-            register,
-            handleSubmit,
-            setError,
-            formState: { errors },
-        } = useForm();
     
     const onSubmit = async(data) => {
         const payload = Object.fromEntries(
@@ -60,9 +59,6 @@ function EditUserModal({ isOpen = true, onClose, url, id }) {
         }
 
     }
-
-
-    const cats = ['Active', 'Inactive'];
 
     return createPortal(
         <div ref={modalRef} onClick={closeModal} className='fixed inset-0 z-[100] bg-black/40       backdrop-blur-sm text-zinc-900 dark:text-white flex justify-center items-center p-4'>

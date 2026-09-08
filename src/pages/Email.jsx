@@ -1,4 +1,3 @@
-import React from 'react';
 import { EmailComponent } from '../components';
 
 function Email() {

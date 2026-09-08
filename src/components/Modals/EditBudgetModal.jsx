@@ -1,15 +1,15 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { Button, Input, Dropdown } from '../index.js';
-import { set, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { numberRegex } from '../../common/constants.js';
 import api from '../../config/axios.config.js';
 
 function EditBudgetModal({ isOpen = true, onClose }) {
     if (!isOpen) return null;
-
-        const {
+    const modalRef = useRef();
+    const {
         register,
         handleSubmit,
         setError,
@@ -29,8 +29,6 @@ function EditBudgetModal({ isOpen = true, onClose }) {
             setError('budget', { message: error.message })
         }
     }
-
-    const modalRef = useRef();
 
     const closeModal = (e) => {
         if(modalRef.current === e.target) {

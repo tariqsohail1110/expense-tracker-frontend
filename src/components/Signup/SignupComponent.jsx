@@ -5,6 +5,7 @@ import { passwordRegex, nameRegex } from "../../common/constants.js";
 import api from "../../config/axios.config.js";
 import { useState } from "react";
 import { Eye, EyeOff } from 'lucide-react';
+import { delay } from "../../common/functions.js";
 
 function SignUpComponent() {
     const [showPassword, setShowPassword] = useState(false);
@@ -16,14 +17,6 @@ function SignUpComponent() {
         setError,
         formState: { errors, isSubmitting },
     } = useForm()
-
-    const delay = (d) =>{
-        return new Promise((res, rej) => {
-            setTimeout(() => {
-                res()
-            }, d * 1000)
-        })
-    }
 
     const onSubmit = async (data) => {
         await delay(1)

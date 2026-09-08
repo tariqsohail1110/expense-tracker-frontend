@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 function DeleteModal({ title = '', isOpen = true, onClose, url, id = undefined }) {
     if (!isOpen) return null;
-
+    const navigate = useNavigate();
     const modalRef = useRef();
 
     const closeModal = (e) => {
@@ -15,8 +15,6 @@ function DeleteModal({ title = '', isOpen = true, onClose, url, id = undefined }
             onClose();
         }
     };
-
-    const navigate = useNavigate();
 
     const handleSubmit = async () => {
         try {

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button } from '../index.js';
 import { 
     Utensils, 
@@ -26,7 +25,7 @@ function ExpenseList({ data }) {
         .sort((a, b) => b.amount - a.amount)
         .slice(0, 5);
 
-        const navigate = useNavigate();
+    const navigate = useNavigate();
 
     return (
         <div className='bg-white rounded-lg shadow-lg p-6 font-sans h-full flex flex-col dark:bg-zinc-700 duration-500'>

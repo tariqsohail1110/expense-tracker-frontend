@@ -2,24 +2,16 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from "react-router-dom";
 import { Input, Button } from "../index.js";
 import api from '../../config/axios.config.js';
+import { delay } from '../../common/functions.js';
 
 function EmailComponent() {
     const navigate = useNavigate();
-    
     const {
         register,
         handleSubmit,
         setError,
         formState: { errors, isSubmitting },
     } = useForm();
-
-    const delay = (d) =>{
-        return new Promise((res, rej) => {
-            setTimeout(() => {
-                res()
-            }, d * 1000)
-        })
-    }
 
     const onSubmit = async (data) => {
         if(!data.email.includes('@')) {

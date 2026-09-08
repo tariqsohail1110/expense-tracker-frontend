@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Input, Button, UpdateModal } from '../index.js';
 import { useForm } from 'react-hook-form';
 import { passwordRegex } from '../../common/constants.js';
@@ -7,6 +7,7 @@ import { Eye, EyeOff } from 'lucide-react';
 function UpdatePassword() {
     const [ showPassword, setShowPassword ] = useState(false);
     const [ payload, setPayload ] = useState({});
+    const [showModal, setShowModal] = useState(false);
     
     const {
         register,
@@ -35,7 +36,6 @@ function UpdatePassword() {
         setShowPassword((prevShowPassword) => !prevShowPassword);
     }
 
-    const [showModal, setShowModal] = useState(false);
     return (
         <form onSubmit={handleSubmit(onSubmit)} className='rounded-lg shadow-lg text-zinc-900 bg-white p-6 duration-500
         dark:bg-zinc-700'>
@@ -66,7 +66,6 @@ function UpdatePassword() {
                     </Button>
                     {errors.password && <p className='text-red-500 text-xs mt-1 ml-1'>{errors.password.message}</p>}
                 </div>
-
                 <div className='relative'>
                     <Input
                     {...register('confirmpass', { required: {value: true, message: 'Password is Required'}, minLength: { value: 8, message: 'Password must of more than 7 letters' }})}
@@ -87,7 +86,6 @@ function UpdatePassword() {
                     </Button>
                     {errors.confirmpass && <p className='text-red-500 text-xs mt-1 ml-1'>{errors.confirmpass.message}</p>}
                 </div>
-
             </div>
             <Button onClick={() => setShowModal(true)}
             type='submit' bgColor='bg-slate-900' textColor='text-white'

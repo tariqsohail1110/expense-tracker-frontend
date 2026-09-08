@@ -1,4 +1,3 @@
-import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from 'recharts';
 import { PieChart as PieChartIcon } from 'lucide-react';
 import useTheme from '../../contexts/theme';

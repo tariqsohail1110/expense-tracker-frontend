@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
 import { ArrowUpDown, ChevronLeft, Search, ChevronRight, ChevronsLeft, ChevronsRight, Edit, Trash, Download } from 'lucide-react';
 import { Button, EditUserModal, DeleteModal } from '../index.js';
@@ -11,23 +11,6 @@ function Users({data}) {
     const [showModal, setShowModal] = useState(false);
     const [showDelModal, setShowDelModal] = useState(false);
     const [selectedId, setSelectedId] = useState(null);
-
-    const handleDownloadXlsx = () => {
-        api.get('/api/v1/admin/users/downloadusersxlsx', { responseType: 'blob' })
-        .then(response => {
-            const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-            const blobUrl = window.URL.createObjectURL(blob);
-            const hiddenAnchor = document.createElement('a');
-            hiddenAnchor.href = blobUrl;
-            hiddenAnchor.download = 'users.xlsx';
-            document.body.appendChild(hiddenAnchor);
-            hiddenAnchor.click();
-            document.body.removeChild(hiddenAnchor);
-            window.URL.revokeObjectURL(blobUrl)
-        })
-        .catch(error => alert(error.message));
-    }
-
     const columnHelper = createColumnHelper();
 
     const columns = [
@@ -129,6 +112,22 @@ function Users({data}) {
         getFilteredRowModel: getFilteredRowModel(),
         getPaginationRowModel: getPaginationRowModel()
     });
+
+    const handleDownloadXlsx = () => {
+        api.get('/api/v1/admin/users/downloadusersxlsx', { responseType: 'blob' })
+        .then(response => {
+            const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+            const blobUrl = window.URL.createObjectURL(blob);
+            const hiddenAnchor = document.createElement('a');
+            hiddenAnchor.href = blobUrl;
+            hiddenAnchor.download = 'users.xlsx';
+            document.body.appendChild(hiddenAnchor);
+            hiddenAnchor.click();
+            document.body.removeChild(hiddenAnchor);
+            window.URL.revokeObjectURL(blobUrl)
+        })
+        .catch(error => alert(error.message));
+    }
 
     return (
         <div className='bg-white rounded-lg shadow-lg p-6 my-6 duration-500

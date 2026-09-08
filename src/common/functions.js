@@ -38,6 +38,14 @@
         return `Welcome back ${userName}, your finances are looking healthy this month`;
     };
 
+    const delay = (d) =>{
+        return new Promise((res, rej) => {
+            setTimeout(() => {
+                res()
+            }, d * 1000)
+        })
+    }
+
     export {
-        convert, calculateTotalSpendings, calculatePercentage, convertNumbers, formatDate, calculateTotalUsers, calculateActiveUsers, welcomeMessage
+        convert, calculateTotalSpendings, calculatePercentage, convertNumbers, formatDate, calculateTotalUsers, calculateActiveUsers, welcomeMessage, delay
     }

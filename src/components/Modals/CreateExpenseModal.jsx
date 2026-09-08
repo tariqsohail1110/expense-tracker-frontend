@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { Button, Input, Dropdown } from '../index.js';
@@ -8,7 +8,7 @@ import api from '../../config/axios.config.js';
 
 function CreateExpenseModal({ isOpen = true, onClose }) {
     if (!isOpen) return null;
-
+    const cats = ['Food', 'Transport', 'Shopping', 'Health', 'Entertainment', 'Bills', 'Others'];
     const {
         register,
         handleSubmit,
@@ -43,7 +43,6 @@ function CreateExpenseModal({ isOpen = true, onClose }) {
         }
     };
 
-    const cats = ['Food', 'Transport', 'Shopping', 'Health', 'Entertainment', 'Bills', 'Others'];
 
     return createPortal(
         <div ref={modalRef} onClick={closeModal} className='fixed inset-0 z-[100] bg-black/40       backdrop-blur-sm text-zinc-900 dark:text-white flex justify-center items-center p-4'>

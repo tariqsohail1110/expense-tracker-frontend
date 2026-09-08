@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { Button, Input } from '../index.js';
@@ -8,21 +8,19 @@ import api from '../../config/axios.config.js';
 
 function CreateBudgetModal({ isOpen = true, onClose }) {
     if (!isOpen) return null;
-
     const modalRef = useRef();
-
-    const closeModal = (e) => {
-        if(modalRef.current === e.target) {
-            onClose();
-        }
-    };
-
     const {
         register,
         handleSubmit,
         setError,
         formState: { errors },
     } = useForm();
+
+    const closeModal = (e) => {
+        if(modalRef.current === e.target) {
+            onClose();
+        }
+    };
 
     const onSubmit = async (data) => {
         if (!numberRegex.test(data.budget)) {

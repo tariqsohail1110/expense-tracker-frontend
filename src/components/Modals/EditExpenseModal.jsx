@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import { useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { Button, Input, Dropdown } from '../index.js';
@@ -8,21 +8,20 @@ import api from '../../config/axios.config.js';
 
 function EditExpenseModal({ isOpen = true, onClose, url, id }) {
     if (!isOpen) return null;
-
+    const cats = ['Food', 'Transport', 'Shopping', 'Health', 'Entertainment', 'Bills', 'Others'];
     const modalRef = useRef();
+        const {
+        register,
+        handleSubmit,
+        setError,
+        formState: { errors },
+    } = useForm();
 
     const closeModal = (e) => {
         if(modalRef.current === e.target) {
             onClose();
         }
     }
-
-    const {
-        register,
-        handleSubmit,
-        setError,
-        formState: { errors },
-    } = useForm();
 
     const onSubmit = async (data) => {
         const payload = Object.fromEntries(
@@ -48,8 +47,6 @@ function EditExpenseModal({ isOpen = true, onClose, url, id }) {
             setError('date', { message: error.message});
         }
     };
-
-    const cats = ['Food', 'Transport', 'Shopping', 'Health', 'Entertainment', 'Bills', 'Others'];
 
     return createPortal(
         <div ref={modalRef} onClick={closeModal} className='fixed inset-0 z-[100] bg-black/40       backdrop-blur-sm text-zinc-900 dark:text-white flex justify-center items-center p-4'>

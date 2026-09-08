@@ -1,4 +1,3 @@
-import React from 'react'
 import { ResetPassComponent } from '../components'
 
 function ResetPassword() {

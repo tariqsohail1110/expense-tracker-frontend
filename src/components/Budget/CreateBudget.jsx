@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button, CreateBudgetModal } from '../index.js';
 
 function CreateBudget() {

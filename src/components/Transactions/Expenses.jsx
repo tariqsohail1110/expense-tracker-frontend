@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { createColumnHelper, flexRender, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, useReactTable } from '@tanstack/react-table';
 import { ArrowUpDown, ChevronLeft, Search, ChevronRight, ChevronsLeft, ChevronsRight, Edit, Trash, Download } from 'lucide-react';
 import { Button, EditExpenseModal, DeleteModal, Container } from '../index.js';
@@ -14,7 +14,6 @@ function Expenses() {
     const [showDeleteModal, setShowDeleteModal] = useState(false);
     const [loading, setLoading] = useState(true);
     const [selectedId, setSelectedId] = useState(null);
-
     const columnHelper = createColumnHelper();
 
         useEffect(() => {
@@ -29,22 +28,6 @@ function Expenses() {
             .catch(error => console.log(error))
             .finally( () => setLoading(false))
         }, []);
-
-    const handleDownloadXlsx = () => {
-        api.get('/api/v1/expenses/downloadxlsx', { responseType: 'blob' })
-        .then(response => {
-            const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
-            const blobUrl = window.URL.createObjectURL(blob);
-            const hiddenAnchor = document.createElement('a');
-            hiddenAnchor.href = blobUrl;
-            hiddenAnchor.download = 'expenses.xlsx';
-            document.body.appendChild(hiddenAnchor);
-            hiddenAnchor.click();
-            document.body.removeChild(hiddenAnchor);
-            window.URL.revokeObjectURL(blobUrl);
-        })
-        .catch(error => alert(error.message));
-    }
 
     const columns = [
         columnHelper.accessor('id', {
@@ -137,6 +120,22 @@ function Expenses() {
         getFilteredRowModel: getFilteredRowModel(),
         getPaginationRowModel: getPaginationRowModel()
     });
+
+    const handleDownloadXlsx = () => {
+        api.get('/api/v1/expenses/downloadxlsx', { responseType: 'blob' })
+        .then(response => {
+            const blob = new Blob([response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+            const blobUrl = window.URL.createObjectURL(blob);
+            const hiddenAnchor = document.createElement('a');
+            hiddenAnchor.href = blobUrl;
+            hiddenAnchor.download = 'expenses.xlsx';
+            document.body.appendChild(hiddenAnchor);
+            hiddenAnchor.click();
+            document.body.removeChild(hiddenAnchor);
+            window.URL.revokeObjectURL(blobUrl);
+        })
+        .catch(error => alert(error.message));
+    }
 
     if (loading) {
         return (

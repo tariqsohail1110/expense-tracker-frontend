@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Input, Button, UpdateModal } from '../index.js';
 import { useForm } from 'react-hook-form';
 
 function UpdateEmail() {
         const [ payload, setPayload ] = useState({});
+        const [showModal, setShowModal] = useState(false);
     
         const {
             register,
@@ -24,8 +25,6 @@ function UpdateEmail() {
             }
         }
 
-    const [showModal, setShowModal] = useState(false);
-
     return (
         <form onSubmit={handleSubmit(onSubmit)} className='rounded-lg shadow-lg text-zinc-900 bg-white p-6 mt-6 duration-500
         dark:bg-zinc-700'>
@@ -44,7 +43,6 @@ function UpdateEmail() {
                     dark:text-white dark:focus:border-zinc-800'
                     />
                     {errors.email && <p className='text-red-500 text-xs mt-1 ml-1'>{errors.email.message}</p>}
-
             </div>
             <Button onClick={() => setShowModal(true)} 
             type={'submit'} bgColor='bg-slate-900' textColor='text-white'

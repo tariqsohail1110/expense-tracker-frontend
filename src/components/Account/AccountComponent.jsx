@@ -1,4 +1,3 @@
-import React from 'react';
 import { UpdatePassword, Container, UpdateEmail, UpdateName, DeleteAccount } from '../index.js';
 
 function AccountComponent() {
