@@ -31,11 +31,13 @@ function EditExpenseModal({ isOpen = true, onClose, url, id }) {
         if(payload.title) {
             if (numberRegex.test(data.title)) {
                 setError('title', { message: 'Title cannot be a number'})
+                return;
             }
         }
         if (payload.amount) {
             if (!numberRegex.test(data.amount)) {
                 setError('amount', { message: 'Numbers only'})
+                return;
             }
         }
         try{

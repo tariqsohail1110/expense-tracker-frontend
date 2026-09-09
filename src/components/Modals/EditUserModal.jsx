@@ -83,8 +83,6 @@ function EditUserModal({ isOpen = true, onClose, url, id }) {
                         placeholder='John' 
                         className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800 mb-4 md:mb-0' 
                     />
-                    {errors.firstname && <p className="text-red-500 text-xs mt-1 ml-1">{errors.firstname.message}</p>}
-                    
                     <Input
                         {...register('lastname', {required: false, maxLength: { value: 50, message: 'Last name cannot be more than 50 letters'}})}
                         label='last name' 
@@ -92,9 +90,9 @@ function EditUserModal({ isOpen = true, onClose, url, id }) {
                         placeholder='Doe' 
                         className='border-2 focus:border-black duration-500 dark:bg-zinc-700 dark:border-zinc-600 dark:focus:bg-zinc-700 dark:text-white dark:focus:border-zinc-800' 
                     />
-                    {errors.lastname && <p className="text-red-500 text-xs mt-1 ml-1">{errors.lastname.message}</p>}
-
                 </div>
+                {errors.firstname && <p className="text-red-500 text-xs mt-1 ml-1">{errors.firstname.message}</p>}
+                {errors.lastname && <p className="text-red-500 text-xs mt-1 ml-1">{errors.lastname.message}</p>}
 
                 <Input 
                     {...register('email', {required: false, maxLength: { value: 50, message: 'Email cannot be more than 50 letters'}})}

@@ -27,9 +27,11 @@ function CreateExpenseModal({ isOpen = true, onClose }) {
     const onSubmit = async (data) => {
         if (numberRegex.test(data.title)) {
             setError('title', { message: 'Title cannot be a number'})
+            return;
         }
         if (!numberRegex.test(data.amount)) {
             setError('amount', { message: 'Numbers only'})
+            return;
         }
         try{
             await api.post('/api/v1/expenses/', data);
