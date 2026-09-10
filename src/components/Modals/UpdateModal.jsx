@@ -4,7 +4,7 @@ import { X } from 'lucide-react';
 import { Button, Input, Dropdown } from '../index.js';
 import api from '../../config/axios.config.js';
 
-function UpdateModal({ title = null, isOpen = true, onClose, url, data }) {
+function UpdateModal({ title = null, isOpen = true, onClose, onSuccess, url, data }) {
     if (!isOpen) return null;
     const modalRef = useRef();
     
@@ -24,8 +24,8 @@ function UpdateModal({ title = null, isOpen = true, onClose, url, data }) {
             }
 
             await api.patch(url, data);
+            onSuccess?.();
             onClose();
-            window.location.reload();
         }catch (error) {
             console.log(error.message);
         }

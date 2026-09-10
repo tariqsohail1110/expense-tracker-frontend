@@ -8,7 +8,7 @@ function Admin() {
     const [loading, setLoading] = useState(true);
     const [allTransactions, setAllTransactions] = useState(0);
 
-    useEffect(() => {
+    const fetchData = () => {
         Promise.allSettled([
             api.get('/api/v1/admin/users'),
             api.get('/api/v1/admin/expenses/alltransactions')
@@ -21,9 +21,12 @@ function Admin() {
                     setAllTransactions(allTransactions.value.data);
                 }
             })
-            .catch(error => console.log(error.message)
-            )
+            .catch(error => console.log(error.message))
             .finally( () => setLoading(false));
+    };
+
+    useEffect(() => {
+        fetchData();
     }, []);
 
     if (loading) {
@@ -101,7 +104,7 @@ function Admin() {
                     </div>
                 </div>
                 <div>
-                    <Users data={data}/>
+                    <Users data={data} onSuccess={fetchData}/>
                 </div>
             </Container>
     )

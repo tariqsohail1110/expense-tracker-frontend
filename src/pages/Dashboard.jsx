@@ -14,7 +14,7 @@ function Dashboard() {
     const [totalSpending, setTotalSpending] = useState(0);
     const [showModal, setShowModal] = useState(false);
 
-    useEffect(() => {
+    const fetchData = () => {
         Promise.allSettled([
             api.get('/api/v1/users/me'),
             api.get('/api/v1/budget/me'),
@@ -34,6 +34,12 @@ function Dashboard() {
             }
         })
         .finally(() => setLoading(false));
+    };
+
+    useEffect(() => {
+        fetchData();
+        window.addEventListener('expense:created', fetchData);
+        return () => window.removeEventListener('expense:created', fetchData);
     }, []);
 
 
@@ -98,7 +104,7 @@ function Dashboard() {
                     <ExpenseList data={spendings}/>
                     <DonutChart data={spendings} totalBudget={totalBalance} />
                 </div>
-                {showModal && <CreateExpenseModal onClose={() => setShowModal(false)}/>}
+                {showModal && <CreateExpenseModal onClose={() => setShowModal(false)} onSuccess={fetchData}/>}
             </Container>
         </>
     )

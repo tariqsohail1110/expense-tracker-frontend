@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import api from '../../config/axios.config.js';
 import { nameRegex } from '../../common/constants.js';
 
-function EditUserModal({ isOpen = true, onClose, url, id }) {
+function EditUserModal({ isOpen = true, onClose, onSuccess, url, id }) {
     if (!isOpen) return null;
     const cats = ['Active', 'Inactive'];
     const modalRef = useRef();
@@ -52,8 +52,8 @@ function EditUserModal({ isOpen = true, onClose, url, id }) {
         
         try {
             await api.patch(`${url}/${id}`, payload);
+            onSuccess?.();
             onClose();
-            window.location.reload();
         } catch(error) {
             setError('is_active', { message: error.message });
         }

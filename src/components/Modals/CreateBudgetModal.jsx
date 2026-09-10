@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { numberRegex } from '../../common/constants.js';
 import api from '../../config/axios.config.js';
 
-function CreateBudgetModal({ isOpen = true, onClose }) {
+function CreateBudgetModal({ isOpen = true, onClose, onSuccess }) {
     if (!isOpen) return null;
     const modalRef = useRef();
     const {
@@ -31,8 +31,8 @@ function CreateBudgetModal({ isOpen = true, onClose }) {
             await api.post('/api/v1/budget/', {
                 totalBudget: Number(data.budget)
             });
+            onSuccess?.();
             onClose();
-            window.location.reload();
         }catch(error) {
             setError('budget', { message: error.message })
         }

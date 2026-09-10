@@ -342,7 +342,7 @@ function Sidebar({ isOpen, onClose }) {
                         </div>
                     </div>
                 </div>
-                {showModal && <CreateExpenseModal onClose={() => setShowModal(false)}/>}
+                {showModal && <CreateExpenseModal onClose={() => setShowModal(false)} onSuccess={() => window.dispatchEvent(new Event('expense:created'))}/>}
             </aside>
         </>
     );

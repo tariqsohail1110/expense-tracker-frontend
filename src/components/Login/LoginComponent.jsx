@@ -48,7 +48,7 @@ function LoginComponent() {
     };
 
     const handleGoogleAuth = () => {
-        window.location.href = 'http://localhost:3000/api/v1/auth/google';
+        window.location.href = `${import.meta.env.VITE_API_URL}/api/v1/auth/google`;
     };
 
     return (

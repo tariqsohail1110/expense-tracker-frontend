@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { numberRegex } from '../../common/constants.js';
 import api from '../../config/axios.config.js';
 
-function CreateExpenseModal({ isOpen = true, onClose }) {
+function CreateExpenseModal({ isOpen = true, onClose, onSuccess }) {
     if (!isOpen) return null;
     const cats = ['Food', 'Transport', 'Shopping', 'Health', 'Entertainment', 'Bills', 'Others'];
     const {
@@ -35,9 +35,8 @@ function CreateExpenseModal({ isOpen = true, onClose }) {
         }
         try{
             await api.post('/api/v1/expenses/', data);
+            onSuccess?.();
             onClose();
-            window.location.reload();
-            null;
             
         }
         catch(error) {

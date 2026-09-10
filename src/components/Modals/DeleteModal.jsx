@@ -5,7 +5,7 @@ import { Button } from '../index.js';
 import api from '../../config/axios.config.js';
 import { useNavigate } from 'react-router-dom';
 
-function DeleteModal({ title = '', isOpen = true, onClose, url, id = undefined }) {
+function DeleteModal({ title = '', isOpen = true, onClose, onSuccess, url, id = undefined }) {
     if (!isOpen) return null;
     const navigate = useNavigate();
     const modalRef = useRef();
@@ -23,8 +23,8 @@ function DeleteModal({ title = '', isOpen = true, onClose, url, id = undefined }
             if (endpoint === '/api/v1/users/me') {
                 navigate('/');
             } else {
+                onSuccess?.();
                 onClose();
-                window.location.reload();
             }
         } catch (error) {
             return (error.message);

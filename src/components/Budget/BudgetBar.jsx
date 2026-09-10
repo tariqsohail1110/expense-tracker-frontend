@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Button, EditBudgetModal, DeleteModal } from '../index.js';
 import { Edit, Trash } from 'lucide-react';
 
-function BudgetBar({text, per, budget=0, spent=0, rem=0, date= '', rem_days=0}) {
+function BudgetBar({text, per, budget=0, spent=0, rem=0, date= '', rem_days=0, onSuccess}) {
     const clampedPer = Math.max(0, Math.min(100, parseFloat(per) || 0));
     const [showModal, setShowModal] = useState(false);
     const [showDelModal, setShowDelModal] = useState(false);
@@ -75,8 +75,8 @@ function BudgetBar({text, per, budget=0, spent=0, rem=0, date= '', rem_days=0}) 
                 </div>
             </div>
         </div>
-        {showModal && <EditBudgetModal onClose={() => setShowModal(false)}/>}
-        {showDelModal && <DeleteModal title='Budget' onClose={() => setShowDelModal(false)} url={'/api/v1/budget/me'}/>}
+        {showModal && <EditBudgetModal onClose={() => setShowModal(false)} onSuccess={onSuccess}/>}
+        {showDelModal && <DeleteModal title='Budget' onClose={() => setShowDelModal(false)} onSuccess={onSuccess} url={'/api/v1/budget/me'}/>}
         </>
     )
 }

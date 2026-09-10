@@ -16,7 +16,7 @@ function Expenses() {
     const [selectedId, setSelectedId] = useState(null);
     const columnHelper = createColumnHelper();
 
-        useEffect(() => {
+    const fetchData = () => {
             Promise.allSettled([
                 api.get('/api/v1/expenses/user/me')
             ])
@@ -27,6 +27,12 @@ function Expenses() {
             })
             .catch(error => console.log(error))
             .finally( () => setLoading(false))
+        };
+
+        useEffect(() => {
+            fetchData();
+            window.addEventListener('expense:created', fetchData);
+            return () => window.removeEventListener('expense:created', fetchData);
         }, []);
 
     const columns = [
@@ -339,8 +345,8 @@ function Expenses() {
                 </div>
                 
             </div>
-            {showModal && <EditExpenseModal onClose={() => {setShowModal(false); setSelectedId(false)}} url={'/api/v1/expenses'} id={selectedId}/>}
-            {showDeleteModal && <DeleteModal title='Expense' onClose={() => {setShowDeleteModal(false); setSelectedId(false)}} url={'/api/v1/expenses'} id={selectedId} />}
+            {showModal && <EditExpenseModal onClose={() => {setShowModal(false); setSelectedId(false)}} onSuccess={fetchData} url={'/api/v1/expenses'} id={selectedId}/>}
+            {showDeleteModal && <DeleteModal title='Expense' onClose={() => {setShowDeleteModal(false); setSelectedId(false)}} onSuccess={fetchData} url={'/api/v1/expenses'} id={selectedId} />}
         </div>
     );
 }

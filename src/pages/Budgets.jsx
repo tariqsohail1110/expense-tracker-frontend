@@ -32,7 +32,7 @@ function Budgets() {
         return formattedDate
     }
 
-    useEffect( () => {
+    const fetchData = () => {
         Promise.allSettled([
             api.get('/api/v1/budget/me'),
             api.get('/api/v1/expenses/user/me')
@@ -48,7 +48,10 @@ function Budgets() {
             }
         })
         .finally(() => setLoading(false));
+    };
 
+    useEffect( () => {
+        fetchData();
     }, [])
 
     const calculateTotalAmount = (cat) => {
@@ -88,7 +91,7 @@ function Budgets() {
                         <p className='text-center lg:text-left text-sm mt-1 duration-500 dark:text-white'>Optimize your capital allocation and monitor spend.</p>
                     </div>
                     <div className='mt-6'>
-                        <BudgetBar text='Monthly Budget' budget={convert(totalBudget)} per={calculatePercentage(totalSpending, totalBudget)} spent={convert(totalSpending)} rem={convert(remainingBudget)} date={getToday()} rem_days={getRemainingDays()}/>
+                        <BudgetBar text='Monthly Budget' budget={convert(totalBudget)} per={calculatePercentage(totalSpending, totalBudget)} spent={convert(totalSpending)} rem={convert(remainingBudget)} date={getToday()} rem_days={getRemainingDays()} onSuccess={fetchData}/>
                     </div>
                     <div>
                         <h1 className='text-center lg:text-left text-3xl font-bold text-zinc-900 lg:my-5 mt-5 duration-500 dark:text-white'>Category Overview</h1>

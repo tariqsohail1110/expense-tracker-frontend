@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import { numberRegex } from '../../common/constants.js';
 import api from '../../config/axios.config.js';
 
-function EditExpenseModal({ isOpen = true, onClose, url, id }) {
+function EditExpenseModal({ isOpen = true, onClose, onSuccess, url, id }) {
     if (!isOpen) return null;
     const cats = ['Food', 'Transport', 'Shopping', 'Health', 'Entertainment', 'Bills', 'Others'];
     const modalRef = useRef();
@@ -42,8 +42,8 @@ function EditExpenseModal({ isOpen = true, onClose, url, id }) {
         }
         try{
             await api.patch(`${url}/${id}`, payload);
+            onSuccess?.();
             onClose();
-            window.location.reload();
         }
         catch(error) {
             setError('date', { message: error.message});

@@ -5,7 +5,7 @@ import { Button, EditUserModal, DeleteModal } from '../index.js';
 import { formatDate } from '../../common/functions.js';
 import api from '../../config/axios.config.js';
 
-function Users({data}) {
+function Users({data, onSuccess}) {
     const [sorting, setSorting] = useState([]);
     const [globalFilter, setGlobalFilter] = useState('');
     const [showModal, setShowModal] = useState(false);
@@ -283,8 +283,8 @@ function Users({data}) {
                 </div>
                 
             </div>
-            {showModal && <EditUserModal onClose={() => {setShowModal(false); setSelectedId(false)}} url={'/api/v1/admin/users'} id={selectedId}/>}
-            {showDelModal && <DeleteModal title='User' onClose={() => {setShowDelModal(false); setSelectedId(false)}} url={'/api/v1/admin/users'} id={selectedId}/>}
+            {showModal && <EditUserModal onClose={() => {setShowModal(false); setSelectedId(false)}} onSuccess={onSuccess} url={'/api/v1/admin/users'} id={selectedId}/>}
+            {showDelModal && <DeleteModal title='User' onClose={() => {setShowDelModal(false); setSelectedId(false)}} onSuccess={onSuccess} url={'/api/v1/admin/users'} id={selectedId}/>}
         </div>
     );
 }
