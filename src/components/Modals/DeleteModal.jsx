@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { Button } from '../index.js';
@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 function DeleteModal({ title = '', isOpen = true, onClose, onSuccess, url, id = undefined }) {
     if (!isOpen) return null;
+    const [isClicked, setIsClicked] = useState(false);
     const navigate = useNavigate();
     const modalRef = useRef();
 
@@ -18,6 +19,7 @@ function DeleteModal({ title = '', isOpen = true, onClose, onSuccess, url, id = 
 
     const handleSubmit = async () => {
         try {
+            setIsClicked(true);
             const endpoint = id ? `${url}/${id}` : url;
             await api.delete(endpoint);
             if (endpoint === '/api/v1/users/me') {
@@ -47,12 +49,13 @@ function DeleteModal({ title = '', isOpen = true, onClose, onSuccess, url, id = 
                 </div>
                 <p className='text-lg text-zinc-900 dark:text-white font-semibold text-center font-sans'>This action cannot be undone</p>
                 <Button
+                    disable={isClicked}
                     onClick={() => handleSubmit()}
                     bgColor='bg-red-700'
                     textColor='text-white'
                     className='w-full font-bold duration-200 hover:duration-200 hover:bg-red-500 flex gap-1 justify-center items-center !mt-6'
                 >
-                    Delete
+                    {isClicked? 'Deleting...': 'Deleted'}
                 </Button>
             </div>
         </div>,

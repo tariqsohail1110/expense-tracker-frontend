@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { X } from 'lucide-react';
 import { Button, Input, Dropdown } from '../index.js';
@@ -6,6 +6,7 @@ import api from '../../config/axios.config.js';
 
 function UpdateModal({ title = null, isOpen = true, onClose, onSuccess, url, data }) {
     if (!isOpen) return null;
+    const [isClicked, setIsClicked] = useState(false);
     const modalRef = useRef();
     
     const closeModal = (e) => {
@@ -16,6 +17,7 @@ function UpdateModal({ title = null, isOpen = true, onClose, onSuccess, url, dat
 
     const handleSubmit = async () => {
         try {
+            setIsClicked(true);
             if(data.password && data.confirmPass) {
                 if(data.password !== data.confirmPass) {
                     alert("Passwords do not match");
@@ -47,12 +49,13 @@ function UpdateModal({ title = null, isOpen = true, onClose, onSuccess, url, dat
                 </div>
                 <p className='text-lg text-zinc-900 dark:text-white font-semibold text-center font-sans'>Are you sure you want to update your {title}?</p>
                 <Button
+                    disabled={isClicked}
                     onClick={() => handleSubmit()}
                     bgColor='bg-slate-900'
                     textColor='text-white'
                     className='w-full font-bold hover:bg-slate-800 duration-200 hover:duration-200 dark:bg-lime-600 dark:hover:bg-lime-500 dark:text-zinc-900 flex gap-1 justify-center items-center !mt-6'
                 >
-                    Update
+                    {isClicked? 'Updating...' : 'Update'}
                 </Button>
             </div>
         </div>,

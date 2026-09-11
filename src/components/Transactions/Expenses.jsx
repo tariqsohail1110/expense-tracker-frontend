@@ -36,12 +36,11 @@ function Expenses() {
         }, []);
 
     const columns = [
-        columnHelper.accessor('id', {
-            cell: (info) => info.getValue(),
-            header: () => (
-                <h1>ID</h1>
-            )
-        }),
+        columnHelper.display({
+                id: 'rowNumber',
+                header: () => <h1>S.No</h1>,
+                cell: (info) => info.row.index + 1,
+            }),
 
         columnHelper.accessor('title', {
             cell: (info) => info.getValue(),

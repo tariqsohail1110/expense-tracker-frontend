@@ -71,7 +71,7 @@ function Dashboard() {
                 <div className='lg:grid lg:grid-cols-2 lg:gap-4'>
                     <div className='lg:cols-span-10'>
                         <h1 className='text-center lg:text-left text-3xl font-bold text-zinc-900 dark:text-white duration-500'>Dashboard Overview</h1>
-                        <p className='text-sm mt-1 dark:text-white duration-500 text-center lg:text-left'>{welcomeMessage(totalSpending, totalBalance, username)}</p>
+                        <p className='text-sm mt-1 dark:text-white duration-500 text-center lg:text-left'>{totalBalance === 0? `Welcome ${username}, kindly create your budget first` : welcomeMessage(totalSpending, totalBalance, username)}</p>
                     </div>
                     <div className='mt-6 lg:cols-span-2 xl:w-64 lg:ml-auto lg:mt-auto pb-2'>
                             <Button

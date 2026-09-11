@@ -14,7 +14,7 @@ function EditExpenseModal({ isOpen = true, onClose, onSuccess, url, id }) {
         register,
         handleSubmit,
         setError,
-        formState: { errors },
+        formState: { errors, isSubmitting },
     } = useForm();
 
     const closeModal = (e) => {
@@ -101,12 +101,13 @@ function EditExpenseModal({ isOpen = true, onClose, onSuccess, url, id }) {
                 {errors.date && <p className="text-red-500 text-xs mt-1 ml-1">{errors.date.message}</p>}
                 
                 <Button
+                    disabled={isSubmitting}
                     type='submit'
                     bgColor='bg-slate-900'
                     textColor='text-white'
                     className='w-full font-bold hover:bg-slate-800 duration-200 hover:duration-200 dark:bg-lime-600 dark:hover:bg-lime-500 dark:text-zinc-900 flex gap-1 justify-center items-center !mt-6'
                 >
-                    Update
+                    {isSubmitting? 'Updating...' : 'Update'}
                 </Button>
             </form>
         </div>,
