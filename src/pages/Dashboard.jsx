@@ -48,7 +48,7 @@ function Dashboard() {
             <Container>
                 <div className='animate-pulse'>
                     <div className='h-8 bg-gray-300 dark:bg-zinc-700 rounded w-64 mb-2'></div>
-                    <div className='h-4 bg-gray-300 dark:bg-zinc-700 rounded w-96 mb-6'></div>
+                    <div className='h-4 bg-gray-300 dark:bg-zinc-700 rounded w-72 lg:w-96 mb-6'></div>
                     <div className='lg:grid lg:grid-cols-3 lg:gap-4 mt-6'>
                         <div className='h-24 bg-gray-300 dark:bg-zinc-700 rounded mb-4'></div>
                         <div className='h-24 bg-gray-300 dark:bg-zinc-700 rounded mb-4'></div>

@@ -158,9 +158,9 @@ function Expenses() {
                     {/* Table skeleton */}
                     <div className='overflow-x-auto rounded-md'>
                         {/* Table header */}
-                        <div className='h-10 bg-emerald-200 dark:bg-zinc-600 rounded-t-md mb-px flex items-center gap-4 px-6'>
+                        <div className='h-10 bg-emerald-200 dark:bg-lime-300 rounded-t-md mb-px flex items-center gap-4 px-6'>
                             {[...Array(7)].map((_, i) => (
-                                <div key={i} className='h-3 bg-emerald-300 dark:bg-zinc-500 rounded flex-1'></div>
+                                <div key={i} className='h-3 bg-emerald-300 dark:bg-lime-500 rounded flex-1'></div>
                             ))}
                         </div>
                         {/* Table rows */}

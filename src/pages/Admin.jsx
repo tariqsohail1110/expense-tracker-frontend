@@ -34,7 +34,7 @@ function Admin() {
             <Container>
                 <div className='animate-pulse'>
                     <div className='h-8 bg-gray-300 dark:bg-zinc-700 rounded w-64 mb-2'></div>
-                    <div className='h-4 bg-gray-300 dark:bg-zinc-700 rounded w-96 mb-6'></div>
+                    <div className='h-4 bg-gray-300 dark:bg-zinc-700 rounded w-72 lg:w-96 mb-6'></div>
                     <div className='lg:grid lg:grid-cols-3 lg:gap-4 mt-6'>
                         <div className='h-24 bg-gray-300 dark:bg-zinc-700 rounded mb-4'></div>
                         <div className='h-24 bg-gray-300 dark:bg-zinc-700 rounded mb-4'></div>
@@ -54,9 +54,9 @@ function Admin() {
                     {/* Table skeleton */}
                     <div className='overflow-x-auto rounded-md'>
                         {/* Table header */}
-                        <div className='h-10 bg-emerald-200 dark:bg-zinc-600 rounded-t-md mb-px flex items-center gap-4 px-6'>
+                        <div className='h-10 bg-emerald-200 dark:bg-lime-300 rounded-t-md mb-px flex items-center gap-4 px-6'>
                             {[...Array(7)].map((_, i) => (
-                                <div key={i} className='h-3 bg-emerald-300 dark:bg-zinc-500 rounded flex-1'></div>
+                                <div key={i} className='h-3 bg-emerald-300 dark:bg-lime-500 rounded flex-1'></div>
                             ))}
                         </div>
                         {/* Table rows */}
