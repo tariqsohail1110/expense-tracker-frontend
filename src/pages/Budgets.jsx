@@ -57,6 +57,8 @@ function Budgets() {
 
     useEffect( () => {
         fetchData();
+        window.addEventListener('expense:created', fetchData);
+        return () => window.removeEventListener('expense:created', fetchData);
     }, [])
 
     const calculateTotalAmount = (cat) => {
