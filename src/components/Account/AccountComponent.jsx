@@ -1,4 +1,4 @@
-import { UpdatePassword, Container, UpdateEmail, UpdateName, DeleteAccount } from '../index.js';
+import { UpdatePassword, Container, UpdateName, DeleteAccount } from '../index.js';
 
 function AccountComponent() {
     return (
@@ -10,7 +10,7 @@ function AccountComponent() {
                 </div>
                 <div className='my-6'>
                     <UpdatePassword/>
-                    <UpdateEmail/>
+                    {/* <UpdateEmail/> */}
                     <UpdateName/>
                     <DeleteAccount/>
                 </div>
