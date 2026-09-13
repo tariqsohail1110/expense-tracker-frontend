@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Button, CreateBudgetModal } from '../index.js';
 
-function CreateBudget() {
+function CreateBudget({ onSuccess }) {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -22,7 +22,7 @@ function CreateBudget() {
                     </div>
                 </div>
             </div>
-            {showModal && <CreateBudgetModal onClose={() => setShowModal(false)}/>}
+            {showModal && <CreateBudgetModal onClose={() => setShowModal(false)} onSuccess={onSuccess}/>}
         </div>
     )
 }

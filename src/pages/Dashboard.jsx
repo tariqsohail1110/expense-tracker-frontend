@@ -27,7 +27,7 @@ function Dashboard() {
             if (budgetRes.status === 'fulfilled') {
                 setTotalbalance(budgetRes.value.data.data.totalBudget);
                 setRemainingBudget(budgetRes.value.data.data.remainingBudget);
-                setTotalSpending(budgetRes.value.data.data.totalBudget - budgetRes.value.data.data.remainingBudget);
+                setTotalSpending(Math.max(0, budgetRes.value.data.data.totalBudget - budgetRes.value.data.data.remainingBudget));
             }
             if (expensesRes.status === 'fulfilled') {
                 setSpendings(expensesRes.value.data.data);

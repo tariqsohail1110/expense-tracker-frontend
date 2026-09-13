@@ -33,6 +33,7 @@ function Budgets() {
     }
 
     const fetchData = () => {
+        setLoading(true);
         Promise.allSettled([
             api.get('/api/v1/budget/me'),
             api.get('/api/v1/expenses/user/me')
@@ -41,7 +42,11 @@ function Budgets() {
             if (budgetRes.status === 'fulfilled') {
                 setTotalBudget(budgetRes.value.data.data.totalBudget);
                 setRemainingBudget(budgetRes.value.data.data.remainingBudget);
-                setTotalSpending(budgetRes.value.data.data.totalBudget - budgetRes.value.data.data.remainingBudget);
+                setTotalSpending(Math.max(0, budgetRes.value.data.data.totalBudget - budgetRes.value.data.data.remainingBudget));
+            } else {
+                setTotalBudget(0);
+                setRemainingBudget(0);
+                setTotalSpending(0);
             }
             if (expensesRes.status === 'fulfilled') {
                 setData(expensesRes.value.data.data);
@@ -129,7 +134,7 @@ function Budgets() {
                         <p className='text-center lg:text-left text-sm mt-1 duration-500 dark:text-white'>Optimize your capital allocation and monitor spend.</p>
                     </div>
                     <div className='mt-6'>
-                        <CreateBudget/>
+                        <CreateBudget onSuccess={fetchData}/>
                     </div>
                 </Container>
             </>
