@@ -55,7 +55,7 @@ function DeleteModal({ title = '', isOpen = true, onClose, onSuccess, url, id = 
                     textColor='text-white'
                     className='w-full font-bold duration-200 hover:duration-200 hover:bg-red-500 flex gap-1 justify-center items-center !mt-6'
                 >
-                    {isClicked? 'Deleting...': 'Deleted'}
+                    {isClicked? 'Deleting...': 'Delete'}
                 </Button>
             </div>
         </div>,
