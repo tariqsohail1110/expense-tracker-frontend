@@ -34,23 +34,22 @@ function Budgets() {
 
     const fetchData = () => {
         setLoading(true);
-        Promise.allSettled([
-            api.get('/api/v1/budget/me'),
-            api.get('/api/v1/expenses/user/me')
-        ])
-        .then(([budgetRes, expensesRes]) => {
-            if (budgetRes.status === 'fulfilled') {
-                setTotalBudget(budgetRes.value.data.data.totalBudget);
-                setRemainingBudget(budgetRes.value.data.data.remainingBudget);
-                setTotalSpending(Math.max(0, budgetRes.value.data.data.totalBudget - budgetRes.value.data.data.remainingBudget));
-            } else {
-                setTotalBudget(0);
-                setRemainingBudget(0);
-                setTotalSpending(0);
-            }
-            if (expensesRes.status === 'fulfilled') {
-                setData(expensesRes.value.data.data);
-            }
+        api.get('/api/v1/budget/me')
+        .then((budgetRes) => {
+            setTotalBudget(budgetRes.data.data.totalBudget);
+            setRemainingBudget(budgetRes.data.data.remainingBudget);
+            setTotalSpending(Math.max(0, budgetRes.data.data.totalBudget - budgetRes.data.data.remainingBudget));
+            const since = budgetRes.data.data.createdAt;
+            return api.get('/api/v1/expenses/user/me', { params: { since } });
+        })
+        .then((expensesRes) => {
+            setData(expensesRes.data.data);
+        })
+        .catch(() => {
+            setTotalBudget(0);
+            setRemainingBudget(0);
+            setTotalSpending(0);
+            setData([]);
         })
         .finally(() => setLoading(false));
     };
