@@ -15,25 +15,33 @@ function Dashboard() {
     const [showModal, setShowModal] = useState(false);
 
     const fetchData = () => {
-        Promise.allSettled([
-            api.get('/api/v1/users/me'),
-            api.get('/api/v1/budget/me'),
-            api.get('/api/v1/expenses/user/me')
-        ])
-        .then(([userRes, budgetRes, expensesRes]) => {
-            if (userRes.status === 'fulfilled') {
-                setUsername(userRes.value.data.data.firstname + " " + userRes.value.data.data.lastname);
-            }
-            if (budgetRes.status === 'fulfilled') {
-                setTotalbalance(budgetRes.value.data.data.totalBudget);
-                setRemainingBudget(budgetRes.value.data.data.remainingBudget);
-                setTotalSpending(Math.max(0, budgetRes.value.data.data.totalBudget - budgetRes.value.data.data.remainingBudget));
-            }
-            if (expensesRes.status === 'fulfilled') {
-                setSpendings(expensesRes.value.data.data);
-            }
-        })
-        .finally(() => setLoading(false));
+        const userPromise = api.get('/api/v1/users/me')
+            .then((userRes) => {
+                setUsername(userRes.data.data.firstname + " " + userRes.data.data.lastname);
+            })
+            .catch(() => {});
+
+        const budgetAndExpensesPromise = api.get('/api/v1/budget/me')
+            .then((budgetRes) => {
+                const budget = budgetRes.data.data;
+                setTotalbalance(budget.totalBudget);
+                setRemainingBudget(budget.remainingBudget);
+                setTotalSpending(Math.max(0, budget.totalBudget - budget.remainingBudget));
+                // Only fetch expenses belonging to the current budget period
+                return api.get('/api/v1/expenses/user/me', { params: { since: budget.createdAt } });
+            })
+            .then((expensesRes) => {
+                setSpendings(expensesRes.data.data);
+            })
+            .catch(() => {
+                setTotalbalance(0);
+                setRemainingBudget(0);
+                setTotalSpending(0);
+                setSpendings([]);
+            });
+
+        Promise.allSettled([userPromise, budgetAndExpensesPromise])
+            .finally(() => setLoading(false));
     };
 
     useEffect(() => {
